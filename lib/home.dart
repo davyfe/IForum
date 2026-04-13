@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeState extends State<Home> {
   }
 }
 
+String titulo = 'testando...';
 buildContainer(){
   return Container(
     margin: EdgeInsets.all(40),
@@ -35,8 +37,8 @@ buildContainer(){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Título',
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          titulo,
+          style: TextStyle(fontFamily: 'Times New Roman',fontSize: 40, fontWeight: FontWeight.bold),
         )
       ],
     ),
