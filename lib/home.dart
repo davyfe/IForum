@@ -50,7 +50,31 @@ class _HomeState extends State<Home> {
             tipo: "Ajuda",
           ),
         ],
-      )
+      ),
+
+      // botao flutuante
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        backgroundColor: const Color(0xFF4CAF50),
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, size: 35, color: Colors.white),
+      ),
+
+      // menu em baixo
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""), // home
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: ""), // noticias
+          BottomNavigationBarItem(icon: Icon(Icons.groups), label: ""), // comunidades
+          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ""), // notificações
+          BottomNavigationBarItem(icon: CircleAvatar(radius: 12), label: ""), // perfil
+        ],
+      ),
     );
   }
 }
