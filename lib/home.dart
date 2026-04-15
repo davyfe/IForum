@@ -13,14 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-          title: TextField(
-            decoration: InputDecoration(
-              hintText: 'Pesquisar',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-            ),
-          ), backgroundColor: Color(0xFF2E7D32)
-      ), // appbar
+      appBar: AppBar(backgroundColor: Color(0xFF2E7D32)), // appbar
       body: ListView(
         children: [
           buildHeader(), // appbar modificado
