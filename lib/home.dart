@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Home"), backgroundColor: Colors.green),
+      // não é um appBar
       body: ListView(
         children: [
           buildHeader(), // appbar modificado
@@ -190,7 +190,11 @@ buildPost({
         // tags
         Row(
           children: [
-            _buildTag(tipo, Colors.blue),
+            if(tipo=="Material") _buildTag(tipo, Colors.blue),
+            if(tipo=="Dúvida") _buildTag(tipo, Colors.greenAccent),
+            if(tipo=="Bate Papo") _buildTag(tipo, Colors.deepPurple),
+            if(tipo=="Ajuda") _buildTag(tipo, Colors.red),
+
             const SizedBox(width: 8),
             if(tipo=='Material') _buildTag("Literatura", Colors.orange),
           ],
