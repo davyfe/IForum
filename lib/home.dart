@@ -220,7 +220,7 @@ Widget _buildTag(String texto, Color cor){
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: cor.withOpacity(0.2),
+      color: cor.withValues(alpha: 0.2),
       borderRadius: BorderRadius.circular(20),
     ),
     child: Row(
