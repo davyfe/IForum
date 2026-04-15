@@ -79,6 +79,78 @@ class _HomeState extends State<Home> {
   }
 }
 
+// topo da tela
+buildHeader(){
+  return Container(
+    padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+    decoration: const BoxDecoration(
+      color: Color(0xFF2E7D32),
+      borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
+    ),
+    child: Column(
+      children: [
+        TextField(
+          decoration: InputDecoration(
+            hintText: "Pesquisar",
+            prefixIcon: const Icon(Icons.search),
+            fillColor: Colors.white.withOpacity(0.9),
+            filled: true,
+            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+// noticias
+buildNoticias(){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text("Notícias da Semana", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      ),
+      SizedBox(
+        height: 150,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          children: [
+            _cardNoticias("PESQUISA: Professor desen...", Colors.blue),
+            _cardNoticias("Assistência: São lançados...", Colors.cyan),
+            _cardNoticias("Meio Ambiente...", Colors.redAccent),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+_cardNoticias(String texto, Color cor){
+  return Container(
+    width: 200,
+    margin: const EdgeInsets.only(right: 12),
+    decoration: BoxDecoration(
+      color: cor,
+      borderRadius: BorderRadius.circular(12),
+      image: const DecorationImage(
+        image: NetworkImage("https://via.placeholder.com/200x150"),
+        fit: BoxFit.cover,
+      ),
+    ),
+    alignment: Alignment.bottomLeft,
+    padding: const EdgeInsets.all(8),
+    child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+  );
+}
+
+// posts
 buildPost({
   required String titulo,
   required String autor,
