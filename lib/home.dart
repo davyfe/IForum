@@ -37,6 +37,18 @@ class _HomeState extends State<Home> {
             tempo: "há 30 minutos",
             tipo: "Dúvida",
           ),
+          buildPost(
+            titulo: "Meu Primeiro Post Aqui!!!",
+            autor: "sabynnalouyse",
+            tempo: "há 12 minutos",
+            tipo: "Bate Papo",
+          ),
+          buildPost(
+            titulo: "O meu emulador do android studio não tá funcionandooooo",
+            autor: "duartege",
+            tempo: "há 1 hora",
+            tipo: "Ajuda",
+          ),
         ],
       )
     );
