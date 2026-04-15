@@ -123,8 +123,8 @@ buildNoticias(){
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
             _cardNoticias("PESQUISA: Professor desen...", Colors.blue),
-            _cardNoticias("Assistência: São lançados...", Colors.cyan),
-            _cardNoticias("Meio Ambiente...", Colors.redAccent),
+            _cardNoticias("Assistência: São lançados...", Colors.redAccent),
+            _cardNoticias("Meio Ambiente...", Colors.cyan),
           ],
         ),
       ),
