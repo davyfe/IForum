@@ -16,6 +16,15 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text("Home"), backgroundColor: Colors.green),
       body: ListView(
         children: [
+          buildHeader(), // appbar modificado
+          buildNoticias(), // noticias
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Text("Posts Recentes", style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            )),
+          ),
           buildPost(
             titulo: "PDF: Livro xxx",
             autor: "davyf",
