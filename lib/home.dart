@@ -13,7 +13,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Color(0xFF4CAF50)),
       body: ListView(
         children: [
           buildHeader(), // appbar modificado
