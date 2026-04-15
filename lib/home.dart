@@ -92,7 +92,7 @@ buildHeader(){
           decoration: InputDecoration(
             hintText: "Pesquisar",
             prefixIcon: const Icon(Icons.search),
-            fillColor: Colors.white.withOpacity(0.9),
+            fillColor: Colors.white.withValues(alpha: 0.9),
             filled: true,
             contentPadding: const EdgeInsets.symmetric(vertical: 0),
             border: OutlineInputBorder(
