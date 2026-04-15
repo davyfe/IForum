@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // não é um appBar
+      appBar: AppBar(backgroundColor: Colors.green),
       body: ListView(
         children: [
           buildHeader(), // appbar modificado
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
 // topo da tela
 buildHeader(){
   return Container(
-    padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+    padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
     decoration: const BoxDecoration(
       color: Color(0xFF2E7D32),
       borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -146,7 +146,7 @@ _cardNoticias(String texto, Color cor){
     ),
     alignment: Alignment.bottomLeft,
     padding: const EdgeInsets.all(8),
-    child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+    child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
   );
 }
 
