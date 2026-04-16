@@ -79,34 +79,6 @@ class _HomeState extends State<Home> {
   }
 }
 
-// topo da tela
-buildHeader(){
-  return Container(
-    padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-    decoration: const BoxDecoration(
-      color: Color(0xFF2E7D32),
-      borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
-    ),
-    child: Column(
-      children: [
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Pesquisar",
-            prefixIcon: const Icon(Icons.search),
-            fillColor: Colors.white.withValues(alpha: 0.9),
-            filled: true,
-            contentPadding: const EdgeInsets.symmetric(vertical: 0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide.none,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
 // noticias
 buildNoticias(){
   return Column(
