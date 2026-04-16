@@ -79,30 +79,30 @@ class _HomeState extends State<Home> {
   }
 }
 
-// noticias
-buildNoticias(){
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text("Notícias da Semana", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-      ),
-      SizedBox(
-        height: 150,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          children: [
-            _cardNoticias("PESQUISA: Professor desen...", Colors.blue),
-            _cardNoticias("Assistência: São lançados...", Colors.redAccent),
-            _cardNoticias("Meio Ambiente...", Colors.cyan),
-          ],
+  // noticias
+  buildNoticias(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text("Notícias da Semana", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
-      ),
-    ],
-  );
-}
+        SizedBox(
+          height: 150,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            children: [
+              _cardNoticias("PESQUISA: Professor desen...", Color(0xFF4549FF), ),
+              _cardNoticias("Assistência: São lançados...", Colors.redAccent),
+              _cardNoticias("Meio Ambiente...", Colors.cyan),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
 _cardNoticias(String texto, Color cor){
   return Container(
