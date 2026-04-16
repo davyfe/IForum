@@ -13,7 +13,10 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   List pages = [
     Home(),
-    Center(child: Text("Página Comunidades", style: TextStyle(fontSize: 32)));
+    Center(child: Text("Página Notícias", style: TextStyle(fontSize: 32))),
+    Center(child: Text("Página Comunidades", style: TextStyle(fontSize: 32))),
+    Center(child: Text("Página Notificações", style: TextStyle(fontSize: 32))),
+    Center(child: Text("Página Perfil", style: TextStyle(fontSize: 32))),
   ];
 
   @override
