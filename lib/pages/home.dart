@@ -122,35 +122,37 @@ _cardNoticias(String texto, Color cor){
   );
 }
 
-// posts
-buildPost({
-  required String titulo,
-  required String autor,
-  required String tempo,
-  required String tipo,
-}){
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: Color(0xFFE0E0E0),
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            CircleAvatar(radius: 15, backgroundColor: Colors.grey), // avatar
-            const SizedBox(width: 8),
-            Text(autor, style: TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(width: 5),
-            Icon(Icons.check_circle, size: 14, color: Colors.blue), // verificado
-            const SizedBox(width: 5),
-            Text("• $tempo", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
-          ],
-        ),
-        const SizedBox(height: 12),
+  // posts
+  buildPost({
+    required String titulo,
+    required String autor,
+    required String tempo,
+    required String tipo,
+    required String likes,
+    required String comentarios,
+  }){
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFFE0E0E0),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(radius: 15, backgroundColor: Colors.grey), // avatar
+              const SizedBox(width: 8),
+              Text(autor, style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(width: 5),
+              Icon(Icons.check_circle, size: 14, color: Colors.blue), // verificado
+              const SizedBox(width: 5),
+              Text("• $tempo", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+            ],
+          ),
+          const SizedBox(height: 12),
 
         /// titulo
         Text(
