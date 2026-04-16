@@ -94,9 +94,9 @@ class _HomeState extends State<Home> {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
-              _cardNoticias("PESQUISA: Professor desen...", Color(0xFF4549FF), ),
-              _cardNoticias("Assistência: São lançados...", Colors.redAccent),
-              _cardNoticias("Meio Ambiente...", Colors.cyan),
+              _cardNoticias("PESQUISA: Professor desen...", Color(0xFF4549FF), "https://media.istockphoto.com/id/1457744422/pt/foto/teacher-in-classroom-points-to-student-raising-hand.jpg?s=612x612&w=0&k=20&c=9w0pPd1CJF6JyYWsOtLC5Y4PYyZgGgfGdqsM8nRJcSg="),
+              _cardNoticias("Assistência: São lançados os editais de...", Colors.redAccent, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzy4jkGDPi9dsoQ6sgXAjQY94KrrInvapRA&s"),
+              _cardNoticias("Meio Ambiente: Novo núcleo pr...", Colors.cyan, "https://static.todamateria.com.br/upload/ma/os/maosplantandoarvorespelosobjetivosdedesenvolvimentosustentaveldomeioambiente-cke.jpg"),
             ],
           ),
         ),
