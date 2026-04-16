@@ -1,6 +1,8 @@
+import 'package:iforum/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget{
   const HomePage({super.key});
 
   @override
@@ -8,53 +10,56 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+  List pages = [
+    Home(),
+    Center(child: Text("Página Comunidades", style: TextStyle(fontSize: 32)));
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-          buildContainer(),
-        ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E7D32),
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: "Pesquisar",
+            prefixIcon: const Icon(Icons.search),
+            fillColor: Colors.white.withValues(alpha: 0.9),
+            filled: true,
+            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
       ),
+      body: pages[selectedIndex],
+      bottomNavigationBar: buildBottomnavigationbar(),
     );
   }
 
-  buildContainer() {
-    return Container(
-      margin: EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            child: Image.network(
-              'https://afar.brightspotcdn.com/dims4/default/5e0f8f5/2147483647/strip/true/crop/5760x3056+0+0/resize/1440x764!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F0e%2Fe0%2F2d5cbb2139b753c565850eda5611%2Foriginal-amsterdam-the-netherlands-canals-copy.jpg',
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Harligen, Netherlands',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Row(children: [Icon(Icons.star, size: 18), Text('4.76')]),
-            ],
-          ),
-          Text('Professional Host'),
-          Text('18-23 Dec'),
-          Text('\$1,065 total'),
-        ],
-      ),
+  buildBottomnavigationbar(){
+    return BottomNavigationBar(
+      currentIndex: selectedIndex,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      onTap: (index){
+        setState(() {
+          selectedIndex = index;
+        });
+  },
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: ""), // home
+        BottomNavigationBarItem(icon: Icon(Icons.article), label: ""), // noticias
+        BottomNavigationBarItem(icon: Icon(Icons.groups), label: ""), // comunidades
+        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ""), // notificações
+        BottomNavigationBarItem(icon: CircleAvatar(radius: 12), label: ""), // perfil
+      ],
     );
   }
 }

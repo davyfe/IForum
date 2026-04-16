@@ -12,11 +12,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Color(0xFF2E7D32)), // appbar
       body: ListView(
         children: [
-          buildHeader(), // appbar modificado
           buildNoticias(), // noticias
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -30,24 +27,32 @@ class _HomeState extends State<Home> {
             autor: "davyf",
             tempo: "1d",
             tipo: "Material",
+            likes: "78",
+            comentarios: "30",
           ),
           buildPost(
             titulo: "O que é DNA?",
             autor: "pdrolopes",
             tempo: "há 30 minutos",
             tipo: "Dúvida",
+            likes: "22",
+            comentarios: "3",
           ),
           buildPost(
             titulo: "Meu Primeiro Post Aqui!!!",
             autor: "sabynnalouyse",
             tempo: "há 12 minutos",
             tipo: "Bate Papo",
+            likes: "9",
+            comentarios: "0",
           ),
           buildPost(
             titulo: "O meu emulador do android studio não tá funcionandooooo",
             autor: "duartege",
             tempo: "há 1 hora",
             tipo: "Ajuda",
+            likes: "38",
+            comentarios: "12",
           ),
         ],
       ),
@@ -59,25 +64,8 @@ class _HomeState extends State<Home> {
         shape: const CircleBorder(),
         child: const Icon(Icons.add, size: 35, color: Colors.white),
       ),
-
-      // menu em baixo
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""), // home
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: ""), // noticias
-          BottomNavigationBarItem(icon: Icon(Icons.groups), label: ""), // comunidades
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ""), // notificações
-          BottomNavigationBarItem(icon: CircleAvatar(radius: 12), label: ""), // perfil
-        ],
-      ),
     );
   }
-}
 
   // noticias
   buildNoticias(){
@@ -104,23 +92,23 @@ class _HomeState extends State<Home> {
     );
   }
 
-_cardNoticias(String texto, Color cor){
-  return Container(
-    width: 200,
-    margin: const EdgeInsets.only(right: 12),
-    decoration: BoxDecoration(
-      color: cor,
-      borderRadius: BorderRadius.circular(12),
-      image: const DecorationImage(
-        image: NetworkImage("https://via.placeholder.com/200x150"),
-        fit: BoxFit.cover,
+  _cardNoticias(String texto, Color cor, String url){
+    return Container(
+      width: 200,
+      margin: const EdgeInsets.only(right: 12),
+      decoration: BoxDecoration(
+        color: cor,
+        borderRadius: BorderRadius.circular(12),
+        image: DecorationImage(
+          image: NetworkImage(url),
+          fit: BoxFit.cover,
+        ),
       ),
-    ),
-    alignment: Alignment.bottomLeft,
-    padding: const EdgeInsets.all(8),
-    child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
-  );
-}
+      alignment: Alignment.bottomLeft,
+      padding: const EdgeInsets.all(8),
+      child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+    );
+  }
 
   // posts
   buildPost({
@@ -154,91 +142,93 @@ _cardNoticias(String texto, Color cor){
           ),
           const SizedBox(height: 12),
 
-        /// titulo
-        Text(
-          titulo,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          // titulo
+          Text(
+            titulo,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+
+          // tags
+          Row(
+            children: [
+              if(tipo=="Material") _buildTag(tipo, Colors.blue),
+              if(tipo=="Dúvida") _buildTag(tipo, Colors.greenAccent),
+              if(tipo=="Bate Papo") _buildTag(tipo, Colors.deepPurple),
+              if(tipo=="Ajuda") _buildTag(tipo, Colors.red),
+
+              const SizedBox(width: 8),
+              if(tipo=='Material') _buildTag("Literatura", Colors.orange),
+            ],
+          ),
+          const SizedBox(height:12),
+
+          // interação
+          Row(
+            children: [
+              _buildInteractionB(Icons.thumb_up_off_alt, likes), // like
+              const SizedBox(width: 10),
+              _buildInteractionB(Icons.chat_bubble_outline, comentarios), // comentario
+              Spacer(),
+              _buildInteractionC(Icons.reply) // compartilhar
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  // tags
+  Widget _buildTag(String texto, Color cor){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: cor.withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(20),
         ),
-        const SizedBox(height: 8),
-
-        // tags
-        Row(
+        child: Row(
           children: [
-            if(tipo=="Material") _buildTag(tipo, Colors.blue),
-            if(tipo=="Dúvida") _buildTag(tipo, Colors.greenAccent),
-            if(tipo=="Bate Papo") _buildTag(tipo, Colors.deepPurple),
-            if(tipo=="Ajuda") _buildTag(tipo, Colors.red),
-
-            const SizedBox(width: 8),
-            if(tipo=='Material') _buildTag("Literatura", Colors.orange),
-          ],
-        ),
-        const SizedBox(height:12),
-
-        // interação
-        Row(
-          children: [
-            _buildInteractionB(Icons.thumb_up_off_alt, "78"), // like
-            const SizedBox(width: 10),
-            _buildInteractionB(Icons.chat_bubble_outline, "30"), // comentario
-            Spacer(),
-            _buildInteractionC(Icons.reply) // compartilhar
+            CircleAvatar(radius: 4, backgroundColor: cor),
+            SizedBox(width: 4),
+            Text(texto, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
           ],
         )
-      ],
-    ),
-  );
-}
+    );
+  }
 
-// tags
-Widget _buildTag(String texto, Color cor){
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    decoration: BoxDecoration(
-      color: cor.withValues(alpha: 0.2),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Row(
-      children: [
-        CircleAvatar(radius: 4, backgroundColor: cor),
-        SizedBox(width: 4),
-        Text(texto, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
-      ],
-    )
-  );
-}
+  // botoes de interação
+  Widget _buildInteractionB(IconData icon, String label){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size:16, color: Colors.grey[700]),
+            SizedBox(width: 4),
+            Text(label, style: TextStyle(fontSize: 12)),
+          ],
+        )
+    );
+  }
 
-// botoes de interação
-Widget _buildInteractionB(IconData icon, String label){
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey.shade400),
-      borderRadius: BorderRadius.circular(8),
-    ),
-    child: Row(
-      children: [
-        Icon(icon, size:16, color: Colors.grey[700]),
-        SizedBox(width: 4),
-        Text(label, style: TextStyle(fontSize: 12)),
-      ],
-    )
-  );
-}
+  // botao de compartilhar
+  Widget _buildInteractionC(IconData icon){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size:16, color: Colors.grey[700]),
+            SizedBox(width: 4),
+          ],
+        )
+    );
+  }
 
-// botao de compartilhar
-Widget _buildInteractionC(IconData icon){
-  return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade400),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size:16, color: Colors.grey[700]),
-          SizedBox(width: 4),
-        ],
-      )
-  );
 }
