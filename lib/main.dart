@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iforum/pages/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: Home()));
 }
 
 class MyApp extends StatelessWidget {
