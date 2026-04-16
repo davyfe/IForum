@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/home.dart';
+import 'package:iforum/noticias.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: Colors.blue,
       ),
-      home: const Home(),
+      home: const Noticias(),
     );
   }
 }
