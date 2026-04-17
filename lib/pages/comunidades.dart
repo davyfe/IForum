@@ -50,15 +50,18 @@ class _ComunidadesState extends State<Comunidades>{
       ),
       body: ListView(
         children: [
-          buildConvite("Recomendado para Você", recomendados),
-          buildConvite("Criatividade", criativo),
-          buildConvite("Cursos", cursos)
+          buildConvite(categoria: "Recomendado para Você", dados: recomendados),
+          buildConvite(categoria: "Criatividade", dados: criativo),
+          buildConvite(categoria: "Cursos", dados: cursos)
         ],
       ),
     );
   }
 
-  buildConvite(String categoria, List<Map<String, String>> dados){
+  buildConvite({
+    required String categoria,
+    required List<Map<String, String>> dados
+}){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -76,9 +79,9 @@ class _ComunidadesState extends State<Comunidades>{
           child: Container(
             height: 226,
             child: Wrap(
-              direction: Axis.vertical, // O segredo está aqui: ele preenche de cima para baixo
-              spacing: 10,              // Espaço vertical entre os cards
-              runSpacing: 0,           // Espaço horizontal entre as colunas
+              direction: Axis.vertical,
+              spacing: 10,
+              runSpacing: 0,
               children: dados.map<Widget>((item) {
                 return _cardConvite(
                   item['nome']!,
