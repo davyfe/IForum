@@ -50,9 +50,9 @@ class _ComunidadesState extends State<Comunidades>{
       ),
       body: ListView(
         children: [
-          buildConvite("Recomendado para Você", recomendados),
-          buildConvite("Criatividade", criativo),
-          buildConvite("Cursos", cursos)
+          buildConvite(categoria: "Recomendado para Você", dados: recomendados),
+          buildConvite(categoria: "Criatividade", dados: criativo),
+          buildConvite(categoria: "Cursos", dados: cursos)
         ],
       ),
     );
