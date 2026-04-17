@@ -58,7 +58,10 @@ class _ComunidadesState extends State<Comunidades>{
     );
   }
 
-  buildConvite(String categoria, List<Map<String, String>> dados){
+  buildConvite({
+    required String categoria,
+    required List<Map<String, String>> dados
+}){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
