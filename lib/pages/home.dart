@@ -12,11 +12,27 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E7D32),
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: "Pesquisar",
+            prefixIcon: Icon(Icons.search),
+            fillColor: Colors.white.withValues(alpha: 0.9),
+            filled: true,
+            contentPadding: EdgeInsets.symmetric(vertical: 0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+      ),
       body: ListView(
         children: [
           buildNoticias(), // noticias
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          Padding(
+            padding: EdgeInsets.only(left: 16, bottom: 0, top: 16),
             child: Text("Posts Recentes", style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold
@@ -60,9 +76,9 @@ class _HomeState extends State<Home> {
       // botao flutuante
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
-        backgroundColor: const Color(0xFF4CAF50),
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add, size: 35, color: Colors.white),
+        backgroundColor: Color(0xFF4CAF50),
+        shape: CircleBorder(),
+        child: Icon(Icons.add, size: 35, color: Colors.white),
       ),
     );
   }
@@ -72,15 +88,15 @@ class _HomeState extends State<Home> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.all(16.0),
+        Padding(
+          padding: EdgeInsets.only(left: 16, bottom: 10, top: 16),
           child: Text("Notícias da Semana", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16),
             children: [
               _cardNoticias("PESQUISA: Professor desen...", Color(0xFF4549FF), "https://media.istockphoto.com/id/1457744422/pt/foto/teacher-in-classroom-points-to-student-raising-hand.jpg?s=612x612&w=0&k=20&c=9w0pPd1CJF6JyYWsOtLC5Y4PYyZgGgfGdqsM8nRJcSg="),
               _cardNoticias("Assistência: São lançados os editais de...", Colors.redAccent, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzy4jkGDPi9dsoQ6sgXAjQY94KrrInvapRA&s"),
@@ -95,7 +111,7 @@ class _HomeState extends State<Home> {
   _cardNoticias(String texto, Color cor, String url){
     return Container(
       width: 200,
-      margin: const EdgeInsets.only(right: 12),
+      margin: EdgeInsets.only(right: 12),
       decoration: BoxDecoration(
         color: cor,
         borderRadius: BorderRadius.circular(12),
@@ -105,8 +121,8 @@ class _HomeState extends State<Home> {
         ),
       ),
       alignment: Alignment.bottomLeft,
-      padding: const EdgeInsets.all(8),
-      child: Text(texto, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+      padding: EdgeInsets.all(8),
+      child: Text(texto, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 
@@ -120,8 +136,8 @@ class _HomeState extends State<Home> {
     required String comentarios,
   }){
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Color(0xFFE0E0E0),
         borderRadius: BorderRadius.circular(12),
@@ -131,23 +147,23 @@ class _HomeState extends State<Home> {
         children: [
           Row(
             children: [
-              CircleAvatar(radius: 15, backgroundColor: Colors.grey), // avatar
-              const SizedBox(width: 8),
+              CircleAvatar(radius: 12, backgroundColor: Colors.grey), // avatar
+              SizedBox(width: 8),
               Text(autor, style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(width: 5),
+              SizedBox(width: 5),
               Icon(Icons.check_circle, size: 14, color: Colors.blue), // verificado
-              const SizedBox(width: 5),
+              SizedBox(width: 5),
               Text("• $tempo", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
 
           // titulo
           Text(
             titulo,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
 
           // tags
           Row(
@@ -157,17 +173,17 @@ class _HomeState extends State<Home> {
               if(tipo=="Bate Papo") _buildTag(tipo, Colors.deepPurple),
               if(tipo=="Ajuda") _buildTag(tipo, Colors.red),
 
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               if(tipo=='Material') _buildTag("Literatura", Colors.orange),
             ],
           ),
-          const SizedBox(height:12),
+          SizedBox(height:12),
 
           // interação
           Row(
             children: [
               _buildInteractionB(Icons.thumb_up_off_alt, likes), // like
-              const SizedBox(width: 10),
+              SizedBox(width: 10),
               _buildInteractionB(Icons.chat_bubble_outline, comentarios), // comentario
               Spacer(),
               _buildInteractionC(Icons.reply) // compartilhar
