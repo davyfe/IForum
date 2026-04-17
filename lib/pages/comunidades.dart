@@ -79,9 +79,9 @@ class _ComunidadesState extends State<Comunidades>{
           child: Container(
             height: 226,
             child: Wrap(
-              direction: Axis.vertical, // O segredo está aqui: ele preenche de cima para baixo
-              spacing: 10,              // Espaço vertical entre os cards
-              runSpacing: 0,           // Espaço horizontal entre as colunas
+              direction: Axis.vertical,
+              spacing: 10,
+              runSpacing: 0,
               children: dados.map<Widget>((item) {
                 return _cardConvite(
                   item['nome']!,

@@ -2,14 +2,14 @@ import 'package:iforum/pages/home.dart';
 import 'package:iforum/pages/comunidades.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget{
-  const HomePage({super.key});
+class navPage extends StatefulWidget{
+  const navPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<navPage> createState() => _navPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _navPageState extends State<navPage> {
   int selectedIndex = 0;
 
   @override
