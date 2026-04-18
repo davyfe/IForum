@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/noticiaClass.dart';
+import 'package:iforum/pages/noticiaClass.dart';
 
 class Noticias extends StatefulWidget {
   const Noticias({super.key});

@@ -1,4 +1,4 @@
-import 'package:iforum/noticias.dart';
+import 'package:iforum/pages/noticias.dart';
 
 //criando uma classe para definir as informações obrigatórias
 class noticiaClass {
