@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/home.dart';
+import 'package:iforum/pages/navPage.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'IForum',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
-      ),
-      home: const Home(),
-    );
-  }
+  runApp(MaterialApp(home: navPage(), debugShowCheckedModeBanner: false));
 }
