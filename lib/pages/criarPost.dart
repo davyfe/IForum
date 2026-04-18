@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CriarPostTela extends StatefulWidget {
-  const CriarPostTela({super.key});
+class CriarPost extends StatefulWidget {
+  const CriarPost({super.key});
 
   @override
-  State<CriarPostTela> createState() => _CriarPostTelaState();
+  State<CriarPost> createState() => _CriarPostState();
 }
 
-class _CriarPostTelaState extends State<CriarPostTela> {
+class _CriarPostState extends State<CriarPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +59,16 @@ class _CriarPostTelaState extends State<CriarPostTela> {
           ),
           child: IconButton(
             icon: const Icon(Icons.close, color: Colors.white),
-            onPressed: () {}, // Ação de fechar a tela aqui
+            onPressed: () {
+              // 1. Navigator: O gerente da "pilha" de telas.
+              // 2. .pop: O método que "estoura" (remove) a tela atual do topo da pilha.
+              Navigator.pop(
+                // context: É a identidade da tela que está pedindo para ser fechada.
+                // O Flutter usa esse contexto para saber EXATAMENTE qual "prato" deve remover
+                // do topo da pilha e qual tela deve ser revelada logo abaixo.
+                  context
+              );
+            }, // Ação de fechar a tela aqui
           ),
         ),
 
