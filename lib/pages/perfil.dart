@@ -60,7 +60,9 @@ class _PerfilState extends State<Perfil> {
               style: IconButton.styleFrom(
                 backgroundColor: Colors.black87.withValues(alpha: 0.6),
               ),
-              onPressed: (){},
+              onPressed: (){
+
+              },
               icon: Icon(
                 Icons.menu,
                 color: Colors.white,
