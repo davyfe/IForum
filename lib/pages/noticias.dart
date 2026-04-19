@@ -88,7 +88,7 @@ class _NoticiasState extends State<Noticias> {
     return Scaffold(
       // Criar o topo da tela
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF2E7D32),
         leading: const Icon(Icons.arrow_back),
         title: const Text('Notícias', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
