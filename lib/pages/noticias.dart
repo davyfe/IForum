@@ -90,7 +90,7 @@ class _NoticiasState extends State<Noticias> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         leading: const Icon(Icons.arrow_back),
-        title: const Text('Notícias'),
+        title: const Text('Notícias', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
 
