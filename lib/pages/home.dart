@@ -142,6 +142,7 @@ class _HomeState extends State<Home> {
     required String tipo,
     required String likes,
     required String comentarios,
+    required bool anexo,
   }){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
