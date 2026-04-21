@@ -53,6 +53,7 @@ class _HomeState extends State<Home> {
             tipo: "Material",
             likes: "78",
             comentarios: "30",
+            anexo: true,
           ),
           buildPost(
             titulo: "O que é DNA?",
@@ -61,6 +62,7 @@ class _HomeState extends State<Home> {
             tipo: "Dúvida",
             likes: "22",
             comentarios: "3",
+            anexo: false
           ),
           buildPost(
             titulo: "Meu Primeiro Post Aqui!!!",
@@ -69,6 +71,7 @@ class _HomeState extends State<Home> {
             tipo: "Bate Papo",
             likes: "9",
             comentarios: "0",
+            anexo: false,
           ),
           buildPost(
             titulo: "O meu emulador do android studio não tá funcionandooooo",
@@ -77,6 +80,7 @@ class _HomeState extends State<Home> {
             tipo: "Ajuda",
             likes: "38",
             comentarios: "12",
+            anexo: false
           ),
         ],
       ),
