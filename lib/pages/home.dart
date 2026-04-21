@@ -227,6 +227,42 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // anexo (dados fixos, por enquanto)
+  Widget _buildAnexo() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade400,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              "PDF",
+              style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(width: 8),
+
+          Text(
+            "livro.pdf",
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(width: 8),
+
+          Icon(Icons.file_download_done_outlined, size: 18),
+        ],
+      ),
+    );
+  }
+
   // botoes de interação
   Widget _buildInteractionB(IconData icon, String label){
     return Container(
