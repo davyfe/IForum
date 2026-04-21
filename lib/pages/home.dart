@@ -262,7 +262,7 @@ class _HomeState extends State<Home> {
   }
 
   // botoes de interação
-  Widget _buildInteractionB(IconData icon, String label){
+  Widget _buildInteractionLikes(String label){
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
@@ -274,13 +274,33 @@ class _HomeState extends State<Home> {
             Icon(icon, size:16, color: Colors.grey[700]),
             SizedBox(width: 4),
             Text(label, style: TextStyle(fontSize: 12)),
+            SizedBox(width: 4),
+            Text("|", style: TextStyle(fontSize: 12)),
+            SizedBox(width: 4),
+            Icon(Icons.thumb_down_alt_outlined, size:16, color: Colors.grey[700])
           ],
         )
     );
   }
 
-  // botao de compartilhar
-  Widget _buildInteractionC(IconData icon){
+  Widget _buildInteractionComent(String label){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: Colors.white54,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.chat_bubble_outline_outlined, size:16, color: Colors.grey[700]),
+            SizedBox(width: 4),
+            Text(label, style: TextStyle(fontSize: 12))
+          ],
+        )
+    );
+  }
+
+  Widget _buildInteractionCompt(IconData icon){
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
