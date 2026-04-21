@@ -192,6 +192,16 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height:12),
 
+          if(texto.isNotEmpty)...[
+            Text(
+              texto,
+              maxLines: 5,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(height:12),
+          ],
+
           // caso tenha anexo
           if(anexo)...[
             _buildAnexo(),
