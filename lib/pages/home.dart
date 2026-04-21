@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
                 filled: true,
                 contentPadding: EdgeInsets.only(right: 16),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide.none,
                 ),
               ),
