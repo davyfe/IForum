@@ -49,8 +49,10 @@ class _HomeState extends State<Home> {
           buildPost(
             titulo: "PDF: Livro xxx",
             autor: "davyf",
+            comunidade: "",
             tempo: "1d",
             tipo: "Material",
+            texto: "",
             likes: "78",
             comentarios: "30",
             anexo: true,
@@ -58,8 +60,10 @@ class _HomeState extends State<Home> {
           buildPost(
             titulo: "O que é DNA?",
             autor: "pdrolopes",
-            tempo: "há 30 minutos",
+            comunidade: "biologia_ifal",
+            tempo: "há 30 min",
             tipo: "Dúvida",
+            texto: "",
             likes: "22",
             comentarios: "3",
             anexo: false
@@ -67,8 +71,10 @@ class _HomeState extends State<Home> {
           buildPost(
             titulo: "Meu Primeiro Post Aqui!!!",
             autor: "sabynnalouyse",
-            tempo: "há 12 minutos",
+            comunidade: "",
+            tempo: "há 12 min",
             tipo: "Bate Papo",
+            texto: "Caros amigos, a constante divulgação das informações maximiza as possibilidades por conta das condições financeiras e administrativas exigidas. Por outro lado, a necessidade de renovação processual maximiza as possibilidades por conta do sistema de participação geral.",
             likes: "9",
             comentarios: "0",
             anexo: false,
@@ -76,8 +82,10 @@ class _HomeState extends State<Home> {
           buildPost(
             titulo: "O meu emulador do android studio não tá funcionandooooo",
             autor: "duartege",
+            comunidade: "devs.if",
             tempo: "há 1 hora",
             tipo: "Ajuda",
+            texto: "",
             likes: "38",
             comentarios: "12",
             anexo: false
@@ -142,8 +150,10 @@ class _HomeState extends State<Home> {
   Widget buildPost({
     required String titulo,
     required String autor,
+    required String comunidade,
     required String tempo,
     required String tipo,
+    required String texto,
     required String likes,
     required String comentarios,
     required bool anexo,
@@ -166,7 +176,20 @@ class _HomeState extends State<Home> {
               SizedBox(width: 5),
               Icon(Icons.check_circle, size: 14, color: Colors.blue), // verificado
               SizedBox(width: 5),
-              Text("• $tempo", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+              if(comunidade.isNotEmpty)...[
+                Icon(Icons.chevron_right, size: 12),
+                SizedBox(width: 5),
+                Text(comunidade, style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  )
+                ),
+                SizedBox(width: 5),
+              ],
+              Text("•", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+              SizedBox(width: 5),
+              Text(tempo, style: TextStyle(color: Colors.grey[600], fontSize: 12)),
             ],
           ),
           SizedBox(height: 12),
@@ -181,10 +204,10 @@ class _HomeState extends State<Home> {
           // tags
           Row(
             children: [
-              if(tipo=="Material") _buildTag(tipo, Colors.blue),
-              if(tipo=="Dúvida") _buildTag(tipo, Colors.greenAccent),
-              if(tipo=="Bate Papo") _buildTag(tipo, Colors.deepPurple),
-              if(tipo=="Ajuda") _buildTag(tipo, Colors.red),
+              if(tipo=="Material") _buildTag(tipo, Colors.indigo),
+              if(tipo=="Dúvida") _buildTag(tipo, Colors.red),
+              if(tipo=="Bate Papo") _buildTag(tipo, Colors.green),
+              if(tipo=="Ajuda") _buildTag(tipo, Colors.yellow.shade700),
 
               SizedBox(width: 8),
               if(tipo=='Material') _buildTag("Literatura", Colors.orange),
@@ -211,11 +234,11 @@ class _HomeState extends State<Home> {
           // interação
           Row(
             children: [
-              _buildInteractionB(Icons.thumb_up_off_alt, likes), // like
+              _buildInteractionLikes(likes), // like
               SizedBox(width: 10),
-              _buildInteractionB(Icons.chat_bubble_outline, comentarios), // comentario
+              _buildInteractionComent(comentarios), // comentario
               Spacer(),
-              _buildInteractionC(Icons.reply) // compartilhar
+              _buildInteractionCompt() // compartilhar
             ],
           )
         ],
@@ -226,14 +249,14 @@ class _HomeState extends State<Home> {
   // tags
   Widget _buildTag(String texto, Color cor){
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: EdgeInsets.only(left: 0, right: 8, top: 2, bottom: 2),
         decoration: BoxDecoration(
-          color: Colors.grey.shade400,
+          color: Colors.white54,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
           children: [
-            CircleAvatar(radius: 20, backgroundColor: cor),
+            CircleAvatar(radius: 8, backgroundColor: cor),
             SizedBox(width: 4),
             Text(texto, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
           ],
@@ -246,8 +269,8 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.grey.shade400,
-        borderRadius: BorderRadius.circular(8),
+        color: Colors.white54,
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -265,7 +288,7 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(width: 8),
 
-          Icon(Icons.file_download_done_outlined, size: 18),
+          Icon(Icons.file_download_outlined, size: 18),
         ],
       ),
     );
@@ -276,16 +299,16 @@ class _HomeState extends State<Home> {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white54,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           children: [
-            Icon(icon, size:16, color: Colors.grey[700]),
+            Icon(Icons.thumb_up_alt_outlined, size:16, color: Colors.grey[700]),
             SizedBox(width: 4),
             Text(label, style: TextStyle(fontSize: 12)),
             SizedBox(width: 4),
-            Text("|", style: TextStyle(fontSize: 12)),
+            Text("|", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
             SizedBox(width: 4),
             Icon(Icons.thumb_down_alt_outlined, size:16, color: Colors.grey[700])
           ],
@@ -310,17 +333,16 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildInteractionCompt(IconData icon){
+  Widget _buildInteractionCompt(){
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white54,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           children: [
-            Icon(icon, size:16, color: Colors.grey[700]),
-            SizedBox(width: 4),
+            Icon(Icons.share_outlined, size:16, color: Colors.grey[700])
           ],
         )
     );
