@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
   }
 
   // noticias
-  buildNoticias(){
+  Widget buildNoticias(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _cardNoticias(String texto, Color cor, String url){
+  Widget _cardNoticias(String texto, Color cor, String url){
     return Container(
       width: 200,
       margin: EdgeInsets.only(right: 12),
@@ -139,7 +139,7 @@ class _HomeState extends State<Home> {
   }
 
   // posts
-  buildPost({
+  Widget buildPost({
     required String titulo,
     required String autor,
     required String tempo,
