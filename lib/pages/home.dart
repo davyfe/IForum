@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Color(0xFF2E7D32),
         // se tratando o pesquisar:
         title: Padding ( // adicionei o padding pra diminuir a largura
-          padding: EdgeInsets.symmetric(horizontal:16),
+          padding: EdgeInsets.symmetric(horizontal:18),
           child: SizedBox(
             height: 40,
             child: TextField(
