@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
         title: Padding ( // adicionei o padding pra diminuir a largura
           padding: EdgeInsets.symmetric(horizontal:18),
           child: SizedBox(
-            height: 40,
+            height: 35,
             child: TextField(
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
