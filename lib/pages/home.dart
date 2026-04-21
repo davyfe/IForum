@@ -13,16 +13,25 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2E7D32),
-        title: TextField(
-          decoration: InputDecoration(
-            hintText: "Pesquisar",
-            prefixIcon: Icon(Icons.search),
-            fillColor: Colors.white.withValues(alpha: 0.9),
-            filled: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide.none,
+        // se tratando o pesquisar:
+        title: Padding ( // adicionei o padding pra diminuir a largura
+          padding: EdgeInsets.symmetric(horizontal:16),
+          child: SizedBox(
+            height: 40,
+            child: TextField(
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                isDense: true, // pra controlar o espaço sem mexer no texto
+                hintText: "Pesquisar",
+                prefixIcon: Icon(Icons.search),
+                fillColor: Colors.white.withValues(alpha: 0.9),
+                filled: true,
+                contentPadding: EdgeInsets.only(right: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide.none,
+                ),
+              ),
             ),
           ),
         ),
