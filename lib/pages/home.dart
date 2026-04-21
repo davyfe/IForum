@@ -188,6 +188,12 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height:12),
 
+          // caso tenha anexo
+          if(anexo)...[
+            _buildAnexo(),
+            SizedBox(height: 12),
+          ],
+
           // interação
           Row(
             children: [
