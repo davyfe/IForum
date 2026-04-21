@@ -242,16 +242,10 @@ class _HomeState extends State<Home> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-            decoration: BoxDecoration(
-              color: Colors.redAccent,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Text(
-              "PDF",
-              style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
-            ),
+          Icon(
+            Icons.picture_as_pdf,
+            color: Colors.redAccent,
+            size: 28,
           ),
           SizedBox(width: 8),
 
