@@ -1,6 +1,7 @@
 import 'package:iforum/pages/home.dart';
 import 'package:iforum/pages/comunidades.dart';
 import 'package:flutter/material.dart';
+import 'package:iforum/pages/perfil.dart';
 
 class navPage extends StatefulWidget{
   const navPage({super.key});
@@ -19,7 +20,7 @@ class _navPageState extends State<navPage> {
       Center(child: Text("Página Notícias", style: TextStyle(fontSize: 32))),
       Comunidades(),
       Center(child: Text("Página Notificações", style: TextStyle(fontSize: 32))),
-      Center(child: Text("Página Perfil", style: TextStyle(fontSize: 32))),
+      Perfil(),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
