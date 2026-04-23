@@ -142,7 +142,11 @@ class _HomeState extends State<Home> {
       ),
       alignment: Alignment.bottomLeft,
       padding: EdgeInsets.all(8),
-      child: Text(texto, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+      child: Text(texto,
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 
