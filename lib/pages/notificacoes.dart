@@ -12,7 +12,6 @@ class _NotificacoesState extends State<Notificacoes> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Color(0xFF2E7D32),
         leading: Icon(
@@ -36,20 +35,7 @@ class _NotificacoesState extends State<Notificacoes> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          _buildAbas(),
-          buildNotificacoes(
-              icone: Icons.campaign,
-              titulo: "Breaking News",
-              mensagem: "Pensando mais a longo prazo, o entendimento das metas"
-                  "propostas desafia a capacidade de legalização das condições"
-                  "financeiras e administrativas do setor agrícola.",
-              horario: "7h",
-              autor: "Sistema Ifal",
-          )
-        ],
-      ),
+      body: _buildAbas()
     );
   }
 
@@ -66,22 +52,51 @@ class _NotificacoesState extends State<Notificacoes> {
               indicatorColor: Color(0xFF2E7D32),
               indicatorWeight: 3.0,
               labelStyle: TextStyle(
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
               ),
               tabs: [
-                Tab(text: "Notificações"),
+                Tab(text: "Caixa de entrada"),
                 Tab(text: "Bate-Papo"),
               ],
             ),
           ),
-          SizedBox(
-            height: 250,
+          Expanded(
             child: Container(
-              color: Colors.grey[250],
               child: TabBarView(
                 children: [
-
-                ],
+                  ListView(
+                    children: [
+                      buildNotificacoes(
+                        icone: Icons.campaign,
+                        titulo: "Breaking News",
+                        mensagem: "Pensando mais a longo prazo, o entendimento das metas"
+                            "propostas desafia a capacidade de legalização das condições"
+                            "financeiras e administrativas do setor agrícola.",
+                        horario: "7h",
+                        autor: "Sistema Ifal",
+                      ),
+                      buildNotificacoes(
+                        icone: Icons.coffee,
+                        titulo: "Alguém sabe como alinhar isso ao centro?",
+                        mensagem: "Estou desenvolvendo uma tela em java, porém tô há"
+                            "umas 3 horas tentando alinhas isso ao centro e NÃO consigo"
+                            "de jeito nenhum, nem o chatGPT conseguiu ",
+                        horario: "1 dia",
+                        autor: "Desenvolvedores.ifal",
+                      ),
+                      ],
+                    ),
+                      const Center(
+                        child: Text("Você ainda não tem conversas.",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ],
               ),
             ),
           )
@@ -99,12 +114,17 @@ class _NotificacoesState extends State<Notificacoes> {
   }){
     return Container(
       width: double.infinity,
-      height: 200,
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFE0E0E0),
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Colors.grey,
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.black12
+          ),
+        ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
