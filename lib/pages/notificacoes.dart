@@ -40,9 +40,11 @@ class _NotificacoesState extends State<Notificacoes> {
         children: [
           _buildAbas(),
           buildNotificacoes(
-              icone: Icons.newspaper,
+              icone: Icons.campaign,
               titulo: "Breaking News",
-              mensagem: "...",
+              mensagem: "Pensando mais a longo prazo, o entendimento das metas"
+                  "propostas desafia a capacidade de legalização das condições"
+                  "financeiras e administrativas do setor agrícola.",
               horario: "7h",
               autor: "Sistema Ifal",
           )
@@ -109,10 +111,47 @@ class _NotificacoesState extends State<Notificacoes> {
                 Icon(
                   icone,
                   color: Colors.black,
-                  size: 20,
+                  size: 30,
+                ),
+                SizedBox(width: 15),
+                Text(
+                  titulo,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
             ],
-          )
+          ),
+          SizedBox(height: 5),
+          Text(
+            mensagem,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+            ),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 4),
+          Row(
+            children: [
+              Text(
+                horario,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(width: 5),
+              Text(
+                "· $autor",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
