@@ -26,7 +26,7 @@ class _ConfiguracoesState extends State<Configuracoes>{
         children: [
           _buildCabecalho("CONFIGURAÇÕES DA CONTA"),
           _buildPerfil(user: "sabynnalouyse"),
-          _buildConfiguracao(icone: Icons.email, titulo: "Email", subtitulo: "sabynna@email.com"),
+          _buildConfiguracao(icone: Icons.email_outlined, titulo: "Email", subtitulo: "sabynna@email.com"),
           _buildCabecalho("OPÇÕES DE VISUALIZAÇÃO"),
           _buildConfiguracaoComTexto(icone: Icons.view_agenda_outlined, titulo: "Visualização padrão", textoDireita: "Cartões"),
           _buildConfiguracaoComTexto(icone: Icons.image_outlined, titulo: "Miniaturas", textoDireita: "Padrão"),
