@@ -118,9 +118,9 @@ class _HomeState extends State<Home> {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16),
             children: [
-              _cardNoticias("PESQUISA: Professor desen...", Color(0xFF4549FF), "https://media.istockphoto.com/id/1457744422/pt/foto/teacher-in-classroom-points-to-student-raising-hand.jpg?s=612x612&w=0&k=20&c=9w0pPd1CJF6JyYWsOtLC5Y4PYyZgGgfGdqsM8nRJcSg="),
-              _cardNoticias("Assistência: São lançados os editais de...", Colors.redAccent, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzy4jkGDPi9dsoQ6sgXAjQY94KrrInvapRA&s"),
-              _cardNoticias("Meio Ambiente: Novo núcleo pr...", Colors.cyan, "https://static.todamateria.com.br/upload/ma/os/maosplantandoarvorespelosobjetivosdedesenvolvimentosustentaveldomeioambiente-cke.jpg"),
+              _cardNoticias("Professor cria projeto que leva educação ambiental à comunidades carentes.", Color(0xFF4549FF), "https://media.istockphoto.com/id/1457744422/pt/foto/teacher-in-classroom-points-to-student-raising-hand.jpg?s=612x612&w=0&k=20&c=9w0pPd1CJF6JyYWsOtLC5Y4PYyZgGgfGdqsM8nRJcSg="),
+              _cardNoticias("São lançados os editais de auxílio estudantil para alunos baixa renda.", Colors.redAccent, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzy4jkGDPi9dsoQ6sgXAjQY94KrrInvapRA&s"),
+              _cardNoticias("Meio Ambiente: Novo núcleo promete mudar a gestão ambiental do campus.", Colors.cyan, "https://static.todamateria.com.br/upload/ma/os/maosplantandoarvorespelosobjetivosdedesenvolvimentosustentaveldomeioambiente-cke.jpg"),
             ],
           ),
         ),
