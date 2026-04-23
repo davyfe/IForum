@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Configuracoes extends StatefulWidget{
-  const Configuracoes({super.key});
+class Menu extends StatefulWidget{
+  const Menu({super.key});
 
   @override
-  State<Configuracoes> createState() => _ConfiguracoesState();
+  State<Menu> createState() => _MenuState();
 }
 
-class _ConfiguracoesState extends State<Configuracoes>{
+class _MenuState extends State<Menu>{
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class _ConfiguracoesState extends State<Configuracoes>{
       appBar: AppBar(
         backgroundColor: Color(0xFF2E7D32),
         title: Text(
-          'Configurações',
+          'Menu',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
