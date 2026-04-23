@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/pages/criarPost.dart';
+import 'package:iforum/pages/menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
