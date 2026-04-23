@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
         ),
         // se tratando o pesquisar:
         title: Padding ( // adicionei o padding pra diminuir a largura
-          padding: EdgeInsets.symmetric(horizontal:18),
+          padding: EdgeInsets.only(right:18),
           child: SizedBox(
             height: 35,
             child: TextField(
