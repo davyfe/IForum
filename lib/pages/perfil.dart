@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/pages/configuracoes.dart';
 
 class Perfil extends StatefulWidget{
   const Perfil({super.key});
