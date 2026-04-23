@@ -174,7 +174,7 @@ class _HomeState extends State<Home> {
         children: [
           Row(
             children: [
-              CircleAvatar(radius: 12, backgroundColor: Colors.grey), // avatar
+              CircleAvatar(radius: 12, backgroundColor: Color(0xFF8C9EFF)), // avatar
               SizedBox(width: 8),
               Text(autor, style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(width: 5),
