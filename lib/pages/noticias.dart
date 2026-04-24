@@ -110,6 +110,12 @@ class _NoticiasState extends State<Noticias> {
     );
   }
   Widget itemNoticia(noticiaClass noticia) {
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => return navNoticia()),
+      );
+    };
     return Padding(padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
