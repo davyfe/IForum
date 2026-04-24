@@ -113,7 +113,9 @@ class _NoticiasState extends State<Noticias> {
     onTap: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => return navNoticia()),
+        MaterialPageRoute(builder: (context){
+          return navNoticia();
+        }),
       );
     };
     return Padding(padding: const EdgeInsets.all(12.0),
