@@ -4,6 +4,7 @@ import 'package:iforum/pages/comunidades.dart';
 import 'package:iforum/pages/noticias.dart';
 import 'package:flutter/material.dart';
 import 'package:iforum/pages/perfil.dart';
+import 'package:iforum/pages/notificacoes.dart';
 
 class navPage extends StatefulWidget{
   const navPage({super.key});
