@@ -52,7 +52,7 @@ class _navNoticiaState extends State<navNoticia> {
 
           Divider(),
           Text("Comentários (35)", style: TextStyle(fontWeight: FontWeight.bold)),
-          _buildComentario("luiz.silva", "Que curioso! É importante questionar...", "40min"),
+          _buildComentario("luiz.silva", "Que curioso! É importante questionar mais...", "40min"),
           _buildComentario("marinait", "Achei deveras interessante...", "2min", isReply: true),
         ],
       ),

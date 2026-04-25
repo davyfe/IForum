@@ -80,7 +80,7 @@ class _NoticiasState extends State<Noticias> {
             null,
           ),
           itemNoticia(
-            "entreterimento.if",
+            "pesquisas.if",
             "4d",
             "Pesquisas recentes no campo do entretenimento digital, destacam como jogos, filmes e redes sociais influenciam o comportamento dos jovens e contribuem para novas formas de aprendizado, interação e expressão cultural no ambiente escolar.",
             "https://midias-totvs.totvs.com/wp-content/uploads/2023/04/tecnologias-digitais.jpg",
