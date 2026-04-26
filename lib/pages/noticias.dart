@@ -5,11 +5,9 @@ import 'package:iforum/pages/navNoticia.dart';
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
 
-
   @override
   State<Noticias> createState() => _NoticiasState();
 }
-
 
 class _NoticiasState extends State<Noticias> {
   @override
@@ -92,7 +90,6 @@ class _NoticiasState extends State<Noticias> {
       ),
     );
   }
-
 
   Widget itemNoticia(
       String usuario,
