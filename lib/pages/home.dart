@@ -114,23 +114,12 @@ class _HomeState extends State<Home> {
 
       // botao flutuante
       floatingActionButton: FloatingActionButton(
-        // isso aqui é quando clicar no botão verde "+"...
         onPressed: (){
-          // 1. Navigator: É a classe responsável por gerenciar a "pilha" de telas do app.
-          // 2. .push: É o método que coloca uma nova tela no topo dessa pilha (fazendo-a aparecer).
           Navigator.push(
-            // context: É o "endereço" de onde você está agora. (no caso, a tela Home())
-             context,
-            // MaterialPageRoute: É um "pacote" que o Flutter usa para criar a transição.
-            // Ele define as animações automáticas (ex: no Android a tela sobe, no iOS ela desliza).
-            // Ele também cria o vínculo que permite que o botão "voltar" funcione sozinho.
+            context,
             MaterialPageRoute(
-              // builder: É uma função construtora.
-              // Ela diz ao Flutter: "Ei, quando chegar a hora de mostrar a tela, use este desenho aqui".
               builder: (context) {
-                // Retorna a classe da sua nova tela que você criou em outro arquivo.
-                // O 'const' ajuda na performance, avisando que essa tela não muda sua estrutura básica.
-                return const CriarPost();
+                return CriarPost();
               },
             ),
           );
