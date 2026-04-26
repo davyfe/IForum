@@ -128,9 +128,7 @@ class _HomeState extends State<Home> {
               // builder: É uma função construtora.
               // Ela diz ao Flutter: "Ei, quando chegar a hora de mostrar a tela, use este desenho aqui".
               builder: (context) {
-                // Retorna a classe da sua nova tela que você criou em outro arquivo.
-                // O 'const' ajuda na performance, avisando que essa tela não muda sua estrutura básica.
-                return const CriarPost();
+                return CriarPost();
               },
             ),
           );
