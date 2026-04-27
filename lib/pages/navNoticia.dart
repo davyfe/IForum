@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
 
+//definir quais dados a tela precisa receber e depende da tela anterior com as informações
 class navNoticia extends StatefulWidget {
-  const navNoticia({super.key});
+  final String autor;
+  final String nome;
+  final String data;
+  final String imagem;
+  final String titulo;
+  final String texto;
+  final int comentarios;
+
+  const navNoticia({
+    super.key,
+    required this.autor,
+    required this.nome,
+    required this.data,
+    required this.imagem,
+    required this.titulo,
+    required this.texto,
+    required this.comentarios,
+  });
 
   @override
   State<navNoticia> createState() => _navNoticiaState();
@@ -19,33 +37,33 @@ class _navNoticiaState extends State<navNoticia> {
         ),
         title: const Text("Notícias", style: TextStyle(fontWeight: FontWeight.bold)),
       ),
-
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
 
-          exibirConteudoNoticia(
-            "ifnews",
-            "Alaryce Jaylle",
-            "27/04/2026",
-            "https://img.freepik.com/fotos-gratis/professor-de-homem-usando-oculos-verificando-o-registro-de-classe-olhando-para-a-camera-intrigado-com-a-expressao-pensativa-pensando-sentado-na-mesa-da-escola-na-frente-do-quadro-negro-na-sala-de-aula_141793-131719.jpg",
-            "A certificação de metodologias que nos auxiliam a lidar com o acompanhamento de consumo é uma das consequências das diversas transformações sociais e tecnológicas, refletindo a necessidade de práticas mais sustentáveis e conscientes no cotidiano.",
-            "O uso de ferramentas digitais e estratégias organizadas permite uma análise mais precisa dos hábitos de consumo, possibilitando identificar padrões, desperdícios e oportunidades de melhoria. Além disso, essas metodologias contribuem para a formação de uma consciência crítica tanto em nível individual quanto coletivo, incentivando escolhas mais responsáveis e alinhadas com a preservação dos recursos naturais. Empresas, instituições e até mesmo consumidores passam a adotar práticas mais equilibradas, buscando reduzir impactos ambientais e promover um desenvolvimento mais sustentável. Dessa forma, a certificação dessas metodologias não apenas valida sua eficácia, mas também fortalece a importância de integrar tecnologia, inovação e responsabilidade social no dia a dia, acompanhando as demandas de uma sociedade cada vez mais preocupada com o futuro do planeta.",
-            35,
+          //parametros vazios a serem preenchidos com as informações
+          exibirConteudo(
+            widget.autor,
+            widget.nome,
+            widget.data,
+            widget.imagem,
+            widget.titulo,
+            widget.texto,
+            widget.comentarios,
           ),
         ],
       ),
     );
   }
-  //definindo os parametros para criar as noticias
-  Widget exibirConteudoNoticia(
+  //acessar as variaveis definidas no topo da classe
+  Widget exibirConteudo(
       String autor,
-      String nomePublicador,
+      String nome,
       String data,
       String imagem,
       String titulo,
-      String corpo,
-      int totalComentarios,
+      String texto,
+      int comentarios,
       ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +86,7 @@ class _navNoticiaState extends State<navNoticia> {
         ),
         const SizedBox(height: 4),
         Text(
-          "Publicado por $nomePublicador • $data",
+          "Publicado por $nome • $data",
           style: const TextStyle(fontSize: 12, color: Colors.grey),
         ),
         Padding(
@@ -79,14 +97,22 @@ class _navNoticiaState extends State<navNoticia> {
           ),
         ),
         Text(
-          corpo,
+          texto,
           style: const TextStyle(fontSize: 18, color: Colors.black87),
         ),
         const SizedBox(height: 16),
         const Divider(),
-        Text("Comentários ($totalComentarios)", style: const TextStyle(fontWeight: FontWeight.bold)),
-        _buildComentario("luiz.silva", "Que curioso! É importante questionar mais...", "40min"),
-        _buildComentario("marinait", "@luiz.silva Achei interessante...", "2min", isReply: true),
+        Text("Comentários ($comentarios)", style: const TextStyle(fontWeight: FontWeight.bold)),
+
+        // comentarios pra cada noticia
+        if (autor == "entreterimento_if") ...[
+          _buildComentario("raissa.almeida", "Eu concordo.", "10min"),
+          _buildComentario("eduarda.souza", "É importante discutir isso...", "5min"),
+        ] else ...[
+          _buildComentario("luiz.silva", "Que curioso! É importante questionar mais...", "40min"),
+          _buildComentario("marinait", "@luiz.silva Achei interessante...", "2min", isReply: true),
+        ],
+
         const SizedBox(height: 12),
         TextButton(
           onPressed: () {},
