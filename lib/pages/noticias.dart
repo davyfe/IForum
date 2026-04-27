@@ -126,7 +126,7 @@ class _NoticiasState extends State<Noticias> {
       onTap: aoClicar,
       //para o texto não ficar colado nas beiradas da tela: padding
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
             const SizedBox(height: 10),
