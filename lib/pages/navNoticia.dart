@@ -83,6 +83,7 @@ class _navNoticiaState extends State<navNoticia> {
         Text(
           titulo,
           style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          //textAlign: TextAlign.justify,
         ),
         const SizedBox(height: 4),
         Text(

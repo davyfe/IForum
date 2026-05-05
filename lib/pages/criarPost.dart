@@ -11,12 +11,12 @@ class _CriarPostState extends State<CriarPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 1. Define a cor de fundo cinza claro de toda a tela
+
       backgroundColor: const Color(0xFFD9D9D9),
 
-      // 2. SafeArea impede que o layout fique escondido atrás da barra de status do celular
+
       body: SafeArea(
-        // 3. SingleChildScrollView permite que a tela role quando o teclado abrir
+
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
           child: Column(

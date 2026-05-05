@@ -86,7 +86,7 @@ class _MenuState extends State<Menu>{
     );
   }
 
-  Widget _buildConfiguracao({required IconData icone, required String titulo, String subtitulo=""}){
+  Widget _buildConfiguracao({required IconData icone, required String titulo, String subtitulo="", color = Colors.black87}){
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 30),
       visualDensity: VisualDensity.compact,

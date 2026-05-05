@@ -1,75 +1,153 @@
 import 'package:flutter/material.dart';
 
-class Comunidades extends StatefulWidget{
+class Comunidades extends StatefulWidget {
   const Comunidades({super.key});
 
   @override
   State<Comunidades> createState() => _ComunidadesState();
 }
 
-class _ComunidadesState extends State<Comunidades>{
+class _ComunidadesState extends State<Comunidades> {
   @override
   Widget build(BuildContext context) {
     final recomendados = [
-      {"nome": "dit.ifal", "participantes": "250 participantes", "descricao": "Esta é a comunidade do Núcleo de Desenvolvimento e Inovação Tecnológica do Ifal Campus Arapiraca, ou só DIT :)"},
-      {"nome": "volei.if", "participantes": "125 participantes", "descricao": "Comunidade de Vôlei do Ifal Arapiraca!"},
-      {"nome": "desenhifal", "participantes": "56 participantes", "descricao": "Aprimore suas hbilidades e compartilhe sua arte com uma comunidade de mentes criativas."},
-      {"nome": "jifal", "participantes": "565 participantes", "descricao": "Atualizações sobre o JIFAl\n#JIFAL26"},
+      {
+        "nome": "dit.ifal",
+        "participantes": "250 participantes",
+        "descricao":
+            "Esta é a comunidade do Núcleo de Desenvolvimento e Inovação Tecnológica do Ifal Campus Arapiraca, ou só DIT :)",
+      },
+      {
+        "nome": "volei.if",
+        "participantes": "125 participantes",
+        "descricao": "Comunidade de Vôlei do Ifal Arapiraca!",
+      },
+      {
+        "nome": "desenhifal",
+        "participantes": "56 participantes",
+        "descricao":
+            "Aprimore suas hbilidades e compartilhe sua arte com uma comunidade de mentes criativas.",
+      },
+      {
+        "nome": "jifal",
+        "participantes": "565 participantes",
+        "descricao": "Atualizações sobre o JIFAl\n#JIFAL26",
+      },
     ];
 
     final criativo = [
-      {"nome": "devs.if", "participantes": "580 participantes", "descricao": "Espaço dedicado para quem ama código! Aqui compartilhamos projetos de Python e Flutter."},
-      {"nome": "literifal", "participantes": "245 participantes", "descricao": "Clube de leitura e escrita criativa. Debatemos clássicos da literatura e organizamos o sarau."},
-      {"nome": "cine.if", "participantes": "112 participantes", "descricao": "Para os amantes da sétima arte. Assistimos filmes e documentários todas as sextas-feiras."},
-      {"nome": "roboti.if", "participantes": "89 participantes", "descricao": "Grupo focado em robótica competitiva e automação. Se você gosta de Arduino, este é o lugar!"},
+      {
+        "nome": "devs.if",
+        "participantes": "580 participantes",
+        "descricao":
+            "Espaço dedicado para quem ama código! Aqui compartilhamos projetos de Python e Flutter.",
+      },
+      {
+        "nome": "literifal",
+        "participantes": "245 participantes",
+        "descricao":
+            "Clube de leitura e escrita criativa. Debatemos clássicos da literatura e organizamos o sarau.",
+      },
+      {
+        "nome": "cine.if",
+        "participantes": "112 participantes",
+        "descricao":
+            "Para os amantes da sétima arte. Assistimos filmes e documentários todas as sextas-feiras.",
+      },
+      {
+        "nome": "roboti.if",
+        "participantes": "89 participantes",
+        "descricao":
+            "Grupo focado em robótica competitiva e automação. Se você gosta de Arduino, este é o lugar!",
+      },
     ];
 
     final cursos = [
-      {"nome": "info.ifal", "participantes": "450 participantes", "descricao": "Focado em desenvolvimento de sistemas, web e mobile. Discutimos algoritmos e TI."},
-      {"nome": "eletro.ifal", "participantes": "320 participantes", "descricao": "Tudo sobre circuitos elétricos, automação industrial e manutenção elétrica."},
-      {"nome": "renovaveis.if", "participantes": "180 participantes", "descricao": "Especializado em energia solar, eólica e tecnologias de geração limpa."},
-      {"nome": "quimica.if", "participantes": "210 participantes", "descricao": "Voltada para análises laboratoriais, processos industriais e química orgânica."},
+      {
+        "nome": "info.ifal",
+        "participantes": "450 participantes",
+        "descricao":
+            "Focado em desenvolvimento de sistemas, web e mobile. Discutimos algoritmos e TI.",
+      },
+      {
+        "nome": "eletro.ifal",
+        "participantes": "320 participantes",
+        "descricao":
+            "Tudo sobre circuitos elétricos, automação industrial e manutenção elétrica.",
+      },
+      {
+        "nome": "renovaveis.if",
+        "participantes": "180 participantes",
+        "descricao":
+            "Especializado em energia solar, eólica e tecnologias de geração limpa.",
+      },
+      {
+        "nome": "quimica.if",
+        "participantes": "210 participantes",
+        "descricao":
+            "Voltada para análises laboratoriais, processos industriais e química orgânica.",
+      },
     ];
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2E7D32),
-        title: Text("Comunidades", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          "Comunidades",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         leading: Icon(Icons.arrow_back),
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            onPressed: (){},
-          )
+            icon: Icon(Icons.search, color: Colors.black),
+            onPressed: () {},
+          ),
         ],
       ),
-      body: ListView(
-        children: [
-          buildConvite(categoria: "Recomendado para Você", dados: recomendados),
-          buildConvite(categoria: "Criatividade", dados: criativo),
-          buildConvite(categoria: "Cursos", dados: cursos)
-        ],
+
+      body: Container(
+        padding: EdgeInsets.only(left: 16, top: 16),
+        height: (0.60 * MediaQuery.of(context).size.height),
+        child: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 16,
+          scrollDirection: Axis.horizontal,
+          children: [
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+            _cardConvite('nome', 'participantes', 'descricao'),
+          ],
+        ),
       ),
+      // body: ListView(
+      //   children: [
+      //     buildConvite(categoria: "Recomendado para Você", dados: recomendados),
+      //     buildConvite(categoria: "Criatividade", dados: criativo),
+      //     buildConvite(categoria: "Cursos", dados: cursos)
+      //   ],
+      // ),
     );
   }
 
   buildConvite({
     required String categoria,
-    required List<Map<String, String>> dados
-}){
+    required List<Map<String, String>> dados,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.only(left: 16, bottom: 10, top: 16),
-          child: Text(categoria, style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          )),
+          child: Text(
+            categoria,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
         ),
 
         SingleChildScrollView(
@@ -81,13 +159,14 @@ class _ComunidadesState extends State<Comunidades>{
               direction: Axis.vertical,
               spacing: 10,
               runSpacing: 0,
-              children: dados.map<Widget>((item) {
-                return _cardConvite(
-                  item['nome']!,
-                  item['participantes']!,
-                  item['descricao']!,
-                );
-              }).toList(),
+              children:
+                  dados.map<Widget>((item) {
+                    return _cardConvite(
+                      item['nome']!,
+                      item['participantes']!,
+                      item['descricao']!,
+                    );
+                  }).toList(),
             ),
           ),
         ),
@@ -95,7 +174,7 @@ class _ComunidadesState extends State<Comunidades>{
     );
   }
 
-  _cardConvite(String nome, String participantes, String descricao){
+  _cardConvite(String nome, String participantes, String descricao) {
     return Container(
       width: 250,
       margin: EdgeInsets.only(right: 12),
@@ -114,15 +193,19 @@ class _ComunidadesState extends State<Comunidades>{
               SizedBox(width: 8),
               // pro nome e 'participantes' ficar alinhado como no
               // design do canva, fiz:
-              Expanded( // assim consigo colocar um child
+              Expanded(
+                // assim consigo colocar um child
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Text(nome, style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(
+                          nome,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         SizedBox(width: 5),
-                        Icon(Icons.check_circle, size: 14, color: Colors.blue)
+                        Icon(Icons.check_circle, size: 14, color: Colors.blue),
                       ],
                     ),
                     Text(
@@ -135,15 +218,21 @@ class _ComunidadesState extends State<Comunidades>{
 
               // o botao de entrar
               ElevatedButton(
-                onPressed: (){},
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF4CAF50),
                   shape: StadiumBorder(),
                   elevation: 0,
                   minimumSize: Size(60, 25),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0)
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                 ),
-                child: Text("Entrar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                child: Text(
+                  "Entrar",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
