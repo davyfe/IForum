@@ -14,8 +14,7 @@ class _ComunidadesState extends State<Comunidades> {
       {
         "nome": "dit.ifal",
         "participantes": "250 participantes",
-        "descricao":
-            "Esta é a comunidade do Núcleo de Desenvolvimento e Inovação Tecnológica do Ifal Campus Arapiraca, ou só DIT :)",
+        "descricao": "Esta é a comunidade do Núcleo de Desenvolvimento e Inovação Tecnológica do Ifal Campus Arapiraca, ou só DIT :)",
       },
       {
         "nome": "volei.if",
@@ -25,8 +24,7 @@ class _ComunidadesState extends State<Comunidades> {
       {
         "nome": "desenhifal",
         "participantes": "56 participantes",
-        "descricao":
-            "Aprimore suas hbilidades e compartilhe sua arte com uma comunidade de mentes criativas.",
+        "descricao": "Aprimore suas habilidades e compartilhe sua arte com uma comunidade de mentes criativas.",
       },
       {
         "nome": "jifal",
@@ -39,26 +37,22 @@ class _ComunidadesState extends State<Comunidades> {
       {
         "nome": "devs.if",
         "participantes": "580 participantes",
-        "descricao":
-            "Espaço dedicado para quem ama código! Aqui compartilhamos projetos de Python e Flutter.",
+        "descricao": "Espaço dedicado para quem ama código! Aqui compartilhamos projetos de Python e Flutter.",
       },
       {
         "nome": "literifal",
         "participantes": "245 participantes",
-        "descricao":
-            "Clube de leitura e escrita criativa. Debatemos clássicos da literatura e organizamos o sarau.",
+        "descricao": "Clube de leitura e escrita criativa. Debatemos clássicos da literatura e organizamos o sarau.",
       },
       {
         "nome": "cine.if",
         "participantes": "112 participantes",
-        "descricao":
-            "Para os amantes da sétima arte. Assistimos filmes e documentários todas as sextas-feiras.",
+        "descricao": "Para os amantes da sétima arte. Assistimos filmes e documentários todas as sextas-feiras.",
       },
       {
         "nome": "roboti.if",
         "participantes": "89 participantes",
-        "descricao":
-            "Grupo focado em robótica competitiva e automação. Se você gosta de Arduino, este é o lugar!",
+        "descricao": "Grupo focado em robótica competitiva e automação. Se você gosta de Arduino, este é o lugar!",
       },
     ];
 
@@ -66,121 +60,98 @@ class _ComunidadesState extends State<Comunidades> {
       {
         "nome": "info.ifal",
         "participantes": "450 participantes",
-        "descricao":
-            "Focado em desenvolvimento de sistemas, web e mobile. Discutimos algoritmos e TI.",
+        "descricao": "Focado em desenvolvimento de sistemas, web e mobile. Discutimos algoritmos e TI.",
       },
       {
         "nome": "eletro.ifal",
         "participantes": "320 participantes",
-        "descricao":
-            "Tudo sobre circuitos elétricos, automação industrial e manutenção elétrica.",
+        "descricao": "Tudo sobre circuitos elétricos, automação industrial e manutenção elétrica.",
       },
       {
         "nome": "renovaveis.if",
         "participantes": "180 participantes",
-        "descricao":
-            "Especializado em energia solar, eólica e tecnologias de geração limpa.",
+        "descricao": "Especializado em energia solar, eólica e tecnologias de geração limpa.",
       },
       {
         "nome": "quimica.if",
         "participantes": "210 participantes",
-        "descricao":
-            "Voltada para análises laboratoriais, processos industriais e química orgânica.",
+        "descricao": "Voltada para análises laboratoriais, processos industriais e química orgânica.",
       },
     ];
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
-        title: Text(
+        backgroundColor: const Color(0xFF2E7D32),
+        title: const Text(
           "Comunidades",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back),
+        leading: const Icon(Icons.arrow_back, color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: Colors.black),
+            icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {},
           ),
         ],
       ),
 
-      body: Container(
-        padding: EdgeInsets.only(left: 16, top: 16),
-        height: (0.60 * MediaQuery.of(context).size.height),
-        child: GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 16,
-          scrollDirection: Axis.horizontal,
-          children: [
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-            _cardConvite('nome', 'participantes', 'descricao'),
-          ],
-        ),
+      body: ListView(
+        children: [
+          _buildCategoriaGrid("Recomendado para Você", recomendados),
+          _buildCategoriaGrid("Criatividade", criativo),
+          _buildCategoriaGrid("Cursos", cursos),
+        ],
       ),
-      // body: ListView(
-      //   children: [
-      //     buildConvite(categoria: "Recomendado para Você", dados: recomendados),
-      //     buildConvite(categoria: "Criatividade", dados: criativo),
-      //     buildConvite(categoria: "Cursos", dados: cursos)
-      //   ],
-      // ),
     );
   }
 
-  buildConvite({
-    required String categoria,
-    required List<Map<String, String>> dados,
-  }) {
+  Widget _buildCategoriaGrid(String categoria, List<Map<String, String>> dados) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 16, bottom: 10, top: 16),
+          padding: const EdgeInsets.only(left: 16, bottom: 10, top: 16),
           child: Text(
             categoria,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),
+        Container(
+          padding: const EdgeInsets.only(left: 16),
+          height: 240, // Altura que segura as 2 linhas do GridView
+          child: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 12, // Espaço entre as colunas
+            crossAxisSpacing: 10, // Espaço entre as linhas
+            scrollDirection: Axis.horizontal,
 
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Container(
-            height: 226,
-            child: Wrap(
-              direction: Axis.vertical,
-              spacing: 10,
-              runSpacing: 0,
-              children:
-                  dados.map<Widget>((item) {
-                    return _cardConvite(
-                      item['nome']!,
-                      item['participantes']!,
-                      item['descricao']!,
-                    );
-                  }).toList(),
-            ),
+            // IMPORTANTE: Como o GridView tenta fazer os itens ficarem quadrados,
+            // precisamos dessa proporção (altura da linha / largura do card)
+            // para ele respeitar a largura do seu Container original.
+            // childAspectRatio: 0.45,
+
+            // Passando a lista dinamicamente
+            children: dados.map((item) {
+              return _cardConvite(
+                item['nome']!,
+                item['participantes']!,
+                item['descricao']!,
+              );
+            }).toList(),
           ),
         ),
       ],
     );
   }
 
-  _cardConvite(String nome, String participantes, String descricao) {
+  Widget _cardConvite(String nome, String participantes, String descricao) {
     return Container(
-      width: 250,
-      margin: EdgeInsets.only(right: 12),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      // Removi o margin: EdgeInsets.only(right: 12) daqui porque
+      // o próprio mainAxisSpacing do GridView já faz esse espaçamento agora.
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Color(0xFFE0E0E0),
+        color: const Color(0xFFE0E0E0),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -189,23 +160,23 @@ class _ComunidadesState extends State<Comunidades> {
         children: [
           Row(
             children: [
-              CircleAvatar(radius: 16, backgroundColor: Color(0xFF8C9EFF)),
-              SizedBox(width: 8),
-              // pro nome e 'participantes' ficar alinhado como no
-              // design do canva, fiz:
+              const CircleAvatar(radius: 16, backgroundColor: Color(0xFF8C9EFF)),
+              const SizedBox(width: 8),
               Expanded(
-                // assim consigo colocar um child
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Text(
-                          nome,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Flexible(
+                          child: Text(
+                            nome,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                        SizedBox(width: 5),
-                        Icon(Icons.check_circle, size: 14, color: Colors.blue),
+                        const SizedBox(width: 5),
+                        const Icon(Icons.check_circle, size: 14, color: Colors.blue),
                       ],
                     ),
                     Text(
@@ -215,18 +186,16 @@ class _ComunidadesState extends State<Comunidades> {
                   ],
                 ),
               ),
-
-              // o botao de entrar
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF4CAF50),
-                  shape: StadiumBorder(),
+                  backgroundColor: const Color(0xFF4CAF50),
+                  shape: const StadiumBorder(),
                   elevation: 0,
-                  minimumSize: Size(60, 25),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                  minimumSize: const Size(60, 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                 ),
-                child: Text(
+                child: const Text(
                   "Entrar",
                   style: TextStyle(
                     color: Colors.white,
@@ -236,12 +205,12 @@ class _ComunidadesState extends State<Comunidades> {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 8),
           Text(
             descricao,
-            // para limitar o tamanho:
             maxLines: 2,
-            overflow: TextOverflow.ellipsis, // adiciona "..."
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 13),
           ),
         ],
       ),
