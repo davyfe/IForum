@@ -4,6 +4,7 @@ import 'package:iforum/pages/comunidades.dart';
 import 'package:iforum/pages/noticias.dart';
 import 'package:iforum/pages/perfil.dart';
 import 'package:iforum/pages/notificacoes.dart';
+import 'package:iforum/pages/homet.dart';
 
 class navPage extends StatefulWidget{
   const navPage({super.key});
@@ -23,9 +24,10 @@ class _navPageState extends State<navPage> {
       Comunidades(),
       Notificacoes(),
       Perfil(),
+      Homet(),
     ];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFf4f6f9),
       body: pages[selectedIndex],
       bottomNavigationBar: buildBottomnavigationbar(),
     );
@@ -49,6 +51,7 @@ class _navPageState extends State<navPage> {
         BottomNavigationBarItem(icon: Icon(Icons.groups), label: ""), // comunidades
         BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ""), // notificações
         BottomNavigationBarItem(icon: CircleAvatar(radius: 12), label: ""), // perfil
+        BottomNavigationBarItem(icon: Icon(Icons.build), label: "")
       ],
     );
   }
