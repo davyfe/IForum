@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
 
 class Perfil extends StatefulWidget{
   const Perfil({super.key});
@@ -14,7 +15,7 @@ class _PerfilState extends State<Perfil> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
+        backgroundColor: Cores.verdeifal,
         actions: [
           IconButton(
               style: IconButton.styleFrom(
@@ -108,7 +109,7 @@ class _PerfilState extends State<Perfil> {
           end: Alignment.topCenter,
           colors: [
             Colors.black,
-            Color(0xFF2E7D32),
+            Cores.verdeifal,
           ]
         )
       ),
@@ -201,7 +202,7 @@ class _PerfilState extends State<Perfil> {
             child: TabBar(
               unselectedLabelColor: Colors.grey,
               labelColor: Colors.black,
-              indicatorColor: Color(0xFF2E7D32),
+              indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
               labelStyle: TextStyle(
                 fontWeight: FontWeight.bold
@@ -235,9 +236,9 @@ class _PerfilState extends State<Perfil> {
                           TextSpan(
                             text: "Criar.",
                             style: TextStyle(
-                              color: Color(0xFF2E7D32),
+                              color: Cores.verdeifal,
                               decoration: TextDecoration.underline,
-                              decorationColor: Color(0xFF2E7D32), 
+                              decorationColor: Cores.verdeifal,
                             ),
                           ),
                         ],
