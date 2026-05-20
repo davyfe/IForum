@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/pages/home.dart';
-import 'package:iforum/pages/comunidades.dart';
-import 'package:iforum/pages/noticias.dart';
 import 'package:iforum/pages/perfil.dart';
 import 'package:iforum/pages/notificacoes.dart';
-import 'package:iforum/pages/homet.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/pages/menu.dart';
 
-class navPage extends StatefulWidget{
+class navPage extends StatefulWidget {
   const navPage({super.key});
 
   @override
@@ -18,40 +17,34 @@ class _navPageState extends State<navPage> {
 
   @override
   Widget build(BuildContext context) {
-    List pages = [
-      Home(),
-      Noticias(),
-      Comunidades(),
-      Notificacoes(),
-      Perfil(),
-      Homet(),
-    ];
+    List pages = [Home(), Notificacoes(), Perfil()];
     return Scaffold(
-      backgroundColor: Color(0xFFf4f6f9),
+      backgroundColor: Cores.fundo,
+      drawer: const Menu(),
       body: pages[selectedIndex],
       bottomNavigationBar: buildBottomnavigationbar(),
     );
   }
 
-  buildBottomnavigationbar(){
+  buildBottomnavigationbar() {
     return BottomNavigationBar(
+      backgroundColor: Cores.fundo,
       currentIndex: selectedIndex,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
+      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
       type: BottomNavigationBarType.fixed,
-      onTap: (index){
+      onTap: (index) {
         setState(() {
           selectedIndex = index;
         });
-  },
+      },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ""), // home
-        BottomNavigationBarItem(icon: Icon(Icons.article), label: ""), // noticias
-        BottomNavigationBarItem(icon: Icon(Icons.groups), label: ""), // comunidades
-        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ""), // notificações
-        BottomNavigationBarItem(icon: CircleAvatar(radius: 12), label: ""), // perfil
-        BottomNavigationBarItem(icon: Icon(Icons.build), label: "")
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),
+        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Notificações"),
+        BottomNavigationBarItem(icon: CircleAvatar(radius: 12, backgroundColor: Cores.avatar), label: "Você"),
       ],
     );
   }

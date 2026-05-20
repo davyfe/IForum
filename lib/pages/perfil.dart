@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
+import 'package:iforum/pages/menuConfig.dart';
 
 class Perfil extends StatefulWidget{
   const Perfil({super.key});
@@ -62,7 +63,10 @@ class _PerfilState extends State<Perfil> {
                 backgroundColor: Colors.black87.withValues(alpha: 0.6),
               ),
               onPressed: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuConfig()),
+                );
               },
               icon: Icon(
                 Icons.menu,

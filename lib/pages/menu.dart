@@ -1,179 +1,157 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/pages/noticias.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/pages/comunidades.dart';
 
-class Menu extends StatefulWidget{
+class Menu extends StatefulWidget {
   const Menu({super.key});
 
   @override
   State<Menu> createState() => _MenuState();
 }
 
-class _MenuState extends State<Menu>{
-
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
-        title: Text(
-          'Menu',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: ListView(
+    return Drawer(
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      backgroundColor: Cores.fundo,
+      child: ListView(
+        padding: const EdgeInsets.only(top: 30, bottom: 20),
         children: [
-          _buildCabecalho("CONFIGURAÇÕES DA CONTA"),
-          _buildPerfil(user: "sabynnalouyse"),
-          _buildConfiguracao(icone: Icons.email_outlined, titulo: "Email", subtitulo: "sabynna@email.com"),
-          _buildCabecalho("OPÇÕES DE VISUALIZAÇÃO"),
-          _buildConfiguracaoComTexto(icone: Icons.view_agenda_outlined, titulo: "Visualização padrão", textoDireita: "Cartões"),
-          _buildConfiguracaoComTexto(icone: Icons.image_outlined, titulo: "Miniaturas", textoDireita: "Padrão"),
-          _buildCabecalho("ACESSIBILIDADE"),
-          _buildConfiguracao(icone: Icons.video_library_outlined, titulo: "Mídia e animações"),
-          _buildConfiguracao(icone: Icons.text_fields_outlined, titulo: "Tamanho do texto"),
-          _buildConfiguracao(icone: Icons.palette_outlined, titulo: "Aparência"),
-          _buildCabecalho("SOBRE"),
-          _buildConfiguracao(icone: Icons.article_outlined, titulo: "Regras do app"),
-          _buildConfiguracao(icone: Icons.key, titulo: "Política de privacidade"),
-          _buildConfiguracao(icone: Icons.help_outline, titulo: "Central de Ajuda"),
-          _buildConfiguracao(icone: Icons.logout_outlined, titulo: "Sair"),
-          _buildConfiguracaoVermelho(icone: Icons.delete_outline_outlined, titulo: "Apagar conta"),
-          SizedBox(height: 30),
+          _buildOpcoes(
+            icone: Icons.local_fire_department_outlined,
+            tamanhoIcone: 24,
+            titulo: "Populares",
+            tela: Scaffold(body: Center(child: Text("Populares"))),
+          ),
+          _buildOpcoes(
+            icone: Icons.access_time_outlined,
+            titulo: "Recentes",
+            tela: Scaffold(body: Center(child: Text("Recentes"))),
+          ),
+          _buildOpcoes(
+            icone: Icons.article_outlined,
+            titulo: "Notícias",
+            tela: const Noticias(),
+          ),
+          _buildOpcoes(
+            icone: Icons.travel_explore_outlined,
+            titulo: "Explorar Comunidades",
+            tela: const Comunidades(),
+          ),
+          const SizedBox(height: 5),
+          const Divider(color: Colors.black54, thickness: 0.1, height: 1),
+          ExpansionTile(
+            title: const Text(
+              "Minhas Comunidades",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            shape: const Border(),
+            collapsedShape: const Border(),
+            tilePadding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              _buildComunidades(nome: "devs.if", cor: Cores.avatar),
+              _buildComunidades(
+                nome: "fotografias",
+                cor: Colors.yellow.shade700,
+              ),
+              _buildComunidades(nome: "estudos.ifal", cor: Colors.redAccent),
+              _buildComunidades(nome: "monc_ifal", cor: Colors.green),
+            ],
+          ),
+          const Divider(color: Colors.black54, thickness: 0.1, height: 1),
+          ExpansionTile(
+            title: const Text(
+              "Sobre",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            shape: const Border(),
+            collapsedShape: const Border(),
+            tilePadding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              _buildOpcoes(
+                icone: Icons.receipt_long_outlined,
+                titulo: "Regras do App",
+                tela: Scaffold(
+                  body: Center(
+                    child: Text(
+                      "Regras foram feitas para\nserem quebradas! ;D",
+                    ),
+                  ),
+                ),
+              ),
+              _buildOpcoes(
+                icone: Icons.key_outlined,
+                titulo: "Política de Privacidade",
+                tela: Scaffold(
+                  body: Center(
+                    child: Text(
+                      "Política de privacidade\n(não somos o Facebook!!!)",
+                    ),
+                  ),
+                ),
+              ),
+              _buildOpcoes(
+                icone: Icons.help_outline,
+                titulo: "Central de Ajuda",
+                tela: Scaffold(body: Center(child: Text("Central de Ajuda"))),
+              ),
+              _buildOpcoes(
+                icone: Icons.settings_outlined,
+                titulo: "Versão",
+                subtitulo: "0.0.0.2",
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildCabecalho(String titulo){
-    return Padding(
-      padding: EdgeInsets.only(left: 30, top:24) ,
-      child: Text(
-        titulo,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.grey[600],
-        )
-      ),
-    );
-  }
-
-  //O required pede que após a variável coloquemos o valor daquela variável. Ex.: nome: "Davy"
-  Widget _buildPerfil({required String user}){
-    //Uma lista que ao ser clicada leva para uma outra página.
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: CircleAvatar(
-        backgroundColor: Color(0xFF8C9EFF),
-        radius: 12,
-      ),
-      title: Text(
-        "@$user",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
-      ),
-      //Setinha do ListTile
-      trailing: Icon(
-        Icons.chevron_right,
-        color: Colors.grey,
-      ),
-      onTap: (){}
-    );
-  }
-
-  Widget _buildConfiguracao({required IconData icone, required String titulo, String subtitulo="", color = Colors.black87}){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: Icon(
-        icone,
-        color: Colors.black87,
-        size: 26,
-      ),
-      title: Text(
-        titulo,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-        )
-      ),
-      //O isnotempty é uma forma resumida de fazer o IF. Ex.: subtitulo.isNotEmpy = "se o subtitulo não estiver vazio, faça:
-      subtitle: subtitulo.isNotEmpty
-        ? Text(subtitulo, style: TextStyle(color: Colors.grey[600], fontSize: 13))
-        : null,
-      trailing: Icon(
-        Icons.chevron_right,
-        color: Colors.grey,
-      ),
-      onTap: (){}
-    );
-  }
-
-  Widget _buildConfiguracaoVermelho({required IconData icone, required String titulo, String subtitulo=""}){
-    return ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 30),
-        visualDensity: VisualDensity.compact,
-        leading: Icon(
-          icone,
-          color: Colors.red,
-          size: 26,
-        ),
-        title: Text(
-            titulo,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: Colors.red
-            )
-        ),
-        //O isnotempty é uma forma resumida de fazer o IF. Ex.: subtitulo.isNotEmpy = "se o subtitulo não estiver vazio, faça:
-        subtitle: subtitulo.isNotEmpty
-            ? Text(subtitulo, style: TextStyle(color: Colors.grey[600], fontSize: 13))
-            : null,
-        trailing: Icon(
-          Icons.chevron_right,
-          color: Colors.red,
-        ),
-        onTap: (){}
-    );
-  }
-
-
-  // configuração com texto à direita (ex: Cartões, Padrão)
-  Widget _buildConfiguracaoComTexto({
+  Widget _buildOpcoes({
     required IconData icone,
+    double tamanhoIcone = 22,
     required String titulo,
-    required String textoDireita,
+    String? subtitulo,
+    Widget? tela,
   }) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: Icon(icone, color: Colors.black87, size: 26),
+      titleAlignment: ListTileTitleAlignment.center,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+      leading: SizedBox(width: 30, child: Icon(icone, size: tamanhoIcone)),
       title: Text(
-          titulo,
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16)
+        titulo,
+        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            textoDireita,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87
-            ),
-          ),
-          SizedBox(width: 4),
-          Icon(Icons.chevron_right, color: Colors.grey),
-        ],
+      subtitle:
+          subtitulo != null
+              ? Text(
+                subtitulo,
+                style: TextStyle(color: Colors.grey[600], fontSize: 13),
+              )
+              : null,
+      onTap: () {
+        if (tela != null) {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => tela),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _buildComunidades({required String nome, required Color cor}) {
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+      visualDensity: VisualDensity.compact,
+      leading: CircleAvatar(backgroundColor: cor, radius: 12),
+      title: Text(
+        nome,
+        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
       ),
-      onTap: () {},
     );
   }
 }

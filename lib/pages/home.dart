@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
 import 'package:iforum/pages/criarPost.dart';
-import 'package:iforum/pages/menu.dart';
+import 'package:iforum/domain/PropriedadesPosts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,374 +11,323 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List posts = [
+    PropriedadesPosts(
+      titulo: 'Estou fazendo uma reformulação da minha tela em dart! :P',
+      autor: 'davyf',
+      comunidade: 'devs.if',
+      tempo: '30m',
+      tipo: 'Material',
+      conteudo:
+          'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
+      likes: 26,
+      comentarios: 5,
+    ),
+    PropriedadesPosts(
+      titulo: 'Rio de Janeiro, RJ, Brasil.',
+      autor: 'pdrolopesm',
+      comunidade: 'fotografias',
+      tempo: '1d',
+      tipo: 'outros',
+      likes: 504,
+      comentarios: 230,
+      urlImagem:
+          'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
+    ),
+    PropriedadesPosts(
+      titulo: 'Achei esse livro fantástico pra ajudar nos estudos!',
+      autor: 'sabynna.louyse',
+      comunidade: 'estudos.ifal',
+      tempo: '1h',
+      tipo: 'material',
+      likes: 60,
+      comentarios: 3,
+      anexo: true,
+    ),
+    PropriedadesPosts(
+      titulo:
+          'Meu computador não está funcionando... Alguém sabe o que pode ser?',
+      autor: 'duarte.geh',
+      comunidade: 'monc_ifal',
+      tempo: '2s',
+      tipo: 'ajuda',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
-        leading: IconButton(
-          icon: Icon(
-            Icons.menu,
-            color: Colors.black,
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: Cores.verdeifal,
+          floating: true,
+          snap: true,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
           ),
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context){
-                  return Menu();
-                }
-              )
-            );
-          },
-        ),
-        // se tratando o pesquisar:
-        title: Padding ( // adicionei o padding pra diminuir a largura
-          padding: EdgeInsets.only(right:18),
-          child: SizedBox(
-            height: 35,
+          title: SizedBox(
+            height: 40,
             child: TextField(
+              style: const TextStyle(color: Colors.white),
+              cursorColor: Colors.white,
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                isDense: true, // pra controlar o espaço sem mexer no texto
-                hintText: "Pesquisar",
-                prefixIcon: Icon(Icons.search),
-                fillColor: Colors.white.withValues(alpha: 0.9),
-                filled: true,
-                contentPadding: EdgeInsets.only(right: 16),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none,
+                isDense: true,
+                hintText: 'Pesquisar',
+                hintStyle: const TextStyle(color: Colors.white70),
+                prefixIcon: const Icon(Icons.search, color: Colors.white),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 16,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.white, width: 1.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.white, width: 1.5),
                 ),
               ),
             ),
           ),
-        ),
-      ),
-
-      body: ListView(
-        children: [
-          buildNoticias(), // noticias
-          Padding(
-            padding: EdgeInsets.only(left: 16, bottom: 0, top: 16),
-            child: Text("Posts Recentes", style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            )),
-          ),
-          buildPost(
-            titulo: "PDF: Livro xxx",
-            autor: "davyf",
-            comunidade: "",
-            tempo: "1d",
-            tipo: "Material",
-            texto: "",
-            likes: "78",
-            comentarios: "30",
-            anexo: true,
-          ),
-          buildPost(
-            titulo: "O que é DNA?",
-            autor: "pdrolopes",
-            comunidade: "biologia_ifal",
-            tempo: "há 30 min",
-            tipo: "Dúvida",
-            texto: "",
-            likes: "22",
-            comentarios: "3",
-            anexo: false
-          ),
-          buildPost(
-            titulo: "Meu Primeiro Post Aqui!!!",
-            autor: "sabynnalouyse",
-            comunidade: "",
-            tempo: "há 12 min",
-            tipo: "Bate Papo",
-            texto: "Caros amigos, a constante divulgação das informações maximiza as possibilidades por conta das condições financeiras e administrativas exigidas. Por outro lado, a necessidade de renovação processual maximiza as possibilidades por conta do sistema de participação geral.",
-            likes: "9",
-            comentarios: "0",
-            anexo: false,
-          ),
-          buildPost(
-            titulo: "O meu emulador do android studio não tá funcionandooooo",
-            autor: "duartege",
-            comunidade: "devs.if",
-            tempo: "há 1 hora",
-            tipo: "Ajuda",
-            texto: "",
-            likes: "38",
-            comentarios: "12",
-            anexo: false
-          ),
-        ],
-      ),
-
-      // botao flutuante
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return CriarPost();
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CriarPost(),
+                    fullscreenDialog: true,
+                  ),
+                );
               },
             ),
-          );
-        },
-        backgroundColor: Color(0xFF4CAF50),
-        shape: CircleBorder(),
-        child: Icon(Icons.add, size: 35, color: Colors.white),
-      ),
-    );
-  }
-
-  // noticias
-  Widget buildNoticias(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 16, bottom: 10, top: 16),
-          child: Text("Notícias da Semana", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        ),
-        SizedBox(
-          height: 150,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            children: [
-              _cardNoticias("Professor cria projeto que leva educação ambiental à comunidades carentes.", Color(0xFF4549FF), "https://media.istockphoto.com/id/1457744422/pt/foto/teacher-in-classroom-points-to-student-raising-hand.jpg?s=612x612&w=0&k=20&c=9w0pPd1CJF6JyYWsOtLC5Y4PYyZgGgfGdqsM8nRJcSg="),
-              _cardNoticias("São lançados os editais de auxílio estudantil para alunos baixa renda.", Colors.redAccent, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzy4jkGDPi9dsoQ6sgXAjQY94KrrInvapRA&s"),
-              _cardNoticias("Meio Ambiente: Novo núcleo promete mudar a gestão ambiental do campus.", Colors.cyan, "https://static.todamateria.com.br/upload/ma/os/maosplantandoarvorespelosobjetivosdedesenvolvimentosustentaveldomeioambiente-cke.jpg"),
-            ],
+          ],
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(10),
+            child: SizedBox(),
           ),
+        ),
+        SliverList.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, i) {
+            return buildPost(propriedade: posts[i]);
+          },
         ),
       ],
     );
   }
 
-  Widget _cardNoticias(String texto, Color cor, String url){
-    return Container(
-      width: 200,
-      margin: EdgeInsets.only(right: 12),
-      decoration: BoxDecoration(
-        color: cor,
-        borderRadius: BorderRadius.circular(12),
-        image: DecorationImage(
-          image: NetworkImage(url),
-          fit: BoxFit.cover,
-        ),
-      ),
-      alignment: Alignment.bottomLeft,
-      padding: EdgeInsets.all(8),
-      child: Text(texto,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      ),
-    );
-  }
-
-  // posts
-  Widget buildPost({
-    required String titulo,
-    required String autor,
-    required String comunidade,
-    required String tempo,
-    required String tipo,
-    required String texto,
-    required String likes,
-    required String comentarios,
-    required bool anexo,
-  }){
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFE0E0E0),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+  Widget buildPost({required PropriedadesPosts propriedade}) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 15, bottom: 10, left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(radius: 12, backgroundColor: Color(0xFF8C9EFF)), // avatar
-              SizedBox(width: 8),
-              Text(autor, style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 5),
-              Icon(Icons.check_circle, size: 14, color: Colors.blue), // verificado
-              SizedBox(width: 5),
-              if(comunidade.isNotEmpty)...[
-                Icon(Icons.chevron_right, size: 12),
-                SizedBox(width: 5),
-                Text(comunidade, style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 12,
+              Row(
+                children: [
+                  CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+                  SizedBox(width: 8),
+                  Text(
+                    propriedade.autor,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 3),
+                  Icon(
+                    Icons.chevron_right,
+                    size: 12,
                     fontWeight: FontWeight.bold,
-                  )
+                  ),
+                  SizedBox(width: 3),
+                  Text(
+                    propriedade.comunidade,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 10),
+                  Text(propriedade.tempo),
+                  Spacer(),
+                  Icon(Icons.more_horiz),
+                ],
+              ),
+              SizedBox(height: 5),
+              Text(
+                propriedade.titulo,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+
+              if (propriedade.conteudo.isNotEmpty) ...[
+                SizedBox(height: 5),
+                Text(
+                  propriedade.conteudo,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(width: 5),
               ],
-              Text("•", style: TextStyle(color: Colors.grey[600], fontSize: 12)),
-              SizedBox(width: 5),
-              Text(tempo, style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+              if (propriedade.urlImagem.isNotEmpty) ...[
+                SizedBox(height: 5),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    propriedade.urlImagem,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder:
+                        (context, error, stackTrace) => const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+              if (propriedade.anexo) ...[
+                SizedBox(height: 5),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  width: 145,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.black54, width: 0.3),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.picture_as_pdf, color: Colors.red, size: 30),
+                      SizedBox(width: 8),
+                      Column(
+                        children: [
+                          Text(
+                            'livro.pdf',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text('250mb', textAlign: TextAlign.start),
+                        ],
+                      ),
+                      SizedBox(width: 8),
+                      Icon(Icons.file_download_outlined, size: 18),
+                    ],
+                  ),
+                ),
+              ],
+              SizedBox(height: 8),
+              buildInteracao(propriedade.likes, propriedade.comentarios),
             ],
           ),
-          SizedBox(height: 12),
+        ),
+        const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+      ],
+    );
+  }
 
-          // titulo
-          Text(
-            titulo,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
+  Widget buildTags(String tipo) {
+    return Chip(
+      label: Text(
+        tipo,
+        style: TextStyle(fontWeight: FontWeight.bold, color: _getCor(tipo)),
+      ),
+      backgroundColor: _getCor(tipo).withValues(alpha: 0.3),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
+      padding: const EdgeInsets.only(left: 4, right: 4),
+      side: BorderSide.none,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+    );
+  }
 
-          // tags
-          Row(
+  Color _getCor(String tipo) {
+    switch (tipo.toLowerCase()) {
+      case 'material':
+        return Colors.indigo;
+      case 'ajuda':
+        return Colors.yellow.shade700;
+      case 'dúvida':
+        return Colors.red;
+      case 'outros':
+        return Colors.green;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  Widget buildInteracao(int likes, int comentarios) {
+    return Row(
+      children: [
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              if(tipo=="Material") _buildTag(tipo, Colors.indigo),
-              if(tipo=="Dúvida") _buildTag(tipo, Colors.red),
-              if(tipo=="Bate Papo") _buildTag(tipo, Colors.green),
-              if(tipo=="Ajuda") _buildTag(tipo, Colors.yellow.shade700),
-
-              SizedBox(width: 8),
-              if(tipo=='Material') _buildTag("Literatura", Colors.orange),
+              const Icon(
+                Icons.thumb_up_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$likes |'),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.thumb_down_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
             ],
           ),
-          SizedBox(height:12),
-
-          if(texto.isNotEmpty)...[
-            Text(
-              texto,
-              maxLines: 5,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.justify,
-            ),
-            SizedBox(height:12),
-          ],
-
-          // caso tenha anexo
-          if(anexo)...[
-            _buildAnexo(),
-            SizedBox(height: 12),
-          ],
-
-          // interação
-          Row(
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        SizedBox(width: 10),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              _buildInteractionLikes(likes), // like
-              SizedBox(width: 10),
-              _buildInteractionComent(comentarios), // comentario
-              Spacer(),
-              _buildInteractionCompt() // compartilhar
+              const Icon(
+                Icons.chat_bubble_outline_rounded,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$comentarios'),
             ],
-          )
-        ],
-      ),
-    );
-  }
-
-  // tags
-  Widget _buildTag(String texto, Color cor){
-    return Container(
-        padding: EdgeInsets.only(left: 0, right: 8, top: 2, bottom: 2),
-        decoration: BoxDecoration(
-          color: Colors.white54,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          children: [
-            CircleAvatar(radius: 8, backgroundColor: cor),
-            SizedBox(width: 4),
-            Text(texto, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
-          ],
-        )
-    );
-  }
-
-  // anexo (dados fixos, por enquanto)
-  Widget _buildAnexo() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white54,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.picture_as_pdf,
-            color: Colors.redAccent,
-            size: 28,
           ),
-          SizedBox(width: 8),
-
-          Text(
-            "livro.pdf",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
-          SizedBox(width: 8),
-
-          Icon(Icons.file_download_outlined, size: 18),
-        ],
-      ),
-    );
-  }
-
-  // botoes de interação
-  Widget _buildInteractionLikes(String label){
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: Colors.white54,
-          borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
-          children: [
-            Icon(Icons.thumb_up_alt_outlined, size:16, color: Colors.grey[700]),
-            SizedBox(width: 4),
-            Text(label, style: TextStyle(fontSize: 12)),
-            SizedBox(width: 4),
-            Text("|", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-            SizedBox(width: 4),
-            Icon(Icons.thumb_down_alt_outlined, size:16, color: Colors.grey[700])
-          ],
-        )
-    );
-  }
-
-  Widget _buildInteractionComent(String label){
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: Colors.white54,
-          borderRadius: BorderRadius.circular(12),
+        Spacer(),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: const Icon(
+            Icons.share_outlined,
+            size: 16,
+            color: Colors.black54,
+          ),
+          labelPadding: const EdgeInsets.only(left: 2, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
         ),
-        child: Row(
-          children: [
-            Icon(Icons.chat_bubble_outline_outlined, size:16, color: Colors.grey[700]),
-            SizedBox(width: 4),
-            Text(label, style: TextStyle(fontSize: 12))
-          ],
-        )
+      ],
     );
   }
-
-  Widget _buildInteractionCompt(){
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: Colors.white54,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.share_outlined, size:16, color: Colors.grey[700])
-          ],
-        )
-    );
-  }
-
 }

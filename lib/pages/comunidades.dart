@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/domain/PropriedadesComunidades.dart';
 
 class Comunidades extends StatefulWidget {
   const Comunidades({super.key});
@@ -8,209 +10,293 @@ class Comunidades extends StatefulWidget {
 }
 
 class _ComunidadesState extends State<Comunidades> {
+  List comunidades = [
+    PropriedadesComunidades(
+      nome: "DevsIf",
+      membros: 5.6,
+      descricao:
+          "Comunidade de desenvolvimento to Ifal Campus Arapiraca! Compartilhe seus projetos, tire dúvidas e +!",
+      corAvatar: Cores.avatar,
+    ),
+    PropriedadesComunidades(
+      nome: "Xadrez Arapiraca",
+      membros: 1.0,
+      descricao:
+          "Para quem curte estratégia! Treinos, campeonatos de xadrez e desafios de lógica para fritar o cérebro.",
+      corAvatar: Colors.yellow.shade700,
+    ),
+    PropriedadesComunidades(
+      nome: "Ifal Games",
+      membros: 3.2,
+      descricao:
+          "Para os apaixonados por jogos! Organização de campeonatos de eSports, discussões e jogatinas do campus.",
+      corAvatar: Colors.green,
+    ),
+    PropriedadesComunidades(
+      nome: "Cine Ifal",
+      membros: 1.4,
+      descricao:
+          "Clube de cinema e cultura pop. Discussões sobre filmes, séries, animes e produções autorais dos alunos.",
+      corAvatar: Colors.red,
+    ),
+    PropriedadesComunidades(
+      nome: "Vôlei IFAL",
+      membros: 10.1,
+      descricao:
+          "A comunidade do esporte mais famoso do campus! Fique por dentro dos treinos, rachas e das datas do interclasses.",
+      corAvatar: Colors.yellow.shade700,
+    ),
+    PropriedadesComunidades(
+      nome: "Bate-Papo",
+      membros: 12.5,
+      descricao:
+          "O ponto de encontro geral dos estudantes. Conversas aleatórias, memes e novas amizades no campus.",
+      corAvatar: Colors.green,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final recomendados = [
-      {
-        "nome": "dit.ifal",
-        "participantes": "250 participantes",
-        "descricao": "Esta é a comunidade do Núcleo de Desenvolvimento e Inovação Tecnológica do Ifal Campus Arapiraca, ou só DIT :)",
-      },
-      {
-        "nome": "volei.if",
-        "participantes": "125 participantes",
-        "descricao": "Comunidade de Vôlei do Ifal Arapiraca!",
-      },
-      {
-        "nome": "desenhifal",
-        "participantes": "56 participantes",
-        "descricao": "Aprimore suas habilidades e compartilhe sua arte com uma comunidade de mentes criativas.",
-      },
-      {
-        "nome": "jifal",
-        "participantes": "565 participantes",
-        "descricao": "Atualizações sobre o JIFAl\n#JIFAL26",
-      },
-    ];
-
-    final criativo = [
-      {
-        "nome": "devs.if",
-        "participantes": "580 participantes",
-        "descricao": "Espaço dedicado para quem ama código! Aqui compartilhamos projetos de Python e Flutter.",
-      },
-      {
-        "nome": "literifal",
-        "participantes": "245 participantes",
-        "descricao": "Clube de leitura e escrita criativa. Debatemos clássicos da literatura e organizamos o sarau.",
-      },
-      {
-        "nome": "cine.if",
-        "participantes": "112 participantes",
-        "descricao": "Para os amantes da sétima arte. Assistimos filmes e documentários todas as sextas-feiras.",
-      },
-      {
-        "nome": "roboti.if",
-        "participantes": "89 participantes",
-        "descricao": "Grupo focado em robótica competitiva e automação. Se você gosta de Arduino, este é o lugar!",
-      },
-    ];
-
-    final cursos = [
-      {
-        "nome": "info.ifal",
-        "participantes": "450 participantes",
-        "descricao": "Focado em desenvolvimento de sistemas, web e mobile. Discutimos algoritmos e TI.",
-      },
-      {
-        "nome": "eletro.ifal",
-        "participantes": "320 participantes",
-        "descricao": "Tudo sobre circuitos elétricos, automação industrial e manutenção elétrica.",
-      },
-      {
-        "nome": "renovaveis.if",
-        "participantes": "180 participantes",
-        "descricao": "Especializado em energia solar, eólica e tecnologias de geração limpa.",
-      },
-      {
-        "nome": "quimica.if",
-        "participantes": "210 participantes",
-        "descricao": "Voltada para análises laboratoriais, processos industriais e química orgânica.",
-      },
-    ];
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2E7D32),
-        title: const Text(
-          "Comunidades",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
-        leading: const Icon(Icons.arrow_back, color: Colors.white),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
+      backgroundColor: Cores.fundo,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: Cores.verdeifal,
+            floating: true,
+            snap: true,
+            title: const Center(
+              child: Text(
+                "Comunidades",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.search_outlined),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Explore comunidades por assuntos",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                  _buildTopicos(),
+
+                  const Text(
+                    "Recomendado",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+
+                  SizedBox(
+                    height: 215,
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      mainAxisExtent: 280,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        _buildCard(propriedade: comunidades[0]),
+                        _buildCard(propriedade: comunidades[1]),
+                        _buildCard(propriedade: comunidades[2]),
+                        _buildCard(propriedade: comunidades[3]),
+                        _buildCard(propriedade: comunidades[4]),
+                        _buildCard(propriedade: comunidades[5]),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 25),
+                  const Text(
+                    "Comunidades Populares",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+
+                  SizedBox(
+                    height: 215,
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      mainAxisExtent: 280,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        _buildCard(propriedade: comunidades[0]),
+                        _buildCard(propriedade: comunidades[1]),
+                        _buildCard(propriedade: comunidades[2]),
+                        _buildCard(propriedade: comunidades[3]),
+                        _buildCard(propriedade: comunidades[4]),
+                        _buildCard(propriedade: comunidades[5]),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 25),
+                  const Text(
+                    "Outras Comunidades",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+
+                  SizedBox(
+                    height: 215,
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      mainAxisExtent: 280,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        _buildCard(propriedade: comunidades[0]),
+                        _buildCard(propriedade: comunidades[1]),
+                        _buildCard(propriedade: comunidades[2]),
+                        _buildCard(propriedade: comunidades[3]),
+                        _buildCard(propriedade: comunidades[4]),
+                        _buildCard(propriedade: comunidades[5]),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
+    );
+  }
 
-      body: ListView(
+  Widget _buildTopicos() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildCategoriaGrid("Recomendado para Você", recomendados),
-          _buildCategoriaGrid("Criatividade", criativo),
-          _buildCategoriaGrid("Cursos", cursos),
+          Wrap(
+            spacing: 8.0,
+            children: [
+              _buildChips(texto: "Cultura"),
+              _buildChips(texto: "Filmes e TV"),
+              _buildChips(texto: "Cultura pop"),
+              _buildChips(texto: "Jogos"),
+              _buildChips(texto: "Tecnologia"),
+              _buildChips(texto: "Esportes"),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8.0,
+            children: [
+              _buildChips(texto: "Bate-Papo"),
+              _buildChips(texto: "Desenvolvimento"),
+              _buildChips(texto: "Notícias e política"),
+              _buildChips(texto: "Ciências Exatas"),
+              _buildChips(texto: "Botânica"),
+              _buildChips(texto: "Música"),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8.0,
+            children: [
+              _buildChips(texto: "Eletrônica"),
+              _buildChips(texto: "Carros e veículos"),
+              _buildChips(texto: "Negócios e finanças"),
+              _buildChips(texto: "Ciências Humanas"),
+              _buildChips(texto: "Hobbies"),
+              _buildChips(texto: "Arte"),
+            ],
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );
   }
 
-  Widget _buildCategoriaGrid(String categoria, List<Map<String, String>> dados) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, bottom: 10, top: 16),
-          child: Text(
-            categoria,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16),
-          height: 240, // Altura que segura as 2 linhas do GridView
-          child: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12, // Espaço entre as colunas
-            crossAxisSpacing: 10, // Espaço entre as linhas
-            scrollDirection: Axis.horizontal,
-
-            // IMPORTANTE: Como o GridView tenta fazer os itens ficarem quadrados,
-            // precisamos dessa proporção (altura da linha / largura do card)
-            // para ele respeitar a largura do seu Container original.
-            // childAspectRatio: 0.45,
-
-            // Passando a lista dinamicamente
-            children: dados.map((item) {
-              return _cardConvite(
-                item['nome']!,
-                item['participantes']!,
-                item['descricao']!,
-              );
-            }).toList(),
-          ),
-        ),
-      ],
+  Widget _buildChips({required String texto}) {
+    return ActionChip(
+      label: Text(texto, style: const TextStyle(fontWeight: FontWeight.w500)),
+      backgroundColor: Cores.fundo,
+      labelPadding: const EdgeInsets.only(left: 4, right: 2),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
+      onPressed: () {},
     );
   }
 
-  Widget _cardConvite(String nome, String participantes, String descricao) {
+  Widget _buildCard({required PropriedadesComunidades propriedade}) {
     return Container(
-      // Removi o margin: EdgeInsets.only(right: 12) daqui porque
-      // o próprio mainAxisSpacing do GridView já faz esse espaçamento agora.
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      width: 280,
+      padding: const EdgeInsets.only(top: 3, bottom: 10, left: 10, right: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFE0E0E0),
-        borderRadius: BorderRadius.circular(12),
+        color: Cores.fundo,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.black54, width: 0.2),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const CircleAvatar(radius: 16, backgroundColor: Color(0xFF8C9EFF)),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Text(
-                            nome,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(Icons.check_circle, size: 14, color: Colors.blue),
-                      ],
+              // Mudando a cor do avatar dinamicamente de acordo com a propriedade da classe
+              CircleAvatar(radius: 18, backgroundColor: propriedade.corAvatar),
+              const SizedBox(width: 6),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    propriedade.nome,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
                     ),
-                    Text(
-                      participantes,
-                      style: TextStyle(color: Colors.grey[700], fontSize: 10),
-                    ),
-                  ],
-                ),
+                  ),
+                  Text("${propriedade.membros} mil membros"),
+                ],
               ),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF4CAF50),
+                  backgroundColor: Cores.verdeifal,
                   shape: const StadiumBorder(),
                   elevation: 0,
                   minimumSize: const Size(60, 25),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 0,
+                  ),
                 ),
                 child: const Text(
                   "Entrar",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 2),
           Text(
-            descricao,
+            propriedade.descricao,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 13),
           ),
         ],
       ),

@@ -19,7 +19,9 @@ class _NoticiasState extends State<Noticias> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           //clique
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pop(context);
+          },
         ),
         title: const Text('Notícias', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
