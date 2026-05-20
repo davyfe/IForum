@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/PropriedadesComunidades.dart';
+import 'package:iforum/pages/navPage.dart';
 
 class Comunidades extends StatefulWidget {
   const Comunidades({super.key});
@@ -66,16 +67,15 @@ class _ComunidadesState extends State<Comunidades> {
             backgroundColor: Cores.verdeifal,
             floating: true,
             snap: true,
-            title: const Center(
-              child: Text(
-                "Comunidades",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+            title: Text(
+              "Comunidades",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 20,
               ),
             ),
+            centerTitle: true,
             actions: [
               IconButton(
                 icon: const Icon(Icons.search_outlined),

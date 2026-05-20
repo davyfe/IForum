@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/pages/noticias.dart';
+import 'package:iforum/pages/noticiasAntigo.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/comunidades.dart';
 

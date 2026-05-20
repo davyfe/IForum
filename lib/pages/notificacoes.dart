@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
 
 class Notificacoes extends StatefulWidget{
   const Notificacoes({super.key});
@@ -11,31 +12,40 @@ class _NotificacoesState extends State<Notificacoes> {
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-        title: Text(
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: Cores.verdeifal,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
+          title: Text(
             "Notificações",
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
           ),
-        ],
-      ),
-      body: _buildAbas()
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search_outlined),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        SliverFillRemaining(
+          child: _buildAbas(),
+        )
+      ],
     );
   }
 
@@ -45,11 +55,11 @@ class _NotificacoesState extends State<Notificacoes> {
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Cores.fundo,
             child: TabBar(
               unselectedLabelColor: Colors.grey,
               labelColor: Colors.black,
-              indicatorColor: Color(0xFF2E7D32),
+              indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
               labelStyle: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -66,6 +76,7 @@ class _NotificacoesState extends State<Notificacoes> {
               child: TabBarView(
                 children: [
                   ListView(
+                    padding: EdgeInsets.zero,
                     children: [
                       buildNotificacoes(
                         icone: Icons.campaign,
@@ -115,8 +126,8 @@ class _NotificacoesState extends State<Notificacoes> {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        color: Colors.grey,
+      decoration: BoxDecoration(
+        color: Colors.grey[400],
         border: Border(
           bottom: BorderSide(
             color: Colors.black12
