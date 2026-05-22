@@ -14,36 +14,49 @@ class navPage extends StatefulWidget {
 
 class _navPageState extends State<navPage> {
   int selectedIndex = 0;
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
-    List pages = [Home(), Notificacoes(), Perfil()];
+    List pages = [const Home(), const Notificacoes(), const Perfil()];
+
     return Scaffold(
       backgroundColor: Cores.fundo,
-      drawer: const Menu(),
-      body: pages[selectedIndex],
-      bottomNavigationBar: buildBottomnavigationbar(),
+      drawer: Menu(navigatorKey: _navigatorKey),
+      body: Navigator(
+        key: _navigatorKey,
+        onGenerateRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) => pages[selectedIndex],
+          );
+        },
+      ),
+      bottomNavigationBar: buildBottomnavigationbar(pages),
     );
   }
 
-  buildBottomnavigationbar() {
+  buildBottomnavigationbar(List pages) {
     return BottomNavigationBar(
       backgroundColor: Cores.fundo,
       currentIndex: selectedIndex,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
         setState(() {
           selectedIndex = index;
         });
+        _navigatorKey.currentState?.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => pages[index]),
+              (route) => false,
+        );
       },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),
-        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Notificações"),
+        const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),
+        const BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Notificações"),
         BottomNavigationBarItem(icon: CircleAvatar(radius: 12, backgroundColor: Cores.avatar), label: "Você"),
       ],
     );

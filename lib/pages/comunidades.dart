@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/PropriedadesComunidades.dart';
-import 'package:iforum/pages/navPage.dart';
 
 class Comunidades extends StatefulWidget {
   const Comunidades({super.key});

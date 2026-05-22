@@ -19,29 +19,22 @@ class _PerfilState extends State<Perfil> {
         backgroundColor: Cores.verdeifal,
         actions: [
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.edit,
                 color: Colors.white,
+                size: 22,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.add,
                 color: Colors.white,
+                size: 28,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.search,
@@ -49,19 +42,14 @@ class _PerfilState extends State<Perfil> {
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.share,
                 color: Colors.white,
+                size: 20,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){
                 Navigator.push(
                   context,
@@ -120,7 +108,7 @@ class _PerfilState extends State<Perfil> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(radius: 45, backgroundColor: Colors.white,),
+          CircleAvatar(radius: 45, backgroundColor: Colors.white),
           SizedBox(height: 10),
           Text(nome, style: TextStyle(
             fontSize: 30,

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/pages/noticiasAntigo.dart';
+import 'package:iforum/pages/noticias.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/comunidades.dart';
 
 class Menu extends StatefulWidget {
-  const Menu({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+  const Menu({super.key, required this.navigatorKey});
 
   @override
   State<Menu> createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -52,10 +54,7 @@ class _MenuState extends State<Menu> {
             tilePadding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               _buildComunidades(nome: "devs.if", cor: Cores.avatar),
-              _buildComunidades(
-                nome: "fotografias",
-                cor: Colors.yellow.shade700,
-              ),
+              _buildComunidades(nome: "fotografias", cor: Colors.yellow.shade700),
               _buildComunidades(nome: "estudos.ifal", cor: Colors.redAccent),
               _buildComunidades(nome: "monc_ifal", cor: Colors.green),
             ],
@@ -119,6 +118,7 @@ class _MenuState extends State<Menu> {
     return ListTile(
       titleAlignment: ListTileTitleAlignment.center,
       contentPadding: EdgeInsets.symmetric(horizontal: 20),
+      visualDensity: VisualDensity.compact,
       leading: SizedBox(width: 30, child: Icon(icone, size: tamanhoIcone)),
       title: Text(
         titulo,
@@ -134,8 +134,7 @@ class _MenuState extends State<Menu> {
       onTap: () {
         if (tela != null) {
           Navigator.pop(context);
-          Navigator.push(
-            context,
+          widget.navigatorKey.currentState?.push(
             MaterialPageRoute(builder: (context) => tela),
           );
         }

@@ -101,12 +101,11 @@ class _HomeState extends State<Home> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               onPressed: () {
-                Navigator.push(
-                  context,
+                Navigator.of(context, rootNavigator: true).push(
                   MaterialPageRoute(
-                    builder: (context) => CriarPost(),
+                    builder: (context) => const CriarPost(),
                     fullscreenDialog: true,
                   ),
                 );
@@ -121,14 +120,14 @@ class _HomeState extends State<Home> {
         SliverList.builder(
           itemCount: posts.length,
           itemBuilder: (context, i) {
-            return buildPost(propriedade: posts[i]);
+            return buildPost(post: posts[i]);
           },
         ),
       ],
     );
   }
 
-  Widget buildPost({required PropriedadesPosts propriedade}) {
+  Widget buildPost({required PropriedadesPosts post}) {
     return Column(
       children: [
         Container(
@@ -141,7 +140,7 @@ class _HomeState extends State<Home> {
                   CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
                   SizedBox(width: 8),
                   Text(
-                    propriedade.autor,
+                    post.autor,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 3),
@@ -152,37 +151,37 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(width: 3),
                   Text(
-                    propriedade.comunidade,
+                    post.comunidade,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 10),
-                  Text(propriedade.tempo),
+                  Text(post.tempo),
                   Spacer(),
                   Icon(Icons.more_horiz),
                 ],
               ),
               SizedBox(height: 5),
               Text(
-                propriedade.titulo,
+                post.titulo,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
 
-              if (propriedade.conteudo.isNotEmpty) ...[
+              if (post.conteudo.isNotEmpty) ...[
                 SizedBox(height: 5),
                 Text(
-                  propriedade.conteudo,
+                  post.conteudo,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
-              if (propriedade.urlImagem.isNotEmpty) ...[
+              if (post.urlImagem.isNotEmpty) ...[
                 SizedBox(height: 5),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    propriedade.urlImagem,
+                    post.urlImagem,
                     width: double.infinity,
                     fit: BoxFit.cover,
                     errorBuilder:
@@ -190,7 +189,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ],
-              if (propriedade.anexo) ...[
+              if (post.anexo) ...[
                 SizedBox(height: 5),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -219,7 +218,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
               SizedBox(height: 8),
-              buildInteracao(propriedade.likes, propriedade.comentarios),
+              buildInteracao(post.likes, post.comentarios),
             ],
           ),
         ),

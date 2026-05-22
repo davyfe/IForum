@@ -32,6 +32,7 @@ class _NotificacoesState extends State<Notificacoes> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              fontSize: 20,
             ),
           ),
           centerTitle: true,
