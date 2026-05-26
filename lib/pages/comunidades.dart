@@ -10,7 +10,7 @@ class Comunidades extends StatefulWidget {
 }
 
 class _ComunidadesState extends State<Comunidades> {
-  List comunidades = [
+  final List<PropriedadesComunidades> comunidades = [
     PropriedadesComunidades(
       nome: "DevsIf",
       membros: 5.6,
@@ -105,7 +105,7 @@ class _ComunidadesState extends State<Comunidades> {
     );
   }
 
-  Widget _buildSecaoComunidades(String titulo, List lista) {
+  Widget _buildSecaoComunidades(String titulo, List<PropriedadesComunidades> lista) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -131,7 +131,7 @@ class _ComunidadesState extends State<Comunidades> {
   }
 
   Widget _buildTopicos() {
-    List linhasDeTopicos = [
+    final linhasDeTopicos = [
       ["Cultura", "Filmes e TV", "Cultura pop", "Jogos", "Tecnologia", "Esportes"],
       ["Bate-Papo", "Desenvolvimento", "Notícias e política", "Ciências Exatas", "Botânica", "Música"],
       ["Eletrônica", "Carros e veículos", "Negócios e finanças", "Ciências Humanas", "Hobbies", "Arte"],

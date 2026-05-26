@@ -125,12 +125,12 @@ class _MenuState extends State<Menu> {
         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
       ),
       subtitle:
-          subtitulo != null
-              ? Text(
-                subtitulo,
-                style: TextStyle(color: Colors.grey[600], fontSize: 13),
-              )
-              : null,
+      subtitulo != null
+          ? Text(
+        subtitulo,
+        style: TextStyle(color: Colors.grey[600], fontSize: 13),
+      )
+          : null,
       onTap: () {
         if (tela != null) {
           Navigator.pop(context);
