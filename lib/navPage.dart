@@ -5,14 +5,14 @@ import 'package:iforum/pages/notificacoes.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/menu.dart';
 
-class navPage extends StatefulWidget {
-  const navPage({super.key});
+class NavPage extends StatefulWidget {
+  const NavPage({super.key});
 
   @override
-  State<navPage> createState() => _navPageState();
+  State<NavPage> createState() => _NavPageState();
 }
 
-class _navPageState extends State<navPage> {
+class _NavPageState extends State<NavPage> {
   int selectedIndex = 0;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 

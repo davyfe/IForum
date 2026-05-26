@@ -5,7 +5,7 @@ import 'package:iforum/navPage.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: const navPage(),
+      home: const NavPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
