@@ -6,5 +6,9 @@ class BuildPost extends StatefulWidget {
   BuildPost({super.key, required this.propriedade});
 
   @override
-  State<>
+  State<BuildPost> createState() => _BuildPostState();
+}
+
+class _BuildPostState extends State<BuildPost>{
+
 }
