@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/domain/PropriedadesNoticia.dart';
+import 'package:iforum/domain/PropriedadeNoticia.dart';
 import 'package:iforum/pages/navNoticia.dart';
 import 'package:iforum/cores.dart';
 import 'package:float_column/float_column.dart';

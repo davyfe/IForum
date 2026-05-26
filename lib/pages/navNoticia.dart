@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
-import 'package:iforum/domain/PropriedadesNoticia.dart';
+import 'package:iforum/domain/PropriedadeNoticia.dart';
 
 class NavNoticia extends StatefulWidget {
   final PropriedadesNoticia noticia;
