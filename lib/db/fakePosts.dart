@@ -1,19 +1,19 @@
 import 'package:iforum/domain/PropriedadePost.dart';
 
-class fakePosts{
+class FakePosts {
   static List posts = [
-    PropriedadePosts(
+    PropriedadePost(
       titulo: 'Estou fazendo uma reformulação da minha tela em dart! :P',
       autor: 'davyf',
       comunidade: 'devs.if',
       tempo: '30m',
       tipo: 'Material',
       conteudo:
-      'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
+          'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
       likes: 26,
       comentarios: 5,
     ),
-    PropriedadePosts(
+    PropriedadePost(
       titulo: 'Rio de Janeiro, RJ, Brasil.',
       autor: 'pdrolopesm',
       comunidade: 'fotografias',
@@ -22,9 +22,9 @@ class fakePosts{
       likes: 504,
       comentarios: 230,
       urlImagem:
-      'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
+          'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
     ),
-    PropriedadePosts(
+    PropriedadePost(
       titulo: 'Achei esse livro fantástico pra ajudar nos estudos!',
       autor: 'sabynna.louyse',
       comunidade: 'estudos.ifal',
@@ -34,9 +34,9 @@ class fakePosts{
       comentarios: 3,
       anexo: true,
     ),
-    PropriedadePosts(
+    PropriedadePost(
       titulo:
-      'Meu computador não está funcionando... Alguém sabe o que pode ser?',
+          'Meu computador não está funcionando... Alguém sabe o que pode ser?',
       autor: 'duarte.geh',
       comunidade: 'monc_ifal',
       tempo: '2s',

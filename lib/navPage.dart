@@ -14,23 +14,14 @@ class NavPage extends StatefulWidget {
 
 class _NavPageState extends State<NavPage> {
   int selectedIndex = 0;
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-
   @override
   Widget build(BuildContext context) {
     List pages = [const Home(), const Notificacoes(), const Perfil()];
 
     return Scaffold(
       backgroundColor: Cores.fundo,
-      drawer: Menu(navigatorKey: _navigatorKey),
-      body: Navigator(
-        key: _navigatorKey,
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-            builder: (context) => pages[selectedIndex],
-          );
-        },
-      ),
+      drawer: Menu(),
+      body: pages[selectedIndex],
       bottomNavigationBar: buildBottomnavigationbar(pages),
     );
   }
@@ -49,10 +40,6 @@ class _NavPageState extends State<NavPage> {
         setState(() {
           selectedIndex = index;
         });
-        _navigatorKey.currentState?.pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => pages[index]),
-              (route) => false,
-        );
       },
       items: [
         const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),

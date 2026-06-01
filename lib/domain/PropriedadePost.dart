@@ -1,4 +1,4 @@
-class PropriedadePosts{
+class PropriedadePost{
   String titulo;
   String autor;
   String comunidade;
@@ -10,7 +10,7 @@ class PropriedadePosts{
   bool anexo;
   String urlImagem;
 
-  PropriedadePosts({
+  PropriedadePost({
     required this.titulo,
     required this.autor,
     required this.comunidade,
