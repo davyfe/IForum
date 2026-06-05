@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Comunidades extends StatefulWidget{
@@ -111,7 +110,7 @@ class _ComunidadesState extends State<Comunidades>{
         children: [
           Row(
             children: [
-              CircleAvatar(radius: 16, backgroundColor: Colors.grey),
+              CircleAvatar(radius: 16, backgroundColor: Color(0xFF8C9EFF)),
               SizedBox(width: 8),
               // pro nome e 'participantes' ficar alinhado como no
               // design do canva, fiz:
