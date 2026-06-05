@@ -1,158 +1,301 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/domain/PropriedadeNoticia.dart';
 
-//definir quais dados a tela precisa receber e depende da tela anterior com as informações
-class navNoticia extends StatefulWidget {
-  final String autor;
-  final String nome;
-  final String data;
-  final String imagem;
-  final String titulo;
-  final String texto;
-  final int comentarios;
-
-  const navNoticia({
-    super.key,
-    required this.autor,
-    required this.nome,
-    required this.data,
-    required this.imagem,
-    required this.titulo,
-    required this.texto,
-    required this.comentarios,
-  });
+class NavNoticia extends StatefulWidget {
+  final PropriedadesNoticia noticia;
+  const NavNoticia({super.key, required this.noticia});
 
   @override
-  State<navNoticia> createState() => _navNoticiaState();
+  State<NavNoticia> createState() => _NavNoticiaState();
 }
 
-class _navNoticiaState extends State<navNoticia> {
+class _NavNoticiaState extends State<NavNoticia> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text("Notícias", style: TextStyle(fontWeight: FontWeight.bold)),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
-        children: [
-
-          //parametros vazios a serem preenchidos com as informações
-          exibirConteudo(
-            widget.autor,
-            widget.nome,
-            widget.data,
-            widget.imagem,
-            widget.titulo,
-            widget.texto,
-            widget.comentarios,
-          ),
-        ],
-      ),
-    );
-  }
-  //acessar as variaveis definidas no topo da classe
-  Widget exibirConteudo(
-      String autor,
-      String nome,
-      String data,
-      String imagem,
-      String titulo,
-      String texto,
-      int comentarios,
-      ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-                radius: 15,
-                backgroundColor: Colors.green[100],
-                child: Icon(Icons.person, size: 15, color: Colors.green[800])),
-            const SizedBox(width: 8),
-            Text(autor, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Icon(Icons.check_circle, size: 14, color: Colors.blue),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Text(
-          titulo,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          "Publicado por $nome • $data",
-          style: const TextStyle(fontSize: 12, color: Colors.grey),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(imagem),
-          ),
-        ),
-        Text(
-          texto,
-          style: const TextStyle(fontSize: 18, color: Colors.black87),
-        ),
-        const SizedBox(height: 16),
-        const Divider(),
-        Text("Comentários ($comentarios)", style: const TextStyle(fontWeight: FontWeight.bold)),
-
-        // comentarios pra cada noticia
-        if (autor == "entreterimento_if") ...[
-          _buildComentario("raissa.almeida", "Eu concordo.", "10min"),
-          _buildComentario("eduarda.souza", "É importante discutir isso...", "5min"),
-        ] else ...[
-          _buildComentario("luiz.silva", "Que curioso! É importante questionar mais...", "40min"),
-          _buildComentario("marinait", "@luiz.silva Achei interessante...", "2min", isReply: true),
-        ],
-
-        const SizedBox(height: 12),
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Mostrar mais comentários", style: TextStyle(color: Colors.blue)),
-              Icon(Icons.keyboard_arrow_down, color: Colors.blue),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildComentario(String user, String text, String time, {bool isReply = false}) {
-    return Padding(
-      padding: EdgeInsets.only(left: isReply ? 40 : 0, top: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 12,
-                backgroundColor: Colors.green[100],
-                child: Icon(Icons.person, size: 15, color: Colors.green[800]),
+      backgroundColor: Cores.fundo,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: widget.noticia.tema,
+            pinned: true,
+            expandedHeight: 300.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.network(
+                    widget.noticia.urlImagem,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+                  ),
+                  const DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Colors.black87],
+                        stops: [0.3, 1.0],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 20,
+                    bottom: 20,
+                    right: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.noticia.titulo,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Text(
+                              "Por ${widget.noticia.autor}",
+                              style: const TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            const SizedBox(width: 3),
+                            const Icon(
+                              Icons.chevron_right, size: 15, color: Colors.white,
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              widget.noticia.portal,
+                              style: const TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: SafeArea(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.search_outlined, color: Colors.white)),
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.share_outlined, size: 20, color: Colors.white)),
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.flag_outlined, color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 8),
-              Text(user, style: const TextStyle(fontWeight: FontWeight.bold)),
-              Text(" - há $time", style: const TextStyle(fontSize: 12, color: Colors.grey)),
-            ],
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Text(text),
+          // Adicionei este bloco para renderizar o resto do conteúdo da notícia
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Publicado em ${widget.noticia.dataPub}",
+                    style: const TextStyle(fontSize: 16, color: Colors.black38, fontStyle: FontStyle.italic),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    widget.noticia.texto,
+                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  SizedBox(height: 30),
+                  Text("Comentários (5)"),
+                  _buildComentarios(),
+                ],
+              ),
+            ),
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildComentarios(){
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("camila_rosa", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("15m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Os comentários são todos iguais!! Estamos em uma matrix??!!",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(16, 2, "😱"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("mauro.coelho", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("7m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Que besteira dessa camila...",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(8, 2, "😤"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("remus_lupim", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("2m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Pessoal... Vamos prestar atenção na matéria.",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(12, 1, "🌕"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("katniss.everdeen12", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("30s"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Are you, are you coming to the tree?",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(3, 0, "🥺"),
+          SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget buildInteracao(int likes, int comentarios, String reacao) {
+    return Row(
+      children: [
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.thumb_up_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$likes |'),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.thumb_down_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        SizedBox(width: 10),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.chat_bubble_outline_rounded,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$comentarios'),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        Spacer(),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Text(
+            reacao,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black54,
+            ),
+          ),
+          labelPadding: const EdgeInsets.only(left: 2, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+      ],
     );
   }
 }
