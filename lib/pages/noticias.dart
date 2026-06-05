@@ -19,7 +19,8 @@ class _NoticiasState extends State<Noticias> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           //clique
-          onPressed: () => Navigator.pop(context),
+          onPressed: (){}.
+          },
         ),
         title: const Text('Notícias', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
@@ -126,7 +127,7 @@ class _NoticiasState extends State<Noticias> {
       onTap: aoClicar,
       //para o texto não ficar colado nas beiradas da tela: padding
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
             const SizedBox(height: 10),
