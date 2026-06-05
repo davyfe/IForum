@@ -1,86 +1,301 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/domain/PropriedadeNoticia.dart';
 
-class navNoticia extends StatefulWidget {
-  const navNoticia({super.key});
+class NavNoticia extends StatefulWidget {
+  final PropriedadesNoticia noticia;
+  const NavNoticia({super.key, required this.noticia});
 
   @override
-  State<navNoticia> createState() => _navNoticiaState();
+  State<NavNoticia> createState() => _NavNoticiaState();
 }
 
-class _navNoticiaState extends State<navNoticia> {
+class _NavNoticiaState extends State<NavNoticia> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text("Notícias", style: TextStyle(color: Colors.white, fontSize: 14)),
-      ),
-
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.green[100],
-                  child: Icon(Icons.person, size: 15, color: Colors.green[800])
+      backgroundColor: Cores.fundo,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: widget.noticia.tema,
+            pinned: true,
+            expandedHeight: 300.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.network(
+                    widget.noticia.urlImagem,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+                  ),
+                  const DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Colors.black87],
+                        stops: [0.3, 1.0],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 20,
+                    bottom: 20,
+                    right: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.noticia.titulo,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Text(
+                              "Por ${widget.noticia.autor}",
+                              style: const TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            const SizedBox(width: 3),
+                            const Icon(
+                              Icons.chevron_right, size: 15, color: Colors.white,
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              widget.noticia.portal,
+                              style: const TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: SafeArea(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.search_outlined, color: Colors.white)),
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.share_outlined, size: 20, color: Colors.white)),
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.flag_outlined, color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(width: 8),
-              Text('ifnews', style: TextStyle(fontWeight: FontWeight.bold)),
-              Icon(Icons.check_circle, size: 14, color: Colors.blue),
-            ],
-          ),
-          SizedBox(height: 16),
-          Text(
-            'A certificação de metodologias que nos auxiliam a lidar com o acompanhamento de consumo é uma das consequências das diversas transformações sociais e tecnológicas, refletindo a necessidade de práticas mais sustentáveis e conscientes no cotidiano. Nesse cenário, o uso de ferramentas digitais e estratégias organizadas permite uma análise mais precisa dos hábitos de consumo, possibilitando identificar padrões, desperdícios e oportunidades de melhoria. Além disso, essas metodologias contribuem para a formação de uma consciência crítica tanto em nível individual quanto coletivo, incentivando escolhas mais responsáveis e alinhadas com a preservação dos recursos naturais. Empresas, instituições e até mesmo consumidores passam a adotar práticas mais equilibradas, buscando reduzir impactos ambientais e promover um desenvolvimento mais sustentável. Dessa forma, a certificação dessas metodologias não apenas valida sua eficácia, mas também fortalece a importância de integrar tecnologia, inovação e responsabilidade social no dia a dia, acompanhando as demandas de uma sociedade cada vez mais preocupada com o futuro do planeta.',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network('https://img.freepik.com/fotos-gratis/professor-de-homem-usando-oculos-verificando-o-registro-de-classe-olhando-para-a-camera-intrigado-com-a-expressao-pensativa-pensando-sentado-na-mesa-da-escola-na-frente-do-quadro-negro-na-sala-de-aula_141793-131719.jpg'),
             ),
           ),
-
-          Divider(),
-          Text("Comentários (35)", style: TextStyle(fontWeight: FontWeight.bold)),
-          _buildComentario("luiz.silva", "Que curioso! É importante questionar...", "40min"),
-          _buildComentario("marinait", "Achei deveras interessante...", "2min", isReply: true),
+          // Adicionei este bloco para renderizar o resto do conteúdo da notícia
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Publicado em ${widget.noticia.dataPub}",
+                    style: const TextStyle(fontSize: 16, color: Colors.black38, fontStyle: FontStyle.italic),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    widget.noticia.texto,
+                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  SizedBox(height: 30),
+                  Text("Comentários (5)"),
+                  _buildComentarios(),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 
-  Widget _buildComentario(String user, String text, String time, {bool isReply = false}) {
-    return Padding(
-      padding: EdgeInsets.only(left: isReply ? 40: 0, top: 10),
+  Widget _buildComentarios(){
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 10),
           Row(
             children: [
-              CircleAvatar(radius: 12,
-                backgroundColor: Colors.green[100],
-                child: Icon(Icons.person, size: 15, color: Colors.green[800]),),
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
               SizedBox(width: 8),
-              Text(user, style: TextStyle(fontWeight: FontWeight.bold)),
-              Text(" - há $time", style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Text("camila_rosa", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("15m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 4),
-            child: Text(text),
-          )
+          SizedBox(height: 5),
+          Text(
+            "Os comentários são todos iguais!! Estamos em uma matrix??!!",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(16, 2, "😱"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("mauro.coelho", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("7m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Que besteira dessa camila...",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(8, 2, "😤"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("remus_lupim", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("2m"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Pessoal... Vamos prestar atenção na matéria.",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(12, 1, "🌕"),
+          SizedBox(height: 10),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+              SizedBox(width: 8),
+              Text("katniss.everdeen12", style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+              Text("30s"),
+              Spacer(),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Are you, are you coming to the tree?",
+            style: TextStyle(fontSize: 15),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 8),
+          buildInteracao(3, 0, "🥺"),
+          SizedBox(height: 10),
         ],
       ),
+    );
+  }
+
+  Widget buildInteracao(int likes, int comentarios, String reacao) {
+    return Row(
+      children: [
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.thumb_up_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$likes |'),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.thumb_down_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        SizedBox(width: 10),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.chat_bubble_outline_rounded,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$comentarios'),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        Spacer(),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Text(
+            reacao,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black54,
+            ),
+          ),
+          labelPadding: const EdgeInsets.only(left: 2, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+      ],
     );
   }
 }

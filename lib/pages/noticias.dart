@@ -1,179 +1,263 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/domain/PropriedadeNoticia.dart';
 import 'package:iforum/pages/navNoticia.dart';
-
+import 'package:iforum/cores.dart';
 
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
-
 
   @override
   State<Noticias> createState() => _NoticiasState();
 }
 
-
 class _NoticiasState extends State<Noticias> {
+
+  List noticias = [
+    PropriedadesNoticia(
+      titulo: "Professor inova com novo método apresentado em sala.",
+      texto: "O uso de ferramentas digitais e estratégias organizadas permite uma análise mais precisa dos hábitos de consumo, possibilitando identificar padrões, desperdícios e oportunidades de melhoria. Além disso, essas metodologias contribuem para a formação de uma consciência crítica tanto em nível individual quanto coletivo, incentivando escolhas mais responsáveis e alinhadas com a preservação dos recursos naturais.",
+      urlImagem: "https://img.freepik.com/fotos-gratis/professor-de-homem-usando-oculos-verificando-o-registro-de-classe-olhando-para-a-camera-intrigado-com-a-expressao-pensativa-pensando-sentado-na-mesa-da-escola-na-frente-do-quadro-negro-na-sala-aula_141793-131719.jpg",
+      dataPub: "18/05/2026",
+      tempo: "1d",
+      autor: "Alaryce Jaylle",
+      portal: "Ifal Notícias",
+      likes: 150,
+      comentarios: 5,
+      tema: Colors.indigo,
+    ),
+
+    PropriedadesNoticia(
+      titulo: "Ordem e Disciplina: Dolores Umbridge é nomeada a primeira Alta Inquisidora de Hogwarts.",
+      texto: "O Ministério da Magia tomou uma medida sem precedentes nesta manhã para garantir o rigor e o padrão de excellence na Escola de Magia e Bruxaria de Hogwarts... (texto omitido para reduzir tamanho)",
+      urlImagem: "https://observatoriodocinema.com.br/wp-content/uploads/2023/12/dolores-umbridge-harry-potter-scaled.jpg",
+      dataPub: "08/09/1995",
+      tempo: "3h",
+      autor: "Rita Skeeter",
+      portal: "O Profeta Diário",
+      likes: 85,
+      comentarios: 12,
+      tema: Colors.pink.shade300,
+    ),
+
+    PropriedadesNoticia(
+      titulo: "Grêmio Estudantil divulga action sobre a importância da participação ativa e do engajamento dos alunos.",
+      texto: "A ação promovida pelo Grêmio Estudantil teve como principal objetivo incentivar os alunos...",
+      urlImagem: "https://observatorio.movimentopelabase.org.br/wp-content/uploads/2022/07/shutterstock-1937721487-970x570.jpg",
+      dataPub: "15/05/2026",
+      tempo: "3d",
+      autor: "José Paulo",
+      portal: "gremio.if",
+      likes: 45,
+      comentarios: 20,
+      tema: Color(0xFF9C2F27),
+    ),
+
+    PropriedadesNoticia(
+      titulo: "A percepção das dificuldades promove uma abordagem mais crítica e inclusiva na realidade educacional.",
+      texto: "Os estudos mais recentes relacionados ao ambiente escolar demonstram que compreender as dificuldades enfrentadas pelos estudantes...",
+      urlImagem: "https://www.agricultura.sc.gov.br/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-04-at-16.51.49.jpeg",
+      dataPub: "16/05/2026",
+      tempo: "2d",
+      autor: "Adriana Santana",
+      portal: "meio_ambiente_if",
+      likes: 55,
+      comentarios: 35,
+    ),
+
+    PropriedadesNoticia(
+      titulo: "Ação de conscientização destaca que aprender envolve respeito, inclusão e compromisso coletivo.",
+      texto: "A campanha de conscientização realizada no ambiente escolar buscou incentivar atitudes mais respeitosas...",
+      urlImagem: "https://internationalschool.global/wp-content/uploads/2025/08/shutterstock_2627251889.jpg",
+      dataPub: "15/05/2026",
+      tempo: "3d",
+      autor: "Arnóbio B.",
+      portal: "cipa.if",
+      likes: 40,
+      comentarios: 25,
+    ),
+
+    PropriedadesNoticia(
+      titulo: "Panorama sobre o universo dos jogos destaca seu papel no aprendizado e desenvolvimento dos estudantes.",
+      texto: "Pesquisadores e educadores vêm discutindo cada vez mais a presença dos jogos digitais...",
+      urlImagem: "https://cdn.focoradical.com.br/newfoco/banners/20251217173547IMG9373.jpg",
+      dataPub: "15/05/2026",
+      tempo: "3d",
+      autor: "Karinne Coelho",
+      portal: "jogos_if",
+      likes: 80,
+      comentarios: 50,
+      tema: Color(0xFF1F9A25),
+    ),
+
+    PropriedadesNoticia(
+      titulo: "Pesquisas apontam como o entretenimento digital influencia o comportamento e aprendizado dos jovens.",
+      texto: "O avanço das plataformas digitais transformou significativamente a maneira como os jovens consomem informação...",
+      urlImagem: "https://midias-totvs.totvs.com/wp-content/uploads/2023/04/tecnologias-digitais.jpg",
+      dataPub: "14/05/2026",
+      tempo: "4d",
+      autor: "Cledja R.",
+      portal: "pesquisas.if",
+      likes: 65,
+      comentarios: 30,
+      tema: Color(0xFF316479),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2E7D32),
-        leading: const Icon(Icons.arrow_back),
-        title: const Text('Notícias', style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          itemNoticia(
-            "ifnews",
-            "1d",
-            "A certificação de metodologias que nos auxiliam a lidar com o acompanhamento de consumo é uma das consequências das diversas transformações sociais e tecnológicas, refletindo a necessidade de práticas mais sustentáveis e conscientes no cotidiano.",
-            "https://img.freepik.com/fotos-gratis/professor-de-homem-usando-oculos-verificando-o-registro-de-classe-olhando-para-a-camera-intrigado-com-a-expressao-pensativa-pensando-sentado-na-mesa-da-escola-na-frente-do-quadro-negro-na-sala-de-aula_141793-131719.jpg",
-            78,
-            30,
-                () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const navNoticia()));
+      backgroundColor: Cores.fundo,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: Cores.verdeifal,
+            floating: true,
+            snap: true,
+            title: const Text("Notícias",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),
+            ),
+            centerTitle: true,
+            actions: [
+              IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {},),
+            ],
+          ),
+          SliverList.builder(
+            itemCount: noticias.length,
+            itemBuilder: (context, i) {
+              return buildNoticia(context: context, noticia: noticias[i]);
             },
-          ),
-          itemNoticia(
-            "entreterimento_if",
-            "1d",
-            "Não obstante o consenso sobre a necessidade de qualificação, ainda não se demonstrou convincentemente que essa medida vá contribuir efetivamente para a mudança dos processos educacionais, exigindo, portanto, uma análise mais aprofundada e ações concretas que promovam resultados significativos.",
-            "https://i.pinimg.com/736x/c2/1e/b0/c21eb09c967263b7d34e713da318f093.jpg",
-            33,
-            12,
-            null,
-          ),
-          itemNoticia(
-            "meio_ambiente.if",
-            "2d",
-            "As experiências acumuladas demonstram que a perception das dificuldades afeta positivamente a correta previsão de alternativas às soluções ortodoxas, promovendo uma abordagem mais crítica, inclusiva e adaptada à realidade educacional.",
-            "https://www.agricultura.sc.gov.br/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-04-at-16.51.49.jpeg",
-            55,
-            35,
-            null,
-          ),
-          itemNoticia(
-            "cipa.if",
-            "3d",
-            "Foi publicado uma ação de conscientização sobre a importância da educação no ambiente escolar e a iniciativa destacou que aprender também envolve respeito, inclusão e o compromisso coletivo com a construção de um futuro melhor.",
-            "https://internationalschool.global/wp-content/uploads/2025/08/shutterstock_2627251889.jpg",
-            40,
-            25,
-            null,
-          ),
-          itemNoticia(
-            "gremio.if",
-            "3d",
-            "O Grêmio Estudantil divulga ação de conscientização voltada à importância da participação ativa dos alunos no ambiente escolar, destacando o papel do diálogo, da inclusão e do engajamento coletivo na construção de uma comunidade educacional mais crítica e colaborativa",
-            "https://observatorio.movimentopelabase.org.br/wp-content/uploads/2022/07/shutterstock-1937721487-970x570.jpg",
-            45,
-            20,
-            null,
-          ),
-          itemNoticia(
-            "jogos_oficial.if",
-            "3d",
-            "É publicado um panorama geral sobre o universo dos jogos, destacando sua evolução, os impactos no desenvolvimento cognitivo e social dos estudantes, além de seu papel como ferramenta de aprendizado, entretenimento e integração no ambiente educacional.",
-            "https://cdn.focoradical.com.br/newfoco/banners/20251217173547IMG9373.jpg",
-            80,
-            50,
-            null,
-          ),
-          itemNoticia(
-            "entreterimento.if",
-            "4d",
-            "Pesquisas recentes no campo do entretenimento digital, destacam como jogos, filmes e redes sociais influenciam o comportamento dos jovens e contribuem para novas formas de aprendizado, interação e expressão cultural no ambiente escolar.",
-            "https://midias-totvs.totvs.com/wp-content/uploads/2023/04/tecnologias-digitais.jpg",
-            65,
-            30,
-            null,
           ),
         ],
       ),
     );
   }
 
-
-  Widget itemNoticia(
-      String usuario,
-      String tempo,
-      String titulo,
-      String imagem,
-      int curtidas,
-      int comentarios,
-      VoidCallback? aoClicar,
-      ) {
+  Widget buildNoticia({required BuildContext context, required PropriedadesNoticia noticia}){
     return InkWell(
-      onTap: aoClicar,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.green[100], // Uma cor leve
-                  child: Icon(Icons.person, size: 15, color: Colors.green[800]),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  usuario,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(width: 4),
-                const Icon(Icons.check_circle, size: 14, color: Colors.blue),
-                const SizedBox(width: 4),
-                Text(
-                  "- $tempo",
-                  style: const TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => NavNoticia(noticia: noticia)));
+      },
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 20, right: 20),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    titulo,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Row(
+                  children: [
+                    CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+                    const SizedBox(width: 8),
+                    Text(noticia.autor, style: const TextStyle(fontWeight: FontWeight.bold),),
+                    const SizedBox(width: 10),
+                    Text(noticia.tempo),
+                    const Spacer(),
+                    const Icon(Icons.more_horiz),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imagem,
-                    width: 100,
-                    height: 70,
-                    fit: BoxFit.cover,
-                  ),
+                const SizedBox(height: 5),
+
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        noticia.titulo,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        noticia.urlImagem,
+                        width: 120,
+                        height: 102,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 8),
+                buildInteracao(noticia.likes, noticia.comentarios),
               ],
             ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Icon(Icons.thumb_up_alt_outlined, size: 18, color: Colors.grey[600]),
-                const SizedBox(width: 5),
-                Text(curtidas.toString(), style: TextStyle(color: Colors.grey[600])),
-                const SizedBox(width: 20),
-                Icon(Icons.chat_bubble_outline, size: 18, color: Colors.grey[600]),
-                const SizedBox(width: 5),
-                Text(comentarios.toString(), style: TextStyle(color: Colors.grey[600])),
-                const Spacer(),
-                Icon(Icons.share_outlined, size: 18, color: Colors.grey[600]),
-              ],
-            ),
-          ],
-        ),
+          ),
+          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+        ],
       ),
     );
   }
+
+  Widget buildInteracao(int likes, int comentarios) {
+    return Row(
+      children: [
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.thumb_up_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$likes |'),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.thumb_down_alt_outlined,
+                size: 16,
+                color: Colors.black54,
+              ),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.chat_bubble_outline_rounded,
+                size: 16,
+                color: Colors.black54,
+              ),
+              const SizedBox(width: 6),
+              Text('$comentarios'),
+            ],
+          ),
+          labelPadding: const EdgeInsets.only(left: 4, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        const Spacer(),
+        Chip(
+          backgroundColor: Cores.fundo,
+          label: const Icon(
+            Icons.share_outlined,
+            size: 16,
+            color: Colors.black54,
+          ),
+          labelPadding: const EdgeInsets.only(left: 2, right: 2),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+      ],
+    );
+  }
 }
-
-

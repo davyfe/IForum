@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iforum/cores.dart';
+import 'package:iforum/pages/menuConfig.dart';
 
 class Perfil extends StatefulWidget{
   const Perfil({super.key});
@@ -14,32 +16,25 @@ class _PerfilState extends State<Perfil> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
+        backgroundColor: Cores.verdeifal,
         actions: [
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.edit,
                 color: Colors.white,
+                size: 22,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.add,
                 color: Colors.white,
+                size: 28,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.search,
@@ -47,21 +42,19 @@ class _PerfilState extends State<Perfil> {
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){},
               icon: Icon(
                 Icons.share,
                 color: Colors.white,
+                size: 20,
               )
           ),
           IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: Colors.black87.withValues(alpha: 0.6),
-              ),
               onPressed: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuConfig()),
+                );
               },
               icon: Icon(
                 Icons.menu,
@@ -108,14 +101,14 @@ class _PerfilState extends State<Perfil> {
           end: Alignment.topCenter,
           colors: [
             Colors.black,
-            Color(0xFF2E7D32),
+            Cores.verdeifal,
           ]
         )
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(radius: 45, backgroundColor: Colors.white,),
+          CircleAvatar(radius: 45, backgroundColor: Colors.white),
           SizedBox(height: 10),
           Text(nome, style: TextStyle(
             fontSize: 30,
@@ -201,7 +194,7 @@ class _PerfilState extends State<Perfil> {
             child: TabBar(
               unselectedLabelColor: Colors.grey,
               labelColor: Colors.black,
-              indicatorColor: Color(0xFF2E7D32),
+              indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
               labelStyle: TextStyle(
                 fontWeight: FontWeight.bold
@@ -235,9 +228,9 @@ class _PerfilState extends State<Perfil> {
                           TextSpan(
                             text: "Criar.",
                             style: TextStyle(
-                              color: Color(0xFF2E7D32),
+                              color: Cores.verdeifal,
                               decoration: TextDecoration.underline,
-                              decorationColor: Color(0xFF2E7D32), 
+                              decorationColor: Cores.verdeifal,
                             ),
                           ),
                         ],
@@ -270,6 +263,5 @@ class _PerfilState extends State<Perfil> {
       ),
     );
   }
-
 }
 
