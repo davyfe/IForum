@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 
-class Notificacoes extends StatefulWidget{
+class Notificacoes extends StatefulWidget {
   const Notificacoes({super.key});
 
   @override
@@ -9,14 +9,11 @@ class Notificacoes extends StatefulWidget{
 }
 
 class _NotificacoesState extends State<Notificacoes> {
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: Cores.verdeifal,
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -27,30 +24,17 @@ class _NotificacoesState extends State<Notificacoes> {
               );
             },
           ),
-          title: Text(
-            "Notificações",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
-          centerTitle: true,
+          title: const Text("Notificações"),
           actions: [
-            IconButton(
-              icon: Icon(Icons.search_outlined),
-              onPressed: () {},
-            ),
+            IconButton(icon: Icon(Icons.search_outlined), onPressed: () {}),
           ],
         ),
-        SliverFillRemaining(
-          child: _buildAbas(),
-        )
+        SliverFillRemaining(child: _buildAbas()),
       ],
     );
   }
 
-  Widget _buildAbas(){
+  Widget _buildAbas() {
     return DefaultTabController(
       length: 2,
       child: Column(
@@ -62,14 +46,8 @@ class _NotificacoesState extends State<Notificacoes> {
               labelColor: Colors.black,
               indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
-              labelStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-              ),
-              tabs: [
-                Tab(text: "Caixa de entrada"),
-                Tab(text: "Bate-Papo"),
-              ],
+              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              tabs: [Tab(text: "Caixa de entrada"), Tab(text: "Bate-Papo")],
             ),
           ),
           Expanded(
@@ -82,7 +60,8 @@ class _NotificacoesState extends State<Notificacoes> {
                       buildNotificacoes(
                         icone: Icons.campaign,
                         titulo: "Breaking News",
-                        mensagem: "Pensando mais a longo prazo, o entendimento das metas"
+                        mensagem:
+                            "Pensando mais a longo prazo, o entendimento das metas"
                             "propostas desafia a capacidade de legalização das condições"
                             "financeiras e administrativas do setor agrícola.",
                         horario: "7h",
@@ -91,27 +70,29 @@ class _NotificacoesState extends State<Notificacoes> {
                       buildNotificacoes(
                         icone: Icons.coffee,
                         titulo: "Alguém sabe como alinhar isso ao centro?",
-                        mensagem: "Estou desenvolvendo uma tela em java, porém tô há"
+                        mensagem:
+                            "Estou desenvolvendo uma tela em java, porém tô há"
                             "umas 3 horas tentando alinhas isso ao centro e NÃO consigo"
                             "de jeito nenhum, nem o chatGPT conseguiu ",
                         horario: "1 dia",
                         autor: "Desenvolvedores.ifal",
                       ),
-                      ],
-                    ),
-                      const Center(
-                        child: Text("Você ainda não tem conversas.",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ),
                     ],
+                  ),
+                  const Center(
+                    child: Text(
+                      "Você ainda não tem conversas.",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -123,65 +104,44 @@ class _NotificacoesState extends State<Notificacoes> {
     required String mensagem,
     required String horario,
     required String autor,
-  }){
+  }) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.grey[400],
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.black12
-          ),
-        ),
+        border: Border(bottom: BorderSide(color: Colors.black12)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-                Icon(
-                  icone,
+              Icon(icone, color: Colors.black, size: 30),
+              SizedBox(width: 15),
+              Text(
+                titulo,
+                style: TextStyle(
                   color: Colors.black,
-                  size: 30,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
-                SizedBox(width: 15),
-                Text(
-                  titulo,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
+              ),
             ],
           ),
           SizedBox(height: 5),
           Text(
             mensagem,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-            ),
+            style: TextStyle(color: Colors.black, fontSize: 15),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 4),
           Row(
             children: [
-              Text(
-                horario,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
+              Text(horario, style: TextStyle(color: Colors.black)),
               SizedBox(width: 5),
-              Text(
-                "· $autor",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
+              Text("· $autor", style: TextStyle(color: Colors.black)),
             ],
           ),
         ],

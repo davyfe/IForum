@@ -13,18 +13,14 @@ class Comunidades extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Cores.verdeifal,
             floating: true,
             snap: true,
-            title: const Text(
-              "Comunidades",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,
-              ),
-            ),
-            centerTitle: true,
+            title: const Text("Comunidades"),
             actions: [
-              IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {},),
+              IconButton(
+                icon: const Icon(Icons.search_outlined),
+                onPressed: () {},
+              ),
             ],
           ),
           SliverPadding(

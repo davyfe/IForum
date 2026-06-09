@@ -110,16 +110,12 @@ class _NoticiasState extends State<Noticias> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Cores.verdeifal,
             floating: true,
             snap: true,
-            title: const Text("Notícias",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),
-            ),
-            centerTitle: true,
+            title: const Text("Notícias"),
             actions: [
-              IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {},),
+              IconButton(
+                icon: const Icon(Icons.search_outlined), onPressed: () {},),
             ],
           ),
           SliverList.builder(
@@ -133,15 +129,18 @@ class _NoticiasState extends State<Noticias> {
     );
   }
 
-  Widget buildNoticia({required BuildContext context, required PropriedadesNoticia noticia}){
+  Widget buildNoticia(
+      {required BuildContext context, required PropriedadesNoticia noticia}) {
     return InkWell(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => NavNoticia(noticia: noticia)));
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => NavNoticia(noticia: noticia)));
       },
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 20, right: 20),
+            padding: const EdgeInsets.only(
+                top: 15, bottom: 10, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -149,7 +148,8 @@ class _NoticiasState extends State<Noticias> {
                   children: [
                     CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
                     const SizedBox(width: 8),
-                    Text(noticia.autor, style: const TextStyle(fontWeight: FontWeight.bold),),
+                    Text(noticia.autor,
+                      style: const TextStyle(fontWeight: FontWeight.bold),),
                     const SizedBox(width: 10),
                     Text(noticia.tempo),
                     const Spacer(),
@@ -164,7 +164,8 @@ class _NoticiasState extends State<Noticias> {
                     Expanded(
                       child: Text(
                         noticia.titulo,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
                     const SizedBox(width: 12),

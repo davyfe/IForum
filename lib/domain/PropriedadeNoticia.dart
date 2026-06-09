@@ -21,8 +21,8 @@ class PropriedadesNoticia {
     required this.tempo,
     required this.autor,
     required this.portal,
-    this.likes=0,
-    this.comentarios=0,
-    this.tema=Cores.verdeifal,
+    this.likes = 0,
+    this.comentarios = 0,
+    this.tema = Cores.verdeifal,
   });
 }
