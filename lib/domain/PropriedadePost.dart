@@ -1,7 +1,7 @@
 class PropriedadePost {
   late String titulo;
   late String autor;
-  late String comunidade;
+  late int comunidadeId;
   late String tempo;
   late String tipo;
   late String conteudo;
@@ -13,7 +13,7 @@ class PropriedadePost {
   PropriedadePost({
     required this.titulo,
     required this.autor,
-    required this.comunidade,
+    required this.comunidadeId,
     required this.tempo,
     required this.tipo,
     this.conteudo = "",
@@ -26,7 +26,7 @@ class PropriedadePost {
   PropriedadePost.fromJson(Map<String, dynamic> json) {
     titulo = json['titulo'];
     autor = json['autor'];
-    comunidade = json['comunidade'];
+    comunidadeId = json['comunidadeId'];
     tempo = json['tempo'];
     tipo = json['tipo'];
     conteudo = json['conteudo'] ?? "";

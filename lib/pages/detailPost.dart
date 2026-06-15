@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
+import '../db/fakeComunidades.dart';
+import '../domain/PropriedadeComunidade.dart';
 import '../domain/PropriedadePost.dart';
 import 'package:iforum/cores.dart';
 
-class DetailPost extends StatefulWidget{
+PropriedadeComunidade? buscarComunidade(int id) {
+  try {
+    return FakeComunidades.comunidades.firstWhere(
+      (comunidade) => comunidade.id == id,
+    );
+  } catch (e) {
+    return null;
+  }
+}
+
+class DetailPost extends StatefulWidget {
   PropriedadePost propriedade;
+
   DetailPost({super.key, required this.propriedade});
 
   @override
   State<DetailPost> createState() => _DetailPostState();
 }
 
-class _DetailPostState extends State<DetailPost>{
+class _DetailPostState extends State<DetailPost> {
   PropriedadePost get propriedade => widget.propriedade;
 
   @override
   Widget build(BuildContext context) {
+    final comunidade = buscarComunidade(propriedade.comunidadeId);
     return Scaffold(
       backgroundColor: Cores.fundo,
-      appBar: AppBar(backgroundColor: Cores.fundo,),
+      appBar: AppBar(backgroundColor: Cores.fundo),
       body: ListView(
         children: [
           Container(
@@ -34,7 +48,7 @@ class _DetailPostState extends State<DetailPost>{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.propriedade.comunidade,
+                          comunidade?.nome ?? "Comunidade",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Row(
@@ -42,11 +56,14 @@ class _DetailPostState extends State<DetailPost>{
                           children: [
                             Text(widget.propriedade.autor),
                             SizedBox(width: 5),
-                            CircleAvatar(radius: 1.8, backgroundColor: Colors.black54),
+                            CircleAvatar(
+                              radius: 1.8,
+                              backgroundColor: Colors.black54,
+                            ),
                             SizedBox(width: 5),
                             Text(widget.propriedade.tempo),
-                          ]
-                        )
+                          ],
+                        ),
                       ],
                     ),
                     Spacer(),
@@ -56,18 +73,18 @@ class _DetailPostState extends State<DetailPost>{
                 SizedBox(height: 5),
                 Text(
                   widget.propriedade.titulo,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 SizedBox(height: 5),
-                if(propriedade.tipo.isNotEmpty)...[
+                if (propriedade.tipo.isNotEmpty) ...[
                   _buildTags(propriedade.tipo),
                   SizedBox(height: 5),
                 ],
-                if(propriedade.conteudo.isNotEmpty)...[
+                if (propriedade.conteudo.isNotEmpty) ...[
                   Text(widget.propriedade.conteudo),
                   SizedBox(height: 5),
                 ],
-                if(propriedade.urlImagem.isNotEmpty)...[
+                if (propriedade.urlImagem.isNotEmpty) ...[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
@@ -78,10 +95,7 @@ class _DetailPostState extends State<DetailPost>{
                   ),
                   SizedBox(height: 5),
                 ],
-                if(propriedade.anexo)...[
-                  _buildAnexo(),
-                  SizedBox(height: 5),
-                ],
+                if (propriedade.anexo) ...[_buildAnexo(), SizedBox(height: 5)],
                 SizedBox(height: 8),
                 buildInteracao(propriedade.likes, propriedade.comentarios),
               ],
@@ -125,7 +139,7 @@ class _DetailPostState extends State<DetailPost>{
     }
   }
 
-  Widget _buildAnexo(){
+  Widget _buildAnexo() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       width: 145,
@@ -139,10 +153,7 @@ class _DetailPostState extends State<DetailPost>{
           SizedBox(width: 8),
           Column(
             children: [
-              Text(
-                'livro.pdf',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text('livro.pdf', style: TextStyle(fontWeight: FontWeight.bold)),
               Text('250mb', textAlign: TextAlign.start),
             ],
           ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/menuConfig.dart';
+import 'package:iforum/db/fakeUsuario.dart';
+import 'package:iforum/domain/propriedadeUsuario.dart';
 
-class Perfil extends StatefulWidget{
+class Perfil extends StatefulWidget {
   const Perfil({super.key});
 
   @override
@@ -10,87 +12,50 @@ class Perfil extends StatefulWidget{
 }
 
 class _PerfilState extends State<Perfil> {
+  var usuarioAtual = FakeUsuario.usuarios[0];
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Cores.verdeifal,
         actions: [
           IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 22,
-              )
+            onPressed: () {},
+            icon: Icon(Icons.edit, color: Colors.white, size: 22),
           ),
           IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 28,
-              )
+            onPressed: () {},
+            icon: Icon(Icons.add, color: Colors.white, size: 28),
           ),
           IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              )
+            onPressed: () {},
+            icon: Icon(Icons.search, color: Colors.white),
           ),
           IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.share,
-                color: Colors.white,
-                size: 20,
-              )
+            onPressed: () {},
+            icon: Icon(Icons.share, color: Colors.white, size: 20),
           ),
           IconButton(
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MenuConfig()),
-                );
-              },
-              icon: Icon(
-                Icons.menu,
-                color: Colors.white,
-              )
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuConfig()),
+              );
+            },
+            icon: Icon(Icons.menu, color: Colors.white),
           ),
         ],
       ),
       backgroundColor: Colors.grey[350],
       body: ListView(
-        children: [
-          buildPerfil(
-              nome: "Pedro Antonio",
-              user: "pdrolopes",
-              seguidores: 27,
-              seguindo: 159,
-              bio: "'Não esquecer que por enquanto é tempo de morangos. Sim.'"
-                  "- Clarice Lispector, A Hora da Estrela.",
-              curso: "Informática",
-              campus: "Arapiraca",
-          ),
-          _buildAbas(),
-        ],
+        children: [buildPerfil(usuario: usuarioAtual), _buildAbas()],
       ),
     );
   }
 
-  Widget buildPerfil({
-    required String nome,
-    required String user,
-    required int seguidores,
-    required int seguindo,
-    required String bio,
-    required String curso,
-    required String campus,
-  }) {
+  Widget buildPerfil({required PropriedadeUsuario usuario}) {
     return Container(
       width: double.infinity,
       height: 320,
@@ -99,92 +64,89 @@ class _PerfilState extends State<Perfil> {
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [
-            Colors.black,
-            Cores.verdeifal,
-          ]
-        )
+          colors: [Colors.black, Cores.verdeifal],
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(radius: 45, backgroundColor: Colors.white),
           SizedBox(height: 10),
-          Text(nome, style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),),
-          Text("@$user", style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-          ),),
+          Text(
+            usuario.nome,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            "@${usuario.username}",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
           SizedBox(height: 2),
           Row(
             children: [
-              Text("$seguidores", style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),),
+              Text(
+                "${usuario.seguidores}",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               SizedBox(width: 5),
-              Text("Seguidores", style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),),
+              Text(
+                "Seguidores",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
               SizedBox(width: 5),
-              Text("· $seguindo", style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),),
+              Text(
+                "· ${usuario.seguindo}",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               SizedBox(width: 5),
-              Text("Seguindo", style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),),
+              Text(
+                "Seguindo",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
             ],
           ),
           SizedBox(height: 10),
-          Text(bio, style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            ),
+          Text(
+            usuario.bio,
+            style: TextStyle(fontSize: 15, color: Colors.white),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 15),
           Row(
             children: [
-              Icon(
-                Icons.school,
-                color: Colors.white,
-                size: 18,
-              ),
+              Icon(Icons.school, color: Colors.white, size: 18),
               SizedBox(width: 5),
-              Text("Téc. em $curso", style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),),
+              Text(
+                "Téc. em ${usuario.curso}",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
               SizedBox(width: 15),
-              Icon(
-                Icons.location_city,
-                color: Colors.white,
-                size: 18,
-              ),
+              Icon(Icons.location_city, color: Colors.white, size: 18),
               SizedBox(width: 5),
-              Text("Campus $campus", style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),),
+              Text(
+                "Campus ${usuario.campus}",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildAbas(){
+  Widget _buildAbas() {
     return DefaultTabController(
       length: 3,
       child: Column(
@@ -196,9 +158,7 @@ class _PerfilState extends State<Perfil> {
               labelColor: Colors.black,
               indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
-              labelStyle: TextStyle(
-                fontWeight: FontWeight.bold
-              ),
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
               tabs: [
                 Tab(text: "Posts"),
                 Tab(text: "Comentários"),
@@ -219,12 +179,10 @@ class _PerfilState extends State<Perfil> {
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
                         ),
                         children: [
-                          TextSpan(
-                            text: "Você não tem\nnenhum post. ",
-                          ),
+                          TextSpan(text: "Você não tem\nnenhum post. "),
                           TextSpan(
                             text: "Criar.",
                             style: TextStyle(
@@ -238,20 +196,22 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ),
                   Center(
-                    child: Text("Você ainda não tem comentários. ",
+                    child: Text(
+                      "Você ainda não tem comentários. ",
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   Center(
-                    child: Text("Nada para ver aqui. :)",
+                    child: Text(
+                      "Nada para ver aqui. :)",
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -264,4 +224,3 @@ class _PerfilState extends State<Perfil> {
     );
   }
 }
-

@@ -22,7 +22,7 @@ class SecaoTopicos extends StatelessWidget {
                   if (i % 3 == 0) ...[
                     _buildChip(topicos[i]),
                     const SizedBox(width: 8),
-                  ]
+                  ],
               ],
             ),
             const SizedBox(height: 8),
@@ -32,7 +32,7 @@ class SecaoTopicos extends StatelessWidget {
                   if (i % 3 == 1) ...[
                     _buildChip(topicos[i]),
                     const SizedBox(width: 8),
-                  ]
+                  ],
               ],
             ),
             const SizedBox(height: 8),
@@ -42,7 +42,7 @@ class SecaoTopicos extends StatelessWidget {
                   if (i % 3 == 2) ...[
                     _buildChip(topicos[i]),
                     const SizedBox(width: 8),
-                  ]
+                  ],
               ],
             ),
           ],
@@ -95,9 +95,9 @@ class ComunidadeCard extends StatelessWidget {
   const ComunidadeCard({super.key, required this.propriedade});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         width: double.infinity,
         margin: const EdgeInsets.only(bottom: 12),
@@ -120,7 +120,12 @@ class ComunidadeCard extends StatelessWidget {
                     color: propriedade.tema,
                   ),
                   Padding(
-                    padding: const EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 16, top: 36),
+                    padding: const EdgeInsetsGeometry.only(
+                      left: 16,
+                      right: 16,
+                      bottom: 16,
+                      top: 36,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -128,8 +133,12 @@ class ComunidadeCard extends StatelessWidget {
                           children: [
                             Text(
                               propriedade.nome,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                              maxLines: 1, overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(width: 8),
                             Icon(
@@ -139,7 +148,7 @@ class ComunidadeCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 6),
                             Text(
-                              "${propriedade.membros} membros",
+                              "${propriedade.membros} mil membros",
                               style: TextStyle(
                                 color: Colors.grey.shade700,
                                 fontSize: 13,
@@ -167,7 +176,10 @@ class ComunidadeCard extends StatelessWidget {
                           propriedade.descricao,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: Colors.black87, height: 1.3),
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            height: 1.3,
+                          ),
                         ),
                         // const SizedBox(height: 12),
                         // Row(
@@ -194,7 +206,7 @@ class ComunidadeCard extends StatelessWidget {
                 ],
               ),
               Positioned(
-                top: 100-28,
+                top: 100 - 28,
                 left: 16,
                 child: Container(
                   padding: const EdgeInsets.all(4),

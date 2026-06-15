@@ -4,6 +4,7 @@ import 'package:iforum/domain/PropriedadeComunidade.dart';
 class FakeComunidades {
   static List comunidades = [
     PropriedadeComunidade(
+      id: 1,
       nome: "DevsIf",
       membros: 5.6,
       descricao:
@@ -11,6 +12,7 @@ class FakeComunidades {
       tema: Colors.indigo,
     ),
     PropriedadeComunidade(
+      id: 2,
       nome: "Xadrez Arapiraca",
       membros: 1.0,
       descricao:
@@ -18,13 +20,15 @@ class FakeComunidades {
       tema: Colors.yellow.shade700,
     ),
     PropriedadeComunidade(
-      nome: "Ifal Games",
+      id: 3,
+      nome: "Estudos Ifal",
       membros: 3.2,
       descricao:
-          "Para os apaixonados por jogos! Organização de campeonatos de eSports, discussões e jogatinas do campus.",
+          "Compartilhamos materiais, debatemos assuntos e + (NÃO PASSAMOS COLA!!!)",
       tema: Colors.purple,
     ),
     PropriedadeComunidade(
+      id: 4,
       nome: "Cine Ifal",
       membros: 1.4,
       descricao:
@@ -32,6 +36,7 @@ class FakeComunidades {
       tema: Colors.red,
     ),
     PropriedadeComunidade(
+      id: 5,
       nome: "Vôlei IFAL",
       membros: 10.1,
       descricao:
@@ -39,17 +44,30 @@ class FakeComunidades {
       tema: Colors.brown.shade200,
     ),
     PropriedadeComunidade(
-      nome: "Bate-Papo",
+      id: 6,
+      nome: "Fotografias",
       membros: 12.5,
       descricao:
-          "O ponto de encontro geral dos estudantes. Conversas aleatórias, memes e novas amizades no campus.",
+          "Para os amantes da fotografia! O que as lentes não veem, o coração não sente!",
       tema: Colors.green,
     ),
   ];
 
   static List<String> topicos = [
-    "Cultura", "Filmes e TV", "Cultura pop", "Jogos", "Tecnologia", "Esportes",
-    "Bate-Papo", "Desenvolvimento", "Notícias e política", "Ciências Exatas", "Botânica",
-    "Eletrônica", "Negócios e finanças", "Ciências Humanas", "Arte"
+    "Cultura",
+    "Filmes e TV",
+    "Cultura pop",
+    "Jogos",
+    "Tecnologia",
+    "Esportes",
+    "Bate-Papo",
+    "Desenvolvimento",
+    "Notícias e política",
+    "Ciências Exatas",
+    "Botânica",
+    "Eletrônica",
+    "Negócios e finanças",
+    "Ciências Humanas",
+    "Arte",
   ];
 }

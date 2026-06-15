@@ -18,7 +18,7 @@ class DbHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       titulo TEXT NOT NULL,
       autor TEXT NOT NULL,
-      comunidade TEXT,
+      comunidadeId INTEGER,
       tempo TEXT,
       tipo TEXT,
       conteudo TEXT,
@@ -31,19 +31,19 @@ class DbHelper {
     await db.execute(sqlPosts);
 
     String sql =
-        "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidade, tempo, tipo, conteudo, likes, comentarios) VALUES ('Estou fazendo uma reformulação da minha tela em dart! :P', 'davyf', 'devs.if', '30m', 'Material', 'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.', 26, 5);";
+        "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidadeId, tempo, tipo, conteudo, likes, comentarios) VALUES ('Estou fazendo uma reformulação da minha tela em dart! :P', 'davyf', 1, '30m', 'Material', 'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.', 26, 5);";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidade, tempo, tipo, likes, comentarios, urlImagem) VALUES ('Rio de Janeiro, RJ, Brasil.', 'pdrolopesm', 'fotografias', '1d', 'outros', 504, 230, 'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg');";
+    "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidadeId, tempo, tipo, likes, comentarios, urlImagem) VALUES ('Rio de Janeiro, RJ, Brasil.', 'pdrolopesm', 6, '1d', 'outros', 504, 230, 'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidade, tempo, tipo, likes, comentarios, anexo) VALUES ('Achei esse livro fantástico pra ajudar nos estudos!', 'sabynna.louyse', 'estudos.ifal', '1h', 'material', 60, 3, 1);";
+    "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidadeId, tempo, tipo, likes, comentarios, anexo) VALUES ('Achei esse livro fantástico pra ajudar nos estudos!', 'sabynna.louyse', 3, '1h', 'material', 60, 3, 1);";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidade, tempo, tipo) VALUES ('Meu computador não está funcionando... Alguém sabe o que pode ser?', 'duarte.geh', 'monc_ifal', '2s', 'ajuda');";
+    "INSERT INTO PROPRIEDADE_POST (titulo, autor, comunidadeId, tempo, tipo) VALUES ('Meu computador não está funcionando... Alguém sabe o que pode ser?', 'duarte.geh', 1, '2s', 'ajuda');";
     await db.execute(sql);
   }
 }

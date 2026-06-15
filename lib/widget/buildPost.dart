@@ -2,20 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:iforum/domain/PropriedadePost.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/detailPost.dart';
+import '../db/fakeComunidades.dart';
+import '../domain/PropriedadeComunidade.dart';
+
+PropriedadeComunidade? buscarComunidade(int id) {
+  try {
+    return FakeComunidades.comunidades.firstWhere(
+      (comunidade) => comunidade.id == id,
+    );
+  } catch (e) {
+    return null;
+  }
+}
 
 class BuildPost extends StatefulWidget {
   PropriedadePost propriedade;
+
   BuildPost({super.key, required this.propriedade});
 
   @override
   State<BuildPost> createState() => _BuildPostState();
 }
 
-class _BuildPostState extends State<BuildPost>{
+class _BuildPostState extends State<BuildPost> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    final comunidade = buscarComunidade(widget.propriedade.comunidadeId);
+
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -48,7 +63,7 @@ class _BuildPostState extends State<BuildPost>{
                     ),
                     SizedBox(width: 3),
                     Text(
-                      widget.propriedade.comunidade,
+                      comunidade?.nome ?? "Comunidade",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: 10),
@@ -82,7 +97,8 @@ class _BuildPostState extends State<BuildPost>{
                       width: double.infinity,
                       fit: BoxFit.cover,
                       errorBuilder:
-                          (context, error, stackTrace) => const SizedBox.shrink(),
+                          (context, error, stackTrace) =>
+                              const SizedBox.shrink(),
                     ),
                   ),
                 ],
@@ -115,7 +131,10 @@ class _BuildPostState extends State<BuildPost>{
                   ),
                 ],
                 SizedBox(height: 8),
-                buildInteracao(widget.propriedade.likes, widget.propriedade.comentarios),
+                buildInteracao(
+                  widget.propriedade.likes,
+                  widget.propriedade.comentarios,
+                ),
               ],
             ),
           ),
