@@ -58,7 +58,7 @@ class ListaComunidades extends StatelessWidget {
 }
 
 class ComunidadeCard extends StatelessWidget {
-  final comunidadeModel propriedade;
+  final ComunidadeModel propriedade;
 
   const ComunidadeCard({super.key, required this.propriedade});
 

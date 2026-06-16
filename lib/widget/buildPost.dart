@@ -7,10 +7,10 @@ import '../domain/comunidade_model.dart';
 import 'package:iforum/widget/interacaoBar.dart';
 import 'package:iforum/widget/anexoCard.dart';
 
-comunidadeModel? buscarComunidade(int id) {
+ComunidadeModel? buscarComunidade(int id) {
   try {
     return FakeComunidades.comunidades.firstWhere(
-      (comunidade) => comunidade.id == id,
+          (comunidade) => comunidade.id == id,
     );
   } catch (e) {
     return null;
@@ -100,7 +100,7 @@ class _BuildPostState extends State<BuildPost> {
                       fit: BoxFit.cover,
                       errorBuilder:
                           (context, error, stackTrace) =>
-                              const SizedBox.shrink(),
+                      const SizedBox.shrink(),
                     ),
                   ),
                 ],

@@ -3,52 +3,52 @@ import 'package:iforum/domain/comunidade_model.dart';
 
 class FakeComunidades {
   static List comunidades = [
-    comunidadeModel(
+    ComunidadeModel(
       id: 1,
       nome: "DevsIf",
       membros: 5.6,
       descricao:
-          "Comunidade de desenvolvimento to Ifal Campus Arapiraca! Compartilhe seus projetos, tire dúvidas e +!",
+      "Comunidade de desenvolvimento to Ifal Campus Arapiraca! Compartilhe seus projetos, tire dúvidas e +!",
       tema: Colors.indigo,
     ),
-    comunidadeModel(
+    ComunidadeModel(
       id: 2,
       nome: "Xadrez Arapiraca",
       membros: 1.0,
       descricao:
-          "Para quem curte estratégia! Treinos, campeonatos de xadrez e desafios de lógica para fritar o cérebro.",
+      "Para quem curte estratégia! Treinos, campeonatos de xadrez e desafios de lógica para fritar o cérebro.",
       tema: Colors.yellow.shade700,
     ),
-    comunidadeModel(
+    ComunidadeModel(
       id: 3,
       nome: "Estudos Ifal",
       membros: 3.2,
       descricao:
-          "Compartilhamos materiais, debatemos assuntos e + (NÃO PASSAMOS COLA!!!)",
+      "Compartilhamos materiais, debatemos assuntos e + (NÃO PASSAMOS COLA!!!)",
       tema: Colors.purple,
     ),
-    comunidadeModel(
+    ComunidadeModel(
       id: 4,
       nome: "Cine Ifal",
       membros: 1.4,
       descricao:
-          "Clube de cinema e cultura pop. Discussões sobre filmes, séries, animes e produções autorais dos alunos.",
+      "Clube de cinema e cultura pop. Discussões sobre filmes, séries, animes e produções autorais dos alunos.",
       tema: Colors.red,
     ),
-    comunidadeModel(
+    ComunidadeModel(
       id: 5,
       nome: "Vôlei IFAL",
       membros: 10.1,
       descricao:
-          "A comunidade do esporte mais famoso do campus! Fique por dentro dos treinos, rachas e das datas do interclasses.",
+      "A comunidade do esporte mais famoso do campus! Fique por dentro dos treinos, rachas e das datas do interclasses.",
       tema: Colors.brown.shade200,
     ),
-    comunidadeModel(
+    ComunidadeModel(
       id: 6,
       nome: "Fotografias",
       membros: 12.5,
       descricao:
-          "Para os amantes da fotografia! O que as lentes não veem, o coração não sente!",
+      "Para os amantes da fotografia! O que as lentes não veem, o coração não sente!",
       tema: Colors.green,
     ),
   ];

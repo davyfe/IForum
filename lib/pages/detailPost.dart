@@ -6,10 +6,10 @@ import 'package:iforum/cores.dart';
 import 'package:iforum/widget/interacaoBar.dart';
 import 'package:iforum/widget/anexoCard.dart';
 
-comunidadeModel? buscarComunidade(int id) {
+ComunidadeModel? buscarComunidade(int id) {
   try {
     return FakeComunidades.comunidades.firstWhere(
-      (comunidade) => comunidade.id == id,
+          (comunidade) => comunidade.id == id,
     );
   } catch (e) {
     return null;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/cores.dart';
 import 'package:iforum/db/fakeComunidades.dart';
 import 'package:iforum/widget/buildComunidades.dart'; // Importando o arquivo de widgets que criamos
 
