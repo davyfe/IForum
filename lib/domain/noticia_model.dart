@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:iforum/cores.dart';
-
-class PropriedadesNoticia {
+class NoticiaModel {
   String titulo;
   String texto;
   String urlImagem;
@@ -11,9 +8,9 @@ class PropriedadesNoticia {
   String portal;
   int likes;
   int comentarios;
-  Color tema;
+  String corTema;
 
-  PropriedadesNoticia({
+  NoticiaModel({
     required this.titulo,
     required this.texto,
     required this.urlImagem,
@@ -23,6 +20,6 @@ class PropriedadesNoticia {
     required this.portal,
     this.likes = 0,
     this.comentarios = 0,
-    this.tema = Cores.verdeifal,
+    this.corTema = '#006b3f',
   });
 }

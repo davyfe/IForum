@@ -58,9 +58,8 @@ class _PerfilState extends State<Perfil> {
   Widget buildPerfil({required PropriedadeUsuario usuario}) {
     return Container(
       width: double.infinity,
-      height: 320,
-      padding: EdgeInsets.only(left: 25, right: 25),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20, top: 80),
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,

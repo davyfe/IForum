@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart'; // por causa do Color
 
-class PropriedadeComunidade {
+class comunidadeModel {
   int id;
   String nome;
   double membros;
   String descricao;
   Color tema;
 
-  PropriedadeComunidade({
+  comunidadeModel({
     required this.id,
     required this.nome,
     this.membros = 0,

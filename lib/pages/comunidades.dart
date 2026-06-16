@@ -9,7 +9,6 @@ class Comunidades extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Cores.fundo,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

@@ -1,18 +1,32 @@
-import 'package:iforum/domain/PropriedadePost.dart';
-import 'package:sqflite/sqflite.dart';
+// lib/db/PostDao.dart
+import 'package:iforum/domain/post_model.dart'; // nome novo do 3.5
 import 'db_helper.dart';
 
 class PostDao {
-  Future<List<PropriedadePost>> listarPropriedades() async {
-    Database db = await DbHelper().initDB();
+  Future<List<PostModel>> listarTodos() async {
+    final db = await DbHelper.database; // sem instanciar — acesso direto
+    final result = await db.query('PROPRIEDADE_POST');
+    return result.map((json) => PostModel.fromJson(json)).toList();
+  }
 
-    var result = await db.rawQuery('SELECT * FROM PROPRIEDADE_POST');
+  Future<int> inserir(PostModel post) async {
+    final db = await DbHelper.database;
+    return db.insert('PROPRIEDADE_POST', {
+      'titulo': post.titulo,
+      'autor': post.autor,
+      'comunidadeId': post.comunidadeId,
+      'tempo': post.tempo,
+      'tipo': post.tipo,
+      'conteudo': post.conteudo,
+      'likes': post.likes,
+      'comentarios': post.comentarios,
+      'urlImagem': post.urlImagem,
+      'anexo': post.anexo ? 1 : 0,
+    });
+  }
 
-    List<PropriedadePost> lista = [];
-    for (var json in result) {
-      PropriedadePost propriedade = PropriedadePost.fromJson(json);
-      lista.add(propriedade);
-    }
-    return lista;
+  Future<int> deletar(int id) async {
+    final db = await DbHelper.database;
+    return db.delete('PROPRIEDADE_POST', where: 'id = ?', whereArgs: [id]);
   }
 }

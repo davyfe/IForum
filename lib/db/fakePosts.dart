@@ -1,19 +1,20 @@
-import 'package:iforum/domain/PropriedadePost.dart';
+import 'package:iforum/domain/post_model.dart';
+// VOU DELETAR DEPOIS
 
 class FakePosts {
   static List posts = [
-    PropriedadePost(
+    PostModel(
       titulo: 'Estou fazendo uma reformulação da minha tela em dart! :P',
       autor: 'davyf',
       comunidadeId: 1,
       tempo: '30m',
       tipo: 'Material',
       conteudo:
-      'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
+          'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
       likes: 26,
       comentarios: 5,
     ),
-    PropriedadePost(
+    PostModel(
       titulo: 'Rio de Janeiro, RJ, Brasil.',
       autor: 'pdrolopesm',
       comunidadeId: 6,
@@ -22,9 +23,9 @@ class FakePosts {
       likes: 504,
       comentarios: 230,
       urlImagem:
-      'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
+          'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
     ),
-    PropriedadePost(
+    PostModel(
       titulo: 'Achei esse livro fantástico pra ajudar nos estudos!',
       autor: 'sabynna.louyse',
       comunidadeId: 3,
@@ -34,9 +35,9 @@ class FakePosts {
       comentarios: 3,
       anexo: true,
     ),
-    PropriedadePost(
+    PostModel(
       titulo:
-      'Meu computador não está funcionando... Alguém sabe o que pode ser?',
+          'Meu computador não está funcionando... Alguém sabe o que pode ser?',
       autor: 'duarte.geh',
       comunidadeId: 1,
       tempo: '2s',

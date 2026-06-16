@@ -51,46 +51,44 @@ class _NotificacoesState extends State<Notificacoes> {
             ),
           ),
           Expanded(
-            child: Container(
-              child: TabBarView(
-                children: [
-                  ListView(
-                    padding: EdgeInsets.zero,
-                    children: [
-                      buildNotificacoes(
-                        icone: Icons.campaign,
-                        titulo: "Breaking News",
-                        mensagem:
-                            "Pensando mais a longo prazo, o entendimento das metas"
-                            "propostas desafia a capacidade de legalização das condições"
-                            "financeiras e administrativas do setor agrícola.",
-                        horario: "7h",
-                        autor: "Sistema Ifal",
-                      ),
-                      buildNotificacoes(
-                        icone: Icons.coffee,
-                        titulo: "Alguém sabe como alinhar isso ao centro?",
-                        mensagem:
-                            "Estou desenvolvendo uma tela em java, porém tô há"
-                            "umas 3 horas tentando alinhas isso ao centro e NÃO consigo"
-                            "de jeito nenhum, nem o chatGPT conseguiu ",
-                        horario: "1 dia",
-                        autor: "Desenvolvedores.ifal",
-                      ),
-                    ],
-                  ),
-                  const Center(
-                    child: Text(
-                      "Você ainda não tem conversas.",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+            child: TabBarView(
+              children: [
+                ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    buildNotificacoes(
+                      icone: Icons.campaign,
+                      titulo: "Breaking News",
+                      mensagem:
+                          "Pensando mais a longo prazo, o entendimento das metas"
+                          "propostas desafia a capacidade de legalização das condições"
+                          "financeiras e administrativas do setor agrícola.",
+                      horario: "7h",
+                      autor: "Sistema Ifal",
+                    ),
+                    buildNotificacoes(
+                      icone: Icons.coffee,
+                      titulo: "Alguém sabe como alinhar isso ao centro?",
+                      mensagem:
+                          "Estou desenvolvendo uma tela em java, porém tô há"
+                          "umas 3 horas tentando alinhas isso ao centro e NÃO consigo"
+                          "de jeito nenhum, nem o chatGPT conseguiu ",
+                      horario: "1 dia",
+                      autor: "Desenvolvedores.ifal",
+                    ),
+                  ],
+                ),
+                const Center(
+                  child: Text(
+                    "Você ainda não tem conversas.",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
@@ -109,7 +107,7 @@ class _NotificacoesState extends State<Notificacoes> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[400],
+        color: Cores.notificacaoFundo,
         border: Border(bottom: BorderSide(color: Colors.black12)),
       ),
       child: Column(

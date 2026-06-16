@@ -3,14 +3,14 @@ import 'package:iforum/pages/noticias.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/comunidades.dart';
 
-class BuildDrawer extends StatefulWidget{
+class BuildDrawer extends StatefulWidget {
   const BuildDrawer({super.key});
 
   @override
   State<BuildDrawer> createState() => _BuildDrawerState();
 }
 
-class _BuildDrawerState extends State<BuildDrawer>{
+class _BuildDrawerState extends State<BuildDrawer> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -20,12 +20,12 @@ class _BuildDrawerState extends State<BuildDrawer>{
           icone: Icons.local_fire_department_outlined,
           tamanhoIcone: 24,
           titulo: "Populares",
-          tela: Scaffold(body: Center(child: Text("Populares"))),
+          tela: const _PaginaVazia("Populares"),
         ),
         _buildOpcoes(
           icone: Icons.access_time_outlined,
           titulo: "Recentes",
-          tela: Scaffold(body: Center(child: Text("Recentes"))),
+          tela: const _PaginaVazia("Recentes"),
         ),
         _buildOpcoes(
           icone: Icons.article_outlined,
@@ -69,9 +69,7 @@ class _BuildDrawerState extends State<BuildDrawer>{
               titulo: "Regras do App",
               tela: Scaffold(
                 body: Center(
-                  child: Text(
-                    "Regras foram feitas para\nserem quebradas! ;D",
-                  ),
+                  child: Text("Regras foram feitas para\nserem quebradas! ;D"),
                 ),
               ),
             ),
@@ -119,16 +117,17 @@ class _BuildDrawerState extends State<BuildDrawer>{
         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
       ),
       subtitle:
-      subtitulo != null
-          ? Text(
-        subtitulo,
-        style: TextStyle(color: Colors.grey[600], fontSize: 13),
-      )
-          : null,
+          subtitulo != null
+              ? Text(
+                subtitulo,
+                style: TextStyle(color: Colors.grey[600], fontSize: 13),
+              )
+              : null,
       onTap: () {
         if (tela != null) {
           Navigator.pop(context);
-          Navigator.push(context,
+          Navigator.push(
+            context,
             MaterialPageRoute(builder: (context) => tela),
           );
         }
@@ -144,6 +143,29 @@ class _BuildDrawerState extends State<BuildDrawer>{
       title: Text(
         nome,
         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+      ),
+    );
+  }
+}
+
+class _PaginaVazia extends StatelessWidget {
+  final String titulo;
+
+  const _PaginaVazia(this.titulo);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(titulo)),
+      body: Center(
+        child: Text(
+          titulo,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

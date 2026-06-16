@@ -1,4 +1,4 @@
-class PropriedadePost {
+class PostModel {
   late String titulo;
   late String autor;
   late int comunidadeId;
@@ -10,7 +10,7 @@ class PropriedadePost {
   late bool anexo;
   late String urlImagem;
 
-  PropriedadePost({
+  PostModel({
     required this.titulo,
     required this.autor,
     required this.comunidadeId,
@@ -23,7 +23,7 @@ class PropriedadePost {
     this.urlImagem = "",
   });
 
-  PropriedadePost.fromJson(Map<String, dynamic> json) {
+  PostModel.fromJson(Map<String, dynamic> json) {
     titulo = json['titulo'];
     autor = json['autor'];
     comunidadeId = json['comunidadeId'];

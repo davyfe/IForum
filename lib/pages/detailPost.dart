@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import '../db/fakeComunidades.dart';
-import '../domain/PropriedadeComunidade.dart';
-import '../domain/PropriedadePost.dart';
+import '../domain/comunidade_model.dart';
+import '../domain/post_model.dart';
 import 'package:iforum/cores.dart';
+import 'package:iforum/widget/interacaoBar.dart';
+import 'package:iforum/widget/anexoCard.dart';
 
-PropriedadeComunidade? buscarComunidade(int id) {
+comunidadeModel? buscarComunidade(int id) {
   try {
     return FakeComunidades.comunidades.firstWhere(
       (comunidade) => comunidade.id == id,
@@ -15,23 +17,25 @@ PropriedadeComunidade? buscarComunidade(int id) {
 }
 
 class DetailPost extends StatefulWidget {
-  PropriedadePost propriedade;
+  final PostModel propriedade;
 
-  DetailPost({super.key, required this.propriedade});
+  const DetailPost({super.key, required this.propriedade});
 
   @override
   State<DetailPost> createState() => _DetailPostState();
 }
 
 class _DetailPostState extends State<DetailPost> {
-  PropriedadePost get propriedade => widget.propriedade;
+  PostModel get propriedade => widget.propriedade;
 
   @override
   Widget build(BuildContext context) {
     final comunidade = buscarComunidade(propriedade.comunidadeId);
     return Scaffold(
-      backgroundColor: Cores.fundo,
-      appBar: AppBar(backgroundColor: Cores.fundo),
+      appBar: AppBar(
+        backgroundColor: Cores.fundo,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: ListView(
         children: [
           Container(
@@ -95,9 +99,20 @@ class _DetailPostState extends State<DetailPost> {
                   ),
                   SizedBox(height: 5),
                 ],
-                if (propriedade.anexo) ...[_buildAnexo(), SizedBox(height: 5)],
+                if (propriedade.anexo) ...[
+                  const AnexoCard(),
+                  const SizedBox(height: 5),
+                ],
                 SizedBox(height: 8),
-                buildInteracao(propriedade.likes, propriedade.comentarios),
+                InteracaoBar(
+                  likes: propriedade.likes,
+                  comentarios: propriedade.comentarios,
+                  trailing: const Icon(
+                    Icons.share_outlined,
+                    size: 20,
+                    color: Colors.black54,
+                  ),
+                ),
               ],
             ),
           ),
@@ -127,111 +142,15 @@ class _DetailPostState extends State<DetailPost> {
   Color _getCor(String tipo) {
     switch (tipo.toLowerCase()) {
       case 'material':
-        return Colors.indigo;
+        return Cores.tagMaterial;
       case 'ajuda':
-        return Colors.yellow.shade700;
+        return Cores.tagAjuda;
       case 'dúvida':
-        return Colors.red;
+        return Cores.tagDuvida;
       case 'outros':
-        return Colors.green;
+        return Cores.tagOutros;
       default:
-        return Colors.grey;
+        return Cores.tagDefault;
     }
-  }
-
-  Widget _buildAnexo() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      width: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.black54, width: 0.3),
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.picture_as_pdf, color: Colors.red, size: 30),
-          SizedBox(width: 8),
-          Column(
-            children: [
-              Text('livro.pdf', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('250mb', textAlign: TextAlign.start),
-            ],
-          ),
-          SizedBox(width: 8),
-          Icon(Icons.file_download_outlined, size: 18),
-        ],
-      ),
-    );
-  }
-
-  Widget buildInteracao(int likes, int comentarios) {
-    return Row(
-      children: [
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.thumb_up_alt_outlined,
-                size: 16,
-                color: Colors.black54,
-              ),
-              const SizedBox(width: 6),
-              Text('$likes |'),
-              const SizedBox(width: 8),
-              const Icon(
-                Icons.thumb_down_alt_outlined,
-                size: 16,
-                color: Colors.black54,
-              ),
-            ],
-          ),
-          labelPadding: const EdgeInsets.only(left: 4, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-        SizedBox(width: 10),
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.chat_bubble_outline_rounded,
-                size: 16,
-                color: Colors.black54,
-              ),
-              const SizedBox(width: 6),
-              Text('$comentarios'),
-            ],
-          ),
-          labelPadding: const EdgeInsets.only(left: 4, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-        Spacer(),
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: const Icon(
-            Icons.share_outlined,
-            size: 20,
-            color: Colors.black54,
-          ),
-          labelPadding: const EdgeInsets.only(left: 2, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-      ],
-    );
   }
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iforum/pages/criarPost.dart';
 
 class BuildAppBar extends StatefulWidget {
-  const BuildAppBar({super.key});
+  final VoidCallback? onPostCriado;
+
+  const BuildAppBar({super.key, this.onPostCriado});
 
   @override
   State<BuildAppBar> createState() => _BuildAppBarState();
@@ -76,13 +78,22 @@ class _BuildAppBarState extends State<BuildAppBar> {
   Widget _buildAction() {
     return IconButton(
       icon: const Icon(Icons.add),
-      onPressed:
-          () => Navigator.of(context, rootNavigator: true).push(
-            MaterialPageRoute(
-              builder: (context) => const CriarPost(),
-              fullscreenDialog: true,
-            ),
+      onPressed: () async {
+        // aguarda o resultado — true significa que post foi criado
+        final criou = await Navigator.of(
+          context,
+          rootNavigator: true,
+        ).push<bool>(
+          MaterialPageRoute(
+            builder: (context) => const CriarPost(),
+            fullscreenDialog: true,
           ),
+        );
+        // se criou post, avisa a Home para recarregar
+        if (criou == true) {
+          widget.onPostCriado?.call();
+        }
+      },
     );
   }
 }
