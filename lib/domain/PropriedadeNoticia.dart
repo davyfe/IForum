@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 
 class PropriedadesNoticia {
+  int id;
   String titulo;
   String texto;
   String urlImagem;
@@ -14,6 +15,7 @@ class PropriedadesNoticia {
   Color tema;
 
   PropriedadesNoticia({
+    required this.id,
     required this.titulo,
     required this.texto,
     required this.urlImagem,

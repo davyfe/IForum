@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/PropriedadeNoticia.dart';
+import 'package:iforum/domain/PropriedadesComentario.dart';
+import 'package:iforum/widget/buildNavNoticia.dart';
 
 class NavNoticia extends StatefulWidget {
   final PropriedadesNoticia noticia;
@@ -11,6 +13,49 @@ class NavNoticia extends StatefulWidget {
 }
 
 class _NavNoticiaState extends State<NavNoticia> {
+
+  List<PropriedadesComentario> comentarios = [
+    PropriedadesComentario(
+      noticiaId: 1,
+      autor: "camila_rosa",
+      tempo: "15m",
+      texto: "Os comentários são todos iguais!! Estamos em uma matrix??!!",
+      likes: 16,
+      comentarios: 2,
+      reacao: "😱",
+    ),
+    PropriedadesComentario(
+      noticiaId: 1,
+      autor: "mauro.coelho",
+      tempo: "7m",
+      texto: "Que besteira dessa camila...",
+      likes: 8,
+      comentarios: 2,
+      reacao: "😤",
+    ),
+    PropriedadesComentario(
+      noticiaId: 1,
+      autor: "remus_lupim",
+      tempo: "2m",
+      texto: "Pessoal... Vamos prestar atenção na matéria.",
+      likes: 12,
+      comentarios: 1,
+      reacao: "🌕",
+    ),
+    PropriedadesComentario(
+      noticiaId: 1,
+      autor: "katniss.everdeen12",
+      tempo: "30s",
+      texto: "Are you, are you coming to the tree?",
+      likes: 3,
+      comentarios: 0,
+      reacao: "🥺",
+    ),
+  ];
+
+  List<PropriedadesComentario> get comentariosDaNoticia =>
+      comentarios.where((c) => c.noticiaId == widget.noticia.id).toList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,177 +170,12 @@ class _NavNoticiaState extends State<NavNoticia> {
     );
   }
 
-  Widget _buildComentarios(){
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 10),
-          Row(
-            children: [
-              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
-              SizedBox(width: 8),
-              Text("camila_rosa", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-              Text("15m"),
-              Spacer(),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Os comentários são todos iguais!! Estamos em uma matrix??!!",
-            style: TextStyle(fontSize: 15),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 8),
-          buildInteracao(16, 2, "😱"),
-          SizedBox(height: 10),
-          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
-              SizedBox(width: 8),
-              Text("mauro.coelho", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-              Text("7m"),
-              Spacer(),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Que besteira dessa camila...",
-            style: TextStyle(fontSize: 15),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 8),
-          buildInteracao(8, 2, "😤"),
-          SizedBox(height: 10),
-          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
-              SizedBox(width: 8),
-              Text("remus_lupim", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-              Text("2m"),
-              Spacer(),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Pessoal... Vamos prestar atenção na matéria.",
-            style: TextStyle(fontSize: 15),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 8),
-          buildInteracao(12, 1, "🌕"),
-          SizedBox(height: 10),
-          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
-              SizedBox(width: 8),
-              Text("katniss.everdeen12", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-              Text("30s"),
-              Spacer(),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Are you, are you coming to the tree?",
-            style: TextStyle(fontSize: 15),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 8),
-          buildInteracao(3, 0, "🥺"),
-          SizedBox(height: 10),
-        ],
-      ),
-    );
-  }
-
-  Widget buildInteracao(int likes, int comentarios, String reacao) {
-    return Row(
-      children: [
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.thumb_up_alt_outlined,
-                size: 16,
-                color: Colors.black54,
-              ),
-              const SizedBox(width: 6),
-              Text('$likes |'),
-              const SizedBox(width: 8),
-              const Icon(
-                Icons.thumb_down_alt_outlined,
-                size: 16,
-                color: Colors.black54,
-              ),
-            ],
-          ),
-          labelPadding: const EdgeInsets.only(left: 4, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-        SizedBox(width: 10),
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.chat_bubble_outline_rounded,
-                size: 16,
-                color: Colors.black54,
-              ),
-              const SizedBox(width: 6),
-              Text('$comentarios'),
-            ],
-          ),
-          labelPadding: const EdgeInsets.only(left: 4, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-        Spacer(),
-        Chip(
-          backgroundColor: Cores.fundo,
-          label: Text(
-            reacao,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black54,
-            ),
-          ),
-          labelPadding: const EdgeInsets.only(left: 2, right: 2),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-        ),
-      ],
+  Widget _buildComentarios() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: comentariosDaNoticia
+          .map((c) => BuildNavNoticia(comentario: c))
+          .toList(),
     );
   }
 }
