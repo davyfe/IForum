@@ -32,7 +32,6 @@ class DbHelper {
       )
     ''');
 
-    // dados iniciais usando insert — sem SQL inline em string
     final posts = [
       {
         'titulo': 'Estou fazendo uma reformulação da minha tela em dart! :P',
@@ -41,7 +40,7 @@ class DbHelper {
         'tempo': '30m',
         'tipo': 'Material',
         'conteudo':
-        'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
+            'Recentemente fiz uma tela para apresentação de Programação Móvel, na terça-feira passada, funcionou bem, porém o design me incomodou um pouco. Por isso, agora estou a reformulando, melhorando aspectos tanto do design quando do código.',
         'likes': 26,
         'comentarios': 5,
       },
@@ -54,7 +53,7 @@ class DbHelper {
         'likes': 504,
         'comentarios': 230,
         'urlImagem':
-        'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
+            'https://www.daninoce.com.br/wp-content/uploads/2017/07/9-vistas-incriveis-no-rio-de-janeiro-danielle-noce-imagem-destaque.jpg',
       },
       {
         'titulo': 'Achei esse livro fantástico pra ajudar nos estudos!',
@@ -68,7 +67,7 @@ class DbHelper {
       },
       {
         'titulo':
-        'Meu computador não está funcionando... Alguém sabe o que pode ser?',
+            'Meu computador não está funcionando... Alguém sabe o que pode ser?',
         'autor': 'duarte.geh',
         'comunidadeId': 1,
         'tempo': '2s',

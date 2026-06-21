@@ -1,10 +1,9 @@
-// lib/db/PostDao.dart
-import 'package:iforum/domain/post_model.dart'; // nome novo do 3.5
+import 'package:iforum/domain/post_model.dart';
 import 'db_helper.dart';
 
 class PostDao {
   Future<List<PostModel>> listarTodos() async {
-    final db = await DbHelper.database; // sem instanciar — acesso direto
+    final db = await DbHelper.database;
     final result = await db.query('PROPRIEDADE_POST');
     return result.map((json) => PostModel.fromJson(json)).toList();
   }

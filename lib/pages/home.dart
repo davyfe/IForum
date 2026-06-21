@@ -1,4 +1,3 @@
-// lib/pages/home.dart
 import 'package:flutter/material.dart';
 import 'package:iforum/domain/post_model.dart';
 import 'package:iforum/widget/buildAppBar.dart';
