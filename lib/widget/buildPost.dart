@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/domain/post_model.dart';
-import 'package:iforum/cores.dart';
-import 'package:iforum/pages/detailPost.dart';
+import '../domain/post_model.dart';
+import '../cores.dart';
+import '../pages/detailPost.dart';
 import '../db/fakeComunidades.dart';
 import '../domain/comunidade_model.dart';
-import 'package:iforum/widget/interacaoBar.dart';
-import 'package:iforum/widget/anexoCard.dart';
+import '../widget/interacaoBar.dart';
+import '../widget/anexoCard.dart';
 
+// pode ignorar essa função por enquanto...
 ComunidadeModel? buscarComunidade(int id) {
   try {
     return FakeComunidades.comunidades.firstWhere(
-          (comunidade) => comunidade.id == id,
+      (comunidade) => comunidade.id == id,
     );
   } catch (e) {
     return null;
@@ -100,7 +101,7 @@ class _BuildPostState extends State<BuildPost> {
                       fit: BoxFit.cover,
                       errorBuilder:
                           (context, error, stackTrace) =>
-                      const SizedBox.shrink(),
+                              const SizedBox.shrink(),
                     ),
                   ),
                 ],

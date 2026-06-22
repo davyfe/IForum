@@ -1,8 +1,8 @@
-import 'package:iforum/domain/propriedadeUsuario.dart';
+import 'package:iforum/domain/usuario_model.dart';
 
 class FakeUsuario {
-  static List<PropriedadeUsuario> usuarios = [
-    PropriedadeUsuario(
+  static List<UsuarioModel> usuarios = [
+    UsuarioModel(
       id: 1,
       nome: "Pedro Antonio",
       username: "pdrolopes",
@@ -15,7 +15,7 @@ class FakeUsuario {
       seguindo: 159,
     ),
 
-    PropriedadeUsuario(
+    UsuarioModel(
       id: 2,
       nome: "José Paulo",
       username: "jpaulo",
