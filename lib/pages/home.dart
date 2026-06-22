@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/domain/post_model.dart';
-import 'package:iforum/widget/buildAppBar.dart';
 import 'package:iforum/widget/buildPost.dart';
 import 'package:iforum/db/PostDao.dart';
+import 'package:iforum/pages/criarPost.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,7 +20,6 @@ class _HomeState extends State<Home> {
     _postsFuture = PostDao().listarTodos();
   }
 
-  // par anovos posts
   void _recarregar() {
     setState(() {
       _postsFuture = PostDao().listarTodos();
@@ -31,17 +30,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        BuildAppBar(onPostCriado: _recarregar),
+        _buildAppBar(),
         SliverFillRemaining(
           child: FutureBuilder<List<PostModel>>(
             future: _postsFuture,
             builder: (context, snapshot) {
-              // carregando
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
-
-              // erro
               if (snapshot.hasError) {
                 return Center(
                   child: Column(
@@ -67,8 +63,6 @@ class _HomeState extends State<Home> {
                   ),
                 );
               }
-
-              // lista vazia
               final posts = snapshot.data ?? [];
               if (posts.isEmpty) {
                 return Center(
@@ -89,8 +83,6 @@ class _HomeState extends State<Home> {
                   ),
                 );
               }
-
-              // lista com dados
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 itemCount: posts.length,
@@ -100,6 +92,89 @@ class _HomeState extends State<Home> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAppBar() {
+    return SliverAppBar(
+      floating: true,
+      snap: true,
+      leading: _buildLeading(),
+      title: _buildPesquisar(),
+      actions: [_buildAction()],
+      bottom: const PreferredSize(
+        preferredSize: Size.fromHeight(10),
+        child: SizedBox(),
+      ),
+    );
+  }
+
+  Widget _buildPesquisar() {
+    return SizedBox(
+      height: 40,
+      child: TextField(
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        cursorColor: Theme.of(context).colorScheme.onPrimary,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          isDense: true,
+          hintText: 'Pesquisar',
+          hintStyle: TextStyle(
+            color: Theme.of(
+              context,
+            ).colorScheme.onPrimary.withValues(alpha: 0.7),
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 1.0,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 1.5,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLeading() {
+    return Builder(
+      builder:
+          (BuildContext context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+    );
+  }
+
+  Widget _buildAction() {
+    return IconButton(
+      icon: const Icon(Icons.add),
+      onPressed: () async {
+        final criou = await Navigator.of(
+          context,
+          rootNavigator: true,
+        ).push<bool>(
+          MaterialPageRoute(
+            builder: (context) => const CriarPost(),
+            fullscreenDialog: true,
+          ),
+        );
+        if (criou == true) {
+          _recarregar();
+        }
+      },
     );
   }
 }

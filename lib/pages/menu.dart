@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
-import 'package:iforum/widget/buildDrawer.dart';
+import 'package:iforum/pages/noticias.dart';
+import 'package:iforum/pages/comunidades.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -10,13 +11,173 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-        backgroundColor: Cores.fundo,
-        child: BuildDrawer(),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      backgroundColor: Cores.fundo,
+      child: ListView(
+        padding: const EdgeInsets.only(top: 30, bottom: 20),
+        children: [
+          _buildOpcoes(
+            icone: Icons.local_fire_department_outlined,
+            tamanhoIcone: 24,
+            titulo: "Populares",
+            tela: const _PaginaVazia("Populares"),
+          ),
+          _buildOpcoes(
+            icone: Icons.access_time_outlined,
+            titulo: "Recentes",
+            tela: const _PaginaVazia("Recentes"),
+          ),
+          _buildOpcoes(
+            icone: Icons.article_outlined,
+            titulo: "Notícias",
+            tela: const Noticias(),
+          ),
+          _buildOpcoes(
+            icone: Icons.travel_explore_outlined,
+            titulo: "Explorar Comunidades",
+            tela: const Comunidades(),
+          ),
+          const SizedBox(height: 5),
+          const Divider(color: Colors.black54, thickness: 0.1, height: 1),
+          ExpansionTile(
+            title: const Text(
+              "Minhas Comunidades",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            shape: const Border(),
+            collapsedShape: const Border(),
+            tilePadding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              _buildComunidade(nome: "devs.if", cor: Cores.avatar),
+              _buildComunidade(
+                nome: "fotografias",
+                cor: Colors.yellow.shade700,
+              ),
+              _buildComunidade(nome: "estudos.ifal", cor: Colors.redAccent),
+              _buildComunidade(nome: "monc_ifal", cor: Colors.green),
+            ],
+          ),
+          const Divider(color: Colors.black54, thickness: 0.1, height: 1),
+          ExpansionTile(
+            title: const Text(
+              "Sobre",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            shape: const Border(),
+            collapsedShape: const Border(),
+            tilePadding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              _buildOpcoes(
+                icone: Icons.receipt_long_outlined,
+                titulo: "Regras do App",
+                tela: const Scaffold(
+                  body: Center(
+                    child: Text(
+                      "Regras foram feitas para\nserem quebradas! ;D",
+                    ),
+                  ),
+                ),
+              ),
+              _buildOpcoes(
+                icone: Icons.key_outlined,
+                titulo: "Política de Privacidade",
+                tela: const Scaffold(
+                  body: Center(
+                    child: Text(
+                      "Política de privacidade\n(não somos o Facebook!!!)",
+                    ),
+                  ),
+                ),
+              ),
+              _buildOpcoes(
+                icone: Icons.help_outline,
+                titulo: "Central de Ajuda",
+                tela: const Scaffold(
+                  body: Center(child: Text("Central de Ajuda")),
+                ),
+              ),
+              _buildOpcoes(
+                icone: Icons.settings_outlined,
+                titulo: "Versão",
+                subtitulo: "0.0.0.2",
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOpcoes({
+    required IconData icone,
+    double tamanhoIcone = 22,
+    required String titulo,
+    String? subtitulo,
+    Widget? tela,
+  }) {
+    return ListTile(
+      titleAlignment: ListTileTitleAlignment.center,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      visualDensity: VisualDensity.compact,
+      leading: SizedBox(width: 30, child: Icon(icone, size: tamanhoIcone)),
+      title: Text(
+        titulo,
+        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+      ),
+      subtitle:
+          subtitulo != null
+              ? Text(
+                subtitulo,
+                style: TextStyle(color: Colors.grey[600], fontSize: 13),
+              )
+              : null,
+      onTap: () {
+        if (tela != null) {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => tela),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _buildComunidade({required String nome, required Color cor}) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      visualDensity: VisualDensity.compact,
+      leading: CircleAvatar(backgroundColor: cor, radius: 12),
+      title: Text(
+        nome,
+        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+      ),
+    );
+  }
+}
+
+class _PaginaVazia extends StatelessWidget {
+  final String titulo;
+
+  const _PaginaVazia(this.titulo);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(titulo)),
+      body: Center(
+        child: Text(
+          titulo,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
