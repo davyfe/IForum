@@ -7,12 +7,16 @@ import 'package:iforum/widget/buildNoticia.dart';
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
 
+  //a tela pode precisar atualizar dados na tela e o statefulwidget permite isso
+  //createstate cria o "estado" da tela, onde fcam os dados e a lógica
+
   @override
   State<Noticias> createState() => _NoticiasState();
 }
 
 class _NoticiasState extends State<Noticias> {
 
+  //lista para guardar os objetos de notícia em que cada item é uma instância da classe domínio propriedadesnoticia
   List noticias = [
     PropriedadesNoticia(
       id: 1,
@@ -115,12 +119,19 @@ class _NoticiasState extends State<Noticias> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Cores.fundo,
+
+      //para misturar widgets de scroll diferentes na mesma tela em que seus filhos precisam ser slivers
       body: CustomScrollView(
         slivers: [
+
+          //some e aparece ao rodar a tela
           SliverAppBar(
             iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Cores.verdeifal,
+
+            //a barra aparece que rola a tela para cima
             floating: true,
+            //a barra aparece ou some completamente
             snap: true,
             title: const Text("Notícias",
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),
@@ -130,8 +141,13 @@ class _NoticiasState extends State<Noticias> {
               IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {},),
             ],
           ),
+
+          //cria itens sob demanda, gera os itens visiveis na tela e não todos de uma vez
           SliverList.builder(
+
+            //tamanho da lista
             itemCount: noticias.length,
+            //função chamada para cada item que retorna o widget buildnoticia com a notícia correspondente
             itemBuilder: (context, i) {
               return BuildNoticia(noticia: noticias[i]);            },
           ),
