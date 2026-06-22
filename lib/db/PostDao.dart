@@ -28,4 +28,16 @@ class PostDao {
     final db = await DbHelper.database;
     return db.delete('PROPRIEDADE_POST', where: 'id = ?', whereArgs: [id]);
   }
+
+  Future<List<PostModel>> listarPorAutor(String autor) async {
+    final db = await DbHelper.database;
+    final result = await db.query(
+      'PROPRIEDADE_POST',
+      where: 'autor = ?',
+      whereArgs: [autor],
+    );
+    return result.map((json) => PostModel.fromJson(json)).toList();
+  }
+
 }
+
