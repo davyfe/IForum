@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iforum/cores.dart';
 import 'package:iforum/db/fakeComunidades.dart';
 import 'package:iforum/widget/buildComunidades.dart'; // Importando o arquivo de widgets que criamos
 
@@ -9,22 +8,17 @@ class Comunidades extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Cores.fundo,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Cores.verdeifal,
             floating: true,
             snap: true,
-            title: const Text(
-              "Comunidades",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,
-              ),
-            ),
-            centerTitle: true,
+            title: const Text("Comunidades"),
             actions: [
-              IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {},),
+              IconButton(
+                icon: const Icon(Icons.search_outlined),
+                onPressed: () {},
+              ),
             ],
           ),
           SliverPadding(

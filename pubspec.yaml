@@ -38,6 +38,8 @@ dependencies:
   flutter_drop_cap_text: ^1.0.1
   float_column: ^4.0.3
   google_fonts: ^8.1.0
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:

@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/pages/criarPost.dart';
-import 'package:iforum/cores.dart';
 
 class BuildAppBar extends StatefulWidget {
-  BuildAppBar({super.key});
+  final VoidCallback? onPostCriado;
+
+  const BuildAppBar({super.key, this.onPostCriado});
 
   @override
   State<BuildAppBar> createState() => _BuildAppBarState();
 }
 
-class _BuildAppBarState extends State<BuildAppBar>{
+class _BuildAppBarState extends State<BuildAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      iconTheme: const IconThemeData(color: Colors.white),
-      backgroundColor: Cores.verdeifal,
       floating: true,
       snap: true,
-      leading: Builder(
-        builder: (BuildContext context) => IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
-      ),
-      title: _buildPesquisar(),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () => Navigator.of(context, rootNavigator: true).push(
-            MaterialPageRoute(
-              builder: (context) => const CriarPost(),
-              fullscreenDialog: true,
-            ),
-          ),
-        ),
-      ],
+      leading: _buildLeading(),
+      title: _buildPesquisar(context),
+      actions: [_buildAction()],
       bottom: const PreferredSize(
         preferredSize: Size.fromHeight(10),
         child: SizedBox(),
@@ -42,29 +26,74 @@ class _BuildAppBarState extends State<BuildAppBar>{
     );
   }
 
-  Widget _buildPesquisar(){
+  Widget _buildPesquisar(BuildContext context) {
     return SizedBox(
       height: 40,
       child: TextField(
-        style: const TextStyle(color: Colors.white),
-        cursorColor: Colors.white,
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        cursorColor: Theme.of(context).colorScheme.onPrimary,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           isDense: true,
           hintText: 'Pesquisar',
-          hintStyle: const TextStyle(color: Colors.white70),
-          prefixIcon: const Icon(Icons.search, color: Colors.white),
+          hintStyle: TextStyle(
+            color: Theme.of(
+              context,
+            ).colorScheme.onPrimary.withValues(alpha: 0.7),
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 1.0,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: Colors.white, width: 1.5),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 1.5,
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildLeading() {
+    return Builder(
+      builder:
+          (BuildContext context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+    );
+  }
+
+  Widget _buildAction() {
+    return IconButton(
+      icon: const Icon(Icons.add),
+      onPressed: () async {
+        // aguarda o resultado — true significa que post foi criado
+        final criou = await Navigator.of(
+          context,
+          rootNavigator: true,
+        ).push<bool>(
+          MaterialPageRoute(
+            builder: (context) => const CriarPost(),
+            fullscreenDialog: true,
+          ),
+        );
+        // se criou post, avisa a Home para recarregar
+        if (criou == true) {
+          widget.onPostCriado?.call();
+        }
+      },
     );
   }
 }
