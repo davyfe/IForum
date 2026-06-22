@@ -58,7 +58,7 @@ class _PerfilState extends State<Perfil> {
   Widget buildPerfil({required PropriedadeUsuario usuario}) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20, top: 80),
+      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20, top: 20),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
@@ -158,11 +158,7 @@ class _PerfilState extends State<Perfil> {
               indicatorColor: Cores.verdeifal,
               indicatorWeight: 3.0,
               labelStyle: TextStyle(fontWeight: FontWeight.bold),
-              tabs: [
-                Tab(text: "Posts"),
-                Tab(text: "Comentários"),
-                Tab(text: "Sobre"),
-              ],
+              tabs: [Tab(text: "Posts"), Tab(text: "Comentários")],
             ),
           ),
           SizedBox(
@@ -197,16 +193,6 @@ class _PerfilState extends State<Perfil> {
                   Center(
                     child: Text(
                       "Você ainda não tem comentários. ",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      "Nada para ver aqui. :)",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
