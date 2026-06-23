@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
-import 'package:iforum/domain/PropriedadesComentario.dart';
+import 'package:iforum/domain/comentario_model.dart';
 
 class BuildNavNoticia extends StatelessWidget {
-  final PropriedadesComentario comentario;
-  const BuildNavNoticia({
-    super.key,
-    required this.comentario});
+  final ComentarioModel comentario;
+
+  const BuildNavNoticia({super.key, required this.comentario});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 10),
-          Row(
-            children: [
-              const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
-              SizedBox(width: 8),
-              Text(comentario.autor, style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-              Text(comentario.tempo),
-              Spacer(),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-          SizedBox(height: 5),
-          Text(
-            comentario.texto,
-            style: TextStyle(fontSize: 15),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 8),
-          buildInteracao(comentario.likes, comentario.comentarios, comentario.reacao),
-          SizedBox(height: 10),
-          const Divider(color: Colors.black54, thickness: 0.2, height: 1),
-          SizedBox(height: 10),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10),
+        Row(
+          children: [
+            const CircleAvatar(radius: 12, backgroundColor: Cores.avatar),
+            SizedBox(width: 8),
+            Text(
+              comentario.autor,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(width: 10),
+            Text(comentario.tempo),
+            Spacer(),
+            Icon(Icons.more_horiz),
+          ],
+        ),
+        SizedBox(height: 5),
+        Text(
+          comentario.texto,
+          style: TextStyle(fontSize: 15),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+        ),
+        SizedBox(height: 8),
+        buildInteracao(
+          comentario.likes,
+          comentario.comentarios,
+          comentario.reacao,
+        ),
+        SizedBox(height: 10),
+        const Divider(color: Colors.black54, thickness: 0.2, height: 1),
+        SizedBox(height: 10),
       ],
     );
   }
@@ -98,10 +104,7 @@ class BuildNavNoticia extends StatelessWidget {
           backgroundColor: Cores.fundo,
           label: Text(
             reacao,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black54,
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
           labelPadding: const EdgeInsets.only(left: 2, right: 2),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

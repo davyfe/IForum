@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/noticia_model.dart';
-import 'package:iforum/domain/PropriedadesComentario.dart';
+import 'package:iforum/domain/comentario_model.dart';
 import 'package:iforum/widget/buildNavNoticia.dart';
 
 class NavNoticia extends StatefulWidget {
   final NoticiaModel noticia;
+
   const NavNoticia({super.key, required this.noticia});
 
   @override
@@ -13,8 +14,8 @@ class NavNoticia extends StatefulWidget {
 }
 
 class _NavNoticiaState extends State<NavNoticia> {
-  List<PropriedadesComentario> comentarios = [
-    PropriedadesComentario(
+  List<ComentarioModel> comentarios = [
+    ComentarioModel(
       noticiaId: 1,
       autor: "camila_rosa",
       tempo: "15m",
@@ -23,7 +24,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 2,
       reacao: "😱",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "mauro.coelho",
       tempo: "7m",
@@ -32,7 +33,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 2,
       reacao: "😤",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "remus_lupim",
       tempo: "2m",
@@ -41,7 +42,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 1,
       reacao: "🌕",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "katniss.everdeen12",
       tempo: "30s",
@@ -52,7 +53,7 @@ class _NavNoticiaState extends State<NavNoticia> {
     ),
   ];
 
-  List<PropriedadesComentario> get comentariosDaNoticia =>
+  List<ComentarioModel> get comentariosDaNoticia =>
       comentarios.where((c) => c.noticiaId == widget.noticia.id).toList();
 
   @override
@@ -73,8 +74,8 @@ class _NavNoticiaState extends State<NavNoticia> {
                   Image.network(
                     widget.noticia.urlImagem,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                    const SizedBox.shrink(),
+                    errorBuilder:
+                        (context, error, stackTrace) => const SizedBox.shrink(),
                   ),
                   const DecoratedBox(
                     decoration: BoxDecoration(
@@ -108,16 +109,23 @@ class _NavNoticiaState extends State<NavNoticia> {
                             Text(
                               "Por ${widget.noticia.autor}",
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 15),
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
                             ),
                             const SizedBox(width: 3),
-                            const Icon(Icons.chevron_right,
-                                size: 15, color: Colors.white),
+                            const Icon(
+                              Icons.chevron_right,
+                              size: 15,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 3),
                             Text(
                               widget.noticia.portal,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 15),
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
                             ),
                           ],
                         ),
@@ -133,17 +141,27 @@ class _NavNoticiaState extends State<NavNoticia> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.search_outlined,
-                                  color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.search_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.share_outlined,
-                                  size: 20, color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.share_outlined,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                          ),
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.flag_outlined,
-                                  color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.flag_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -161,9 +179,10 @@ class _NavNoticiaState extends State<NavNoticia> {
                   Text(
                     "Publicado em ${widget.noticia.dataPub}",
                     style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black38,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 16,
+                      color: Colors.black38,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -185,9 +204,7 @@ class _NavNoticiaState extends State<NavNoticia> {
   Widget _buildComentarios() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: comentarios
-          .map((c) => BuildNavNoticia(comentario: c))
-          .toList(),
+      children: comentarios.map((c) => BuildNavNoticia(comentario: c)).toList(),
     );
   }
 }

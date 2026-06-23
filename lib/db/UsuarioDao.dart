@@ -34,14 +34,30 @@ class UsuarioDao {
 
   Future<int> inserir(UsuarioModel usuario) async {
     final db = await DbHelper.database;
-    return db.insert('USUARIO', usuario.toMap());
+    return db.insert('USUARIO', {
+      'nome': usuario.nome,
+      'username': usuario.username,
+      'bio': usuario.bio,
+      'curso': usuario.curso,
+      'campus': usuario.campus,
+      'seguidores': usuario.seguidores,
+      'seguindo': usuario.seguindo,
+    });
   }
 
   Future<int> atualizar(UsuarioModel usuario) async {
     final db = await DbHelper.database;
     return db.update(
       'USUARIO',
-      usuario.toMap(),
+      {
+        'nome': usuario.nome,
+        'username': usuario.username,
+        'bio': usuario.bio,
+        'curso': usuario.curso,
+        'campus': usuario.campus,
+        'seguidores': usuario.seguidores,
+        'seguindo': usuario.seguindo,
+      },
       where: 'id = ?',
       whereArgs: [usuario.id],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
+import 'package:iforum/widget/buildConfiguracao.dart';
 
 class MenuConfig extends StatefulWidget {
   const MenuConfig({super.key});
@@ -25,50 +26,47 @@ class _MenuConfigState extends State<MenuConfig> {
         children: [
           _buildCabecalho("CONFIGURAÇÕES DA CONTA"),
           _buildPerfil(user: "sabynnalouyse"),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.email_outlined,
             titulo: "Email",
             subtitulo: "sabynna@email.com",
           ),
           _buildCabecalho("OPÇÕES DE VISUALIZAÇÃO"),
-          _buildConfiguracaoComTexto(
+          BuildConfiguracao(
             icone: Icons.view_agenda_outlined,
             titulo: "Visualização padrão",
             textoDireita: "Cartões",
           ),
-          _buildConfiguracaoComTexto(
+          BuildConfiguracao(
             icone: Icons.image_outlined,
             titulo: "Miniaturas",
             textoDireita: "Padrão",
           ),
           _buildCabecalho("ACESSIBILIDADE"),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.video_library_outlined,
             titulo: "Mídia e animações",
           ),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.text_fields_outlined,
             titulo: "Tamanho do texto",
           ),
-          _buildConfiguracao(
-            icone: Icons.palette_outlined,
-            titulo: "Aparência",
-          ),
+          BuildConfiguracao(icone: Icons.palette_outlined, titulo: "Aparência"),
           _buildCabecalho("SOBRE"),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.article_outlined,
             titulo: "Regras do app",
           ),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.key,
             titulo: "Política de privacidade",
           ),
-          _buildConfiguracao(
+          BuildConfiguracao(
             icone: Icons.help_outline,
             titulo: "Central de Ajuda",
           ),
-          _buildConfiguracao(icone: Icons.logout_outlined, titulo: "Sair"),
-          _buildConfiguracao(
+          BuildConfiguracao(icone: Icons.logout_outlined, titulo: "Sair"),
+          BuildConfiguracao(
             icone: Icons.delete_outline_outlined,
             titulo: "Apagar conta",
             color: Colors.red,
@@ -93,9 +91,7 @@ class _MenuConfigState extends State<MenuConfig> {
     );
   }
 
-  //O required pede que após a variável coloquemos o valor daquela variável. Ex.: nome: "Davy"
   Widget _buildPerfil({required String user}) {
-    //Uma lista que ao ser clicada leva para uma outra página.
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 30),
       visualDensity: VisualDensity.compact,
@@ -104,106 +100,7 @@ class _MenuConfigState extends State<MenuConfig> {
         "@$user",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
-      //Setinha do ListTile
       trailing: Icon(Icons.chevron_right, color: Colors.grey),
-      onTap: () {},
-    );
-  }
-
-  // DEPOIS — tipado e usado de verdade
-  Widget _buildConfiguracao({
-    required IconData icone,
-    required String titulo,
-    String subtitulo = "",
-    Color color = Colors.black87,
-  }) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: Icon(
-        icone,
-        color: color, // agora usa o parâmetro
-        size: 26,
-      ),
-      title: Text(
-        titulo,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-          color: color, // título também segue a cor
-        ),
-      ),
-      subtitle:
-          subtitulo.isNotEmpty
-              ? Text(
-                subtitulo,
-                style: TextStyle(color: Cores.textoTerciario, fontSize: 13),
-              )
-              : null,
-      trailing: Icon(Icons.chevron_right, color: Colors.grey),
-      onTap: () {},
-    );
-  }
-
-  Widget _buildConfiguracaoVermelho({
-    required IconData icone,
-    required String titulo,
-    String subtitulo = "",
-  }) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: Icon(icone, color: Colors.red, size: 26),
-      title: Text(
-        titulo,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-          color: Colors.red,
-        ),
-      ),
-      //O isnotempty é uma forma resumida de fazer o IF. Ex.: subtitulo.isNotEmpy = "se o subtitulo não estiver vazio, faça:
-      subtitle:
-          subtitulo.isNotEmpty
-              ? Text(
-                subtitulo,
-                style: TextStyle(color: Colors.grey[600], fontSize: 13),
-              )
-              : null,
-      trailing: Icon(Icons.chevron_right, color: Colors.red),
-      onTap: () {},
-    );
-  }
-
-  // configuração com texto à direita (ex: Cartões, Padrão)
-  Widget _buildConfiguracaoComTexto({
-    required IconData icone,
-    required String titulo,
-    required String textoDireita,
-  }) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 30),
-      visualDensity: VisualDensity.compact,
-      leading: Icon(icone, color: Colors.black87, size: 26),
-      title: Text(
-        titulo,
-        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            textoDireita,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-          SizedBox(width: 4),
-          Icon(Icons.chevron_right, color: Colors.grey),
-        ],
-      ),
       onTap: () {},
     );
   }
