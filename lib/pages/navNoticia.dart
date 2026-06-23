@@ -171,7 +171,7 @@ class _NavNoticiaState extends State<NavNoticia> {
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   ),
                   const SizedBox(height: 30),
-                  Text("Comentários (${comentariosDaNoticia.length})"),
+                  Text("Comentários (${comentarios.length})"),
                   _buildComentarios(),
                 ],
               ),
@@ -185,7 +185,7 @@ class _NavNoticiaState extends State<NavNoticia> {
   Widget _buildComentarios() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: comentariosDaNoticia
+      children: comentarios
           .map((c) => BuildNavNoticia(comentario: c))
           .toList(),
     );

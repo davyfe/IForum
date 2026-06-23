@@ -73,6 +73,7 @@ class DbHelper {
     ''');
   }
 
+  //criar tabela noticia no banco; id gerado automaticamente
   static Future<void> _criarTabelaNoticia(Database db) async {
     await db.execute('''
       CREATE TABLE NOTICIA (
@@ -91,6 +92,7 @@ class DbHelper {
     ''');
   }
 
+  //cri a tabela com 5 notícias ao abrir o app
   static Future<void> _seedPosts(Database db) async {
     final posts = [
       {
@@ -131,6 +133,8 @@ class DbHelper {
         'tipo': 'ajuda',
       },
     ];
+
+    //loop que percorre a lista de post e insere cada item na tabela
     for (final post in posts) {
       await db.insert('PROPRIEDADE_POST', post);
     }

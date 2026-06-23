@@ -3,6 +3,7 @@ import 'package:iforum/domain/noticia_model.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/pages/navNoticia.dart';
 
+//recebe um noticiamodel e transforma em card
 class BuildNoticia extends StatelessWidget {
   final NoticiaModel noticia;
 

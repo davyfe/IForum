@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 
+//definifindo o que a noticia precisa ter
+//atributos:
 class NoticiaModel {
   final int? id;
   final String titulo;
@@ -28,6 +30,7 @@ class NoticiaModel {
     this.corTema = '#006b3f',
   });
 
+  //aqui pega a cor hexadecimal e converte para string
   Color get tema {
     try {
       final hex = corTema.replaceFirst('#', '');
@@ -37,6 +40,8 @@ class NoticiaModel {
     }
   }
 
+  //recebe um valor do banco e converte para dart
+  //?? = valor padrão caso venha nulo
   factory NoticiaModel.fromJson(Map<String, dynamic> json) {
     return NoticiaModel(
       id:          json['id']          as int?,
@@ -53,6 +58,7 @@ class NoticiaModel {
     );
   }
 
+  //aqui converte o objeto dart para o banco colocando-o na tabela
   Map<String, dynamic> toMap() {
     return {
       'titulo':      titulo,
