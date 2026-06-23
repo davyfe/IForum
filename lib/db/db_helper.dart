@@ -92,7 +92,6 @@ class DbHelper {
     ''');
   }
 
-  //cri a tabela com 5 notícias ao abrir o app
   static Future<void> _seedPosts(Database db) async {
     final posts = [
       {
@@ -133,7 +132,6 @@ class DbHelper {
         'tipo': 'ajuda',
       },
     ];
-
     for (final post in posts) {
       await db.insert('PROPRIEDADE_POST', post);
     }
@@ -165,6 +163,7 @@ class DbHelper {
     }
   }
 
+  //cria a tabela com 5 notícias ao abrir o app
   static Future<void> _seedNoticias(Database db) async {
     final noticias = [
       {
@@ -228,6 +227,8 @@ class DbHelper {
         'corTema': '#1F9A25',
       },
     ];
+
+    //loop que percorre a lista de post e insere cada item na tabela
     for (final n in noticias) {
       await db.insert('NOTICIA', n);
     }
