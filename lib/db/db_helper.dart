@@ -29,7 +29,8 @@ class DbHelper {
     await _seedNoticias(db);
   }
 
-  static Future<void> _onUpgradeDB(Database db, int oldVersion, int newVersion) async {
+  static Future<void> _onUpgradeDB(Database db, int oldVersion,
+      int newVersion) async {
     if (oldVersion < 2) {
       await _criarTabelaUsuario(db);
       await _seedUsuarios(db);
@@ -43,17 +44,17 @@ class DbHelper {
   static Future<void> _criarTabelaPost(Database db) async {
     await db.execute('''
       CREATE TABLE PROPRIEDADE_POST (
-        id           INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo       TEXT    NOT NULL,
-        autor        TEXT    NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        titulo TEXT NOT NULL,
+        autor TEXT NOT NULL,
         comunidadeId INTEGER,
-        tempo        TEXT,
-        tipo         TEXT,
-        conteudo     TEXT,
-        likes        INTEGER DEFAULT 0,
-        comentarios  INTEGER DEFAULT 0,
-        urlImagem    TEXT,
-        anexo        INTEGER DEFAULT 0
+        tempo TEXT,
+        tipo TEXT,
+        conteudo TEXT,
+        likes INTEGER DEFAULT 0,
+        comentarios INTEGER DEFAULT 0,
+        urlImagem TEXT,
+        anexo INTEGER DEFAULT 0
       )
     ''');
   }
@@ -61,14 +62,14 @@ class DbHelper {
   static Future<void> _criarTabelaUsuario(Database db) async {
     await db.execute('''
       CREATE TABLE USUARIO (
-        id         INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome       TEXT    NOT NULL,
-        username   TEXT    NOT NULL UNIQUE,
-        bio        TEXT    DEFAULT '',
-        curso      TEXT    DEFAULT '',
-        campus     TEXT    DEFAULT '',
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        username TEXT NOT NULL UNIQUE,
+        bio TEXT DEFAULT '',
+        curso TEXT DEFAULT '',
+        campus TEXT DEFAULT '',
         seguidores INTEGER DEFAULT 0,
-        seguindo   INTEGER DEFAULT 0
+        seguindo INTEGER DEFAULT 0
       )
     ''');
   }
@@ -76,17 +77,17 @@ class DbHelper {
   static Future<void> _criarTabelaNoticia(Database db) async {
     await db.execute('''
       CREATE TABLE NOTICIA (
-        id          INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo      TEXT    NOT NULL,
-        texto       TEXT    NOT NULL,
-        urlImagem   TEXT    DEFAULT '',
-        dataPub     TEXT    DEFAULT '',
-        tempo       TEXT    DEFAULT '',
-        autor       TEXT    NOT NULL,
-        portal      TEXT    DEFAULT '',
-        likes       INTEGER DEFAULT 0,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        titulo TEXT NOT NULL,
+        texto TEXT NOT NULL,
+        urlImagem TEXT DEFAULT '',
+        dataPub TEXT DEFAULT '',
+        tempo TEXT DEFAULT '',
+        autor TEXT NOT NULL,
+        portal TEXT DEFAULT '',
+        likes INTEGER DEFAULT 0,
         comentarios INTEGER DEFAULT 0,
-        corTema     TEXT    DEFAULT '#006b3f'
+        corTema TEXT DEFAULT '#006b3f'
       )
     ''');
   }
