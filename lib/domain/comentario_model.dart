@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:iforum/cores.dart';
-
-class PropriedadesComentario {
+class ComentarioModel {
   int noticiaId;
   String autor;
   String tempo;
@@ -10,7 +7,7 @@ class PropriedadesComentario {
   int comentarios;
   String reacao;
 
-   PropriedadesComentario ({
+  ComentarioModel({
     required this.noticiaId,
     required this.autor,
     required this.tempo,
@@ -18,5 +15,5 @@ class PropriedadesComentario {
     required this.likes,
     required this.comentarios,
     required this.reacao,
-});
+  });
 }

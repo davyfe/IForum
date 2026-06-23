@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/noticia_model.dart';
-import 'package:iforum/domain/PropriedadesComentario.dart';
+import 'package:iforum/domain/comentario_model.dart';
 import 'package:iforum/widget/buildNavNoticia.dart';
 
 class NavNoticia extends StatefulWidget {
@@ -14,8 +14,8 @@ class NavNoticia extends StatefulWidget {
 }
 
 class _NavNoticiaState extends State<NavNoticia> {
-  List<PropriedadesComentario> comentarios = [
-    PropriedadesComentario(
+  List<ComentarioModel> comentarios = [
+    ComentarioModel(
       noticiaId: 1,
       autor: "camila_rosa",
       tempo: "15m",
@@ -24,7 +24,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 2,
       reacao: "😱",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "mauro.coelho",
       tempo: "7m",
@@ -33,7 +33,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 2,
       reacao: "😤",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "remus_lupim",
       tempo: "2m",
@@ -42,7 +42,7 @@ class _NavNoticiaState extends State<NavNoticia> {
       comentarios: 1,
       reacao: "🌕",
     ),
-    PropriedadesComentario(
+    ComentarioModel(
       noticiaId: 1,
       autor: "katniss.everdeen12",
       tempo: "30s",
@@ -53,7 +53,7 @@ class _NavNoticiaState extends State<NavNoticia> {
     ),
   ];
 
-  List<PropriedadesComentario> get comentariosDaNoticia =>
+  List<ComentarioModel> get comentariosDaNoticia =>
       comentarios.where((c) => c.noticiaId == widget.noticia.id).toList();
 
   @override

@@ -22,7 +22,18 @@ class NoticiaDao {
 
   Future<int> inserir(NoticiaModel noticia) async {
     final db = await DbHelper.database;
-    return db.insert('NOTICIA', noticia.toMap());
+    return db.insert('NOTICIA', {
+      'titulo': noticia.titulo,
+      'texto': noticia.texto,
+      'urlImagem': noticia.urlImagem,
+      'dataPub': noticia.dataPub,
+      'tempo': noticia.tempo,
+      'autor': noticia.autor,
+      'portal': noticia.portal,
+      'likes': noticia.likes,
+      'comentarios': noticia.comentarios,
+      'corTema': noticia.corTema,
+    });
   }
 
   Future<int> deletar(int id) async {
