@@ -7,6 +7,7 @@ import 'package:iforum/widget/buildNoticia.dart';
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
 
+  //tela principal que busca as noticias do banco e exibe na tela
   @override
   State<Noticias> createState() => _NoticiasState();
 }
@@ -65,7 +66,7 @@ class _NoticiasState extends State<Noticias> {
             //metodo futuro que vai retornar a lista para a tela
             child: FutureBuilder<List<NoticiaModel>>(
               future: _noticiasFuture,
-              //snaoshot = "print" da tela
+              //snapshot = "print" da tela
               builder: (context, snapshot) {
                 //verifica se está carregando
                 if (snapshot.connectionState == ConnectionState.waiting) {

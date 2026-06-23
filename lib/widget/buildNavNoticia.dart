@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iforum/cores.dart';
 import 'package:iforum/domain/comentario_model.dart';
 
+//recebe um comentariomodel e transforma
 class BuildNavNoticia extends StatelessWidget {
   final ComentarioModel comentario;
 
