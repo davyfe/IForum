@@ -6,6 +6,7 @@ import 'package:iforum/widget/buildNavNoticia.dart';
 
 class NavNoticia extends StatefulWidget {
   final NoticiaModel noticia;
+
   const NavNoticia({super.key, required this.noticia});
 
   @override
@@ -73,8 +74,8 @@ class _NavNoticiaState extends State<NavNoticia> {
                   Image.network(
                     widget.noticia.urlImagem,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                    const SizedBox.shrink(),
+                    errorBuilder:
+                        (context, error, stackTrace) => const SizedBox.shrink(),
                   ),
                   const DecoratedBox(
                     decoration: BoxDecoration(
@@ -108,16 +109,23 @@ class _NavNoticiaState extends State<NavNoticia> {
                             Text(
                               "Por ${widget.noticia.autor}",
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 15),
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
                             ),
                             const SizedBox(width: 3),
-                            const Icon(Icons.chevron_right,
-                                size: 15, color: Colors.white),
+                            const Icon(
+                              Icons.chevron_right,
+                              size: 15,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 3),
                             Text(
                               widget.noticia.portal,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 15),
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
                             ),
                           ],
                         ),
@@ -133,17 +141,27 @@ class _NavNoticiaState extends State<NavNoticia> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.search_outlined,
-                                  color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.search_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.share_outlined,
-                                  size: 20, color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.share_outlined,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                          ),
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.flag_outlined,
-                                  color: Colors.white)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.flag_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -161,9 +179,10 @@ class _NavNoticiaState extends State<NavNoticia> {
                   Text(
                     "Publicado em ${widget.noticia.dataPub}",
                     style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black38,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 16,
+                      color: Colors.black38,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -171,7 +190,7 @@ class _NavNoticiaState extends State<NavNoticia> {
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   ),
                   const SizedBox(height: 30),
-                  Text("Comentários (${comentariosDaNoticia.length})"),
+                  Text("Comentários (${comentarios.length})"),
                   _buildComentarios(),
                 ],
               ),
@@ -185,9 +204,7 @@ class _NavNoticiaState extends State<NavNoticia> {
   Widget _buildComentarios() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: comentariosDaNoticia
-          .map((c) => BuildNavNoticia(comentario: c))
-          .toList(),
+      children: comentarios.map((c) => BuildNavNoticia(comentario: c)).toList(),
     );
   }
 }
