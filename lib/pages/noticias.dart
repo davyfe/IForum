@@ -87,7 +87,6 @@ class _NoticiasState extends State<Noticias> {
                   );
                 }
 
-                //caso dê certo, é criado uma lista
                 //snaphot.data = armazena o conteúdo de noticiaFuture
                 //?? [] = se der errado, cria lista vazia
                 final noticias = snapshot.data ?? [];

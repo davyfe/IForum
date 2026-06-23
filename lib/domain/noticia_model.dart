@@ -28,6 +28,7 @@ class NoticiaModel {
     this.corTema = '#006b3f',
   });
 
+  //converte o conteúdo do banco em dart
   NoticiaModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     titulo = json['titulo'];
@@ -42,6 +43,7 @@ class NoticiaModel {
     corTema = json['corTema'] ?? '#006b3f';
   }
 
+  //converter a cor hexadecimal em string
   Color get tema {
     try {
       final hex = corTema.replaceFirst('#', '');
