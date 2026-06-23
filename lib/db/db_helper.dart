@@ -106,7 +106,7 @@ class DbHelper {
       },
       {
         'titulo': 'Rio de Janeiro, RJ, Brasil.',
-        'autor': 'pdrolopesm',
+        'autor': 'pdrolopes',
         'comunidadeId': 6,
         'tempo': '1d',
         'tipo': 'outros',
