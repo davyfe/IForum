@@ -134,7 +134,6 @@ class DbHelper {
       },
     ];
 
-    //loop que percorre a lista de post e insere cada item na tabela
     for (final post in posts) {
       await db.insert('PROPRIEDADE_POST', post);
     }
