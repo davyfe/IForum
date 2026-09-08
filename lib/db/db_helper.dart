@@ -50,7 +50,7 @@ class DbHelper {
     await db.execute(sql);
 
     sql =
-        "INSERT INTO USER (username, password) VALUES ('pdrolopes', '123456');";
+        "INSERT INTO USER (username, password) VALUES ('pedrolopes', '123456');";
     await db.execute(sql);
 
     sql = '''CREATE TABLE NOTICIA (
