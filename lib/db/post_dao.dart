@@ -45,4 +45,17 @@ class PostDao {
     );
     return result.map((json) => Post.fromJson(json)).toList();
   }
+
+
+  // NOVO - usado na tela de pesquisa
+  Future<List<Post>> buscarPorTitulo(String nomeInicial) async {
+    Database db = await DbHelper().initDB();
+    final result = await db.query(
+      'POST',
+      where: 'titulo LIKE ?',
+      whereArgs: ['$nomeInicial%'],
+    );
+    return result.map((json) => Post.fromJson(json)).toList();
+  }
 }
+
