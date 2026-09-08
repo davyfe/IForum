@@ -5,6 +5,7 @@ import '/domain/post.dart';
 import '/widget/build_post.dart';
 import '/cores.dart';
 import 'criar_page.dart';
+import 'pesquisar_page.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -80,43 +81,37 @@ class _ExploreState extends State<Explore> {
   }
 
   Widget _buildTitle() {
-    return SizedBox(
-      height: 40,
-      child: TextField(
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-        cursorColor: Theme.of(context).colorScheme.onPrimary,
-        textAlignVertical: TextAlignVertical.center,
-        decoration: InputDecoration(
-          isDense: true,
-          hintText: 'Pesquisar',
-          hintStyle: TextStyle(
-            color: Theme.of(
-              context,
-            ).colorScheme.onPrimary.withValues(alpha: 0.7),
-          ),
-          prefixIcon: Icon(
-            Icons.search,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const pesquisar_page()),
+        );
+      },
+      child: Container(
+        height: 40,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(
             color: Theme.of(context).colorScheme.onPrimary,
+            width: 1.0,
           ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary),
+            const SizedBox(width: 8),
+            BuildText(
+              'Pesquisar',
               color: Theme.of(context).colorScheme.onPrimary,
-              width: 1.0,
+              size: 16,
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.onPrimary,
-              width: 1.5,
-            ),
-          ),
+          ],
         ),
       ),
     );
   }
+
 
   Widget _buildAction() {
     return IconButton(
